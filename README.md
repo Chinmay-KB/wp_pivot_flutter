@@ -1,12 +1,12 @@
 # wp_pivot_flutter
 
-A Flutter package inspirred from Windows Phone Style Pivot Tabs.
+A Flutter package inspirred from Windows Phone Style Pivot Tabs
 ![Pivots in action](showcase/ezgif-4-446097008731.gif)
 
 
 ## Example
 
-The current plugin uses GlobalKey for accessing child function. A controller will be implemented in the next update
+The current plugin uses GlobalKey for accessing child function. A controller will be implemented in the next update.
 
 ```
 import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
