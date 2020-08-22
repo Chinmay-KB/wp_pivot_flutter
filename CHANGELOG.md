@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] 22 August 2020.
 
-* TODO: Describe initial release.
+* A flutter package implementing Windows Phone style pivot tab bar

@@ -3,12 +3,17 @@ library wp_pivot_flutter;
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+/// This is a Flutter implementation of pivot style tabs in Windows Phone 7.x and 8.x
+/// Pass a list of string you want as tabs and voila !
+/// This plugin is currently using [GlobalKey] for parent->child communication,
+/// which is not ideal. This will be improved in the nexr update
+
 class WpPivot extends StatefulWidget implements PreferredSizeWidget {
-  WpPivot({
+  const WpPivot({
     Key key,
-    this.backgroundColor,
-    this.selectedTabColor = Colors.black,
-    this.unselectedTabColor = Colors.black38,
+    this.backgroundColor = Colors.black,
+    this.selectedTabColor = Colors.white,
+    this.unselectedTabColor = Colors.white54,
     this.tabTitles,
     this.fontWeight = FontWeight.w200,
     this.fontSize = 36,
@@ -18,28 +23,38 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
     @required this.title,
   }) : super(key: key);
 
-  /// Background color of the Appbar and tab bar
-  Color backgroundColor;
+  /// Background color of the Appbar and tab bar, default is [Colors.black]
+  final Color backgroundColor;
 
-  /// Color of selected tab. White by default, staying true to its origins
-  Color selectedTabColor = Colors.white;
+  /// Color of selected tab, default is [Colors.white]
+  final Color selectedTabColor;
 
-  /// Color of rest of the tabs
-  Color unselectedTabColor = Colors.white30;
+  /// Color of rest of the tabs, default is [Colors.white54]
+  final Color unselectedTabColor;
 
-  FontWeight fontWeight, titleFontWeight;
+  /// Set the font weight of the tab options, default is [FontWeight.w200].
+  final FontWeight fontWeight, titleFontWeight;
+
+  /// List of all the tab names
   @required
-  List<String> tabTitles;
+  final List<String> tabTitles;
+
+  /// Font size of the tab names, default is [36]
   @required
-  double fontSize;
-  String title;
-  double titleFontSize;
-  Color titleColor;
+  final double fontSize;
+
+  /// Set the pivot title
+  final String title;
+
+  /// Font size of the pivot title, default is [16]
+  final double titleFontSize;
+
+  /// Color of pivot title, default is [Colors.white]
+  final Color titleColor;
   @override
   State<StatefulWidget> createState() => WpPivotState();
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(fontSize * 1.5 + 42.5011);
 }
 
@@ -99,6 +114,7 @@ class WpPivotState extends State<WpPivot> {
     );
   }
 
+  /// Function to take care of page change, currently only an increment of a decrement by 1 is allowed
   handlePagechange(int currentPage) {
     if (currentPage > highlightedIndex)
       increase();
