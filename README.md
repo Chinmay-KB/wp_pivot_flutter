@@ -1,14 +1,14 @@
 # wp_pivot_flutter
 
 A Flutter package inspirred from Windows Phone Style Pivot Tabs
-![Pivots in action](showcase/ezgif-4-446097008731.gif)
+![Pivots in action](https://github.com/Chinmay-KB/wp_pivot_flutter/blob/master/showcase/ezgif-4-446097008731.gif)
 
 
 ## Example
 
 The current plugin uses GlobalKey for accessing child function. A controller will be implemented in the next update.
 
-```
+```dart
 import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 
 GlobalKey<WpPivotState> globalKey = GlobalKey();
@@ -38,6 +38,4 @@ GlobalKey<WpPivotState> globalKey = GlobalKey();
      );
 }
    
-
-
 ```

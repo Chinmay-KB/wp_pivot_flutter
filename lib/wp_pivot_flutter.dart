@@ -146,13 +146,13 @@ class WpPivotState extends State<WpPivot> {
 }
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  String title;
-  Color textColor;
-  FontWeight fontWeight;
-  double fontSize;
-  CustomAppBar(
+  final String title;
+  final Color textColor;
+  final FontWeight fontWeight;
+  final double fontSize;
+  const CustomAppBar(
       {Key key, this.title, this.textColor, this.fontSize, this.fontWeight})
-      : preferredSize = Size.fromHeight(kToolbarHeight),
+      : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   @override

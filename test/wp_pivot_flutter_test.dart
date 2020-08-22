@@ -1,7 +1,3 @@
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
-
 // void main() {
 //   test('adds one to input values', () {
 //     final calculator = Calculator();
@@ -10,4 +6,4 @@ import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 //     expect(calculator.addOne(0), 1);
 //     expect(() => calculator.addOne(null), throwsNoSuchMethodError);
 //   });
-}
+//}

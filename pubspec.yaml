@@ -1,8 +1,8 @@
 name: wp_pivot_flutter
 description: A Windows Phone style pivot tab bar implementation in Flutter
-version: 0.0.1
+version: 0.0.2
 author: Chinmay Kabi
-homepage: https://github.com/Chinmay-KB/wp-pivot-flutter
+homepage: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
