@@ -65,7 +65,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 ## Starware
 
-<!-- TODO: project name --> is Starware.  
+wp_pivot_flutter is Starware.  
 This means you're free to use the project, as long as you star its GitHub repository.  
 Your appreciation makes us grow and glow up. ⭐
 
