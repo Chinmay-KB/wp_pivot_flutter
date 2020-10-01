@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Chinmay-KB",
+      "name": "Chinmay Kabi",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13520364?v=4",
+      "profile": "https://github.com/Chinmay-KB",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "wp_pivot_flutter",
+  "projectOwner": "Chinmay-KB",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
