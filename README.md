@@ -1,3 +1,6 @@
+[![Starware](https://img.shields.io/badge/⭐-Starware-f5a91a?labelColor=black)](https://github.com/zepfietje/starware)
+
+
 # wp_pivot_flutter
 
 A Flutter package inspirred from Windows Phone Style Pivot Tabs
@@ -39,3 +42,8 @@ GlobalKey<WpPivotState> globalKey = GlobalKey();
 }
    
 ```
+## Starware
+
+<!-- TODO: project name --> is Starware.  
+This means you're free to use the project, as long as you star its GitHub repository.  
+Your appreciation makes us grow and glow up. ⭐
