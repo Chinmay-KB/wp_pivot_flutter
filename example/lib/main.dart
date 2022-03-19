@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: PageView(
             controller: pageController,
             onPageChanged: (value) =>
-                globalKey.currentState.handlePagechange(value),
+                globalKey.currentState?.handlePagechange(value),
             children: <Widget>[
               Align(
                   alignment: Alignment.topLeft,

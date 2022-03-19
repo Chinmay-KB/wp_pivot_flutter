@@ -6,8 +6,9 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-A Flutter package inspirred from Windows Phone Style Pivot Tabs
+A Flutter package inspired from Windows Phone Style Pivot Tabs
 ![Pivots in action](https://github.com/Chinmay-KB/wp_pivot_flutter/blob/master/showcase/ezgif-4-446097008731.gif)
+
 
 
 ## Example
