@@ -6,19 +6,18 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final FontWeight fontWeight;
   final double fontSize;
   const CustomAppBar(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.textColor,
       required this.fontSize,
       required this.fontWeight})
-      : preferredSize = const Size.fromHeight(kToolbarHeight),
-        super(key: key);
+      : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
   final Size preferredSize; // default is 56.0
 
   @override
-  _CustomAppBarState createState() => _CustomAppBarState();
+  State<CustomAppBar> createState() => _CustomAppBarState();
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {

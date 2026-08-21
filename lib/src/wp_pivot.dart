@@ -9,7 +9,7 @@ import 'package:wp_pivot_flutter/src/custom_appbar.dart';
 
 class WpPivot extends StatefulWidget implements PreferredSizeWidget {
   const WpPivot({
-    required Key key,
+    super.key,
     required this.tabTitles,
     this.backgroundColor = Colors.black,
     this.selectedTabColor = Colors.white,
@@ -20,7 +20,7 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
     this.titleFontSize = 16,
     this.titleColor = Colors.white,
     required this.title,
-  }) : super(key: key);
+  });
 
   /// Background color of the Appbar and tab bar, default is [Colors.black]
   final Color backgroundColor;
@@ -35,11 +35,9 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
   final FontWeight fontWeight, titleFontWeight;
 
   /// List of all the tab names
-  @required
   final List<String> tabTitles;
 
   /// Font size of the tab names, default is [36]
-  @required
   final double fontSize;
 
   /// Set the pivot title
@@ -54,7 +52,8 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
   State<StatefulWidget> createState() => WpPivotState();
 
   @override
-  Size get preferredSize => Size.fromHeight(fontSize * 1.5 + 42.5011);
+  Size get preferredSize =>
+      Size.fromHeight(kToolbarHeight + fontSize * 1.7);
 }
 
 class WpPivotState extends State<WpPivot> {
@@ -114,32 +113,35 @@ class WpPivotState extends State<WpPivot> {
   }
 
   /// Function to take care of page change, currently only an increment of a decrement by 1 is allowed
-  handlePagechange(int currentPage) {
-    if (currentPage > highlightedIndex)
+  void handlePagechange(int currentPage) {
+    if (currentPage > highlightedIndex) {
       increase();
-    else
+    } else {
       decrease();
+    }
   }
 
-  increase() {
-    if (highlightedIndex != widget.tabTitles.length - 1)
+  void increase() {
+    if (highlightedIndex != widget.tabTitles.length - 1) {
       setState(() {
         itemScrollController.scrollTo(
             index: highlightedIndex + 1,
             curve: Curves.fastLinearToSlowEaseIn,
-            duration: Duration(milliseconds: 600));
+            duration: const Duration(milliseconds: 600));
         highlightedIndex++;
       });
+    }
   }
 
-  decrease() {
-    if (highlightedIndex != 0)
+  void decrease() {
+    if (highlightedIndex != 0) {
       setState(() {
         itemScrollController.scrollTo(
             index: highlightedIndex - 1,
             curve: Curves.fastLinearToSlowEaseIn,
-            duration: Duration(milliseconds: 600));
+            duration: const Duration(milliseconds: 600));
         highlightedIndex--;
       });
+    }
   }
 }
