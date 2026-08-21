@@ -13,39 +13,59 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 
 ## Example
 
-The current plugin uses GlobalKey for accessing child function. A controller will be implemented in the next update.
+Selection state is managed by a `PivotController` - pass your own to drive the
+pivot from the outside, or let the widget create one internally.
 
 ```dart
 import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 
-GlobalKey<WpPivotState> globalKey = GlobalKey();
+final PivotController pivotController = PivotController(length: 4);
+final PageController pageController = PageController();
 
 @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: WpPivot(
-          key: globalKey,
-          backgroundColor: Colors.black,
-          fontSize: 42,
-          fontWeight: FontWeight.w400,
-          selectedTabColor: Colors.white,
-          unselectedTabColor: Colors.white38,
-          tabTitles: [
-            "Tab 1",
-            "Tab 2",
-            "Tab 3",
-            "Tab 4",
-          ],
-          title: "Title",
-          titleColor: Colors.white,
-          titleFontSize: 14,
-          titleFontWeight: FontWeight.bold,
-        ),
-     );
+void initState() {
+  super.initState();
+  // Keep the PageView in sync with the pivot.
+  pivotController.addListener(() {
+    pageController.animateToPage(
+      pivotController.index,
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.fastLinearToSlowEaseIn,
+    );
+  });
 }
-   
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.black,
+    appBar: WpPivot(
+      controller: pivotController,
+      backgroundColor: Colors.black,
+      fontSize: 42,
+      fontWeight: FontWeight.w400,
+      selectedTabColor: Colors.white,
+      unselectedTabColor: Colors.white38,
+      tabTitles: [
+        "Tab 1",
+        "Tab 2",
+        "Tab 3",
+        "Tab 4",
+      ],
+      title: "Title",
+      titleColor: Colors.white,
+      titleFontSize: 14,
+      titleFontWeight: FontWeight.bold,
+    ),
+    body: PageView(
+      controller: pageController,
+      onPageChanged: (index) => pivotController.animateTo(index),
+      children: const [ /* pages */ ],
+    ),
+  );
+}
 ```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
