@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <style>
+    :root {
+      --accent: #1ba1e2;        /* classic WP phone-blue */
+      --accent-dark: #0050ef;
+      --bg: #121212;
+      --surface: #1d1d1d;
+      --tile: #262626;
+      --fg: #ffffff;
+      --fg-dim: #b8b8b8;
+      --border: #333333;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Segoe UI", "Selawik", -apple-system, Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+    header.site {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    header.site .wrap { padding-top: 18px; padding-bottom: 14px; }
+    .brand { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .brand h1 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; }
+    .brand h1 a { color: var(--fg); text-decoration: none; }
+    .brand .tagline { color: var(--accent); font-size: 13px; }
+    nav.main { margin-top: 12px; display: flex; gap: 22px; flex-wrap: wrap; }
+    nav.main a {
+      color: var(--fg-dim); text-decoration: none; font-size: 15px;
+      padding-bottom: 3px; border-bottom: 2px solid transparent;
+    }
+    nav.main a:hover { color: var(--fg); border-bottom-color: var(--accent); }
+    h2 { font-weight: 600; letter-spacing: -0.01em; margin-top: 2em; }
+    h2::before { content: ""; } 
+    h1.accent-bar, h2.accent-bar { position: relative; padding-left: 16px; }
+    h1.accent-bar::before, h2.accent-bar::before {
+      content: ""; position: absolute; left: 0; top: 0.12em; bottom: 0.12em;
+      width: 6px; background: var(--accent);
+    }
+    a { color: var(--accent); }
+    code, pre { font-family: Consolas, "Cascadia Code", monospace; }
+    pre { background: var(--surface); border: 1px solid var(--border); padding: 14px; overflow-x: auto; }
+    code { background: var(--surface); padding: 2px 6px; font-size: 90%; }
+    pre code { background: transparent; padding: 0; }
+    table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; color: var(--fg-dim); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+    blockquote { margin: 1em 0; padding: 8px 18px; border-left: 6px solid var(--accent); background: var(--surface); color: var(--fg-dim); }
+    img, video { max-width: 100%; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 1.5em 0; }
+    .tile {
+      background: var(--tile); padding: 20px; min-height: 120px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border-left: 4px solid var(--accent);
+    }
+    .tile h3 { margin: 0 0 8px; font-weight: 600; font-size: 17px; }
+    .tile p { margin: 0; color: var(--fg-dim); font-size: 14px; }
+    .hero { padding: 48px 0 8px; }
+    .hero .kicker { color: var(--accent); text-transform: uppercase; letter-spacing: 0.14em; font-size: 13px; font-weight: 400; }
+    .hero h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.08; margin: 10px 0 16px; font-weight: 200; letter-spacing: -0.02em; }
+    .hero p.lead { font-size: 19px; color: var(--fg-dim); max-width: 720px; }
+    footer.site { border-top: 1px solid var(--border); margin-top: 60px; }
+    footer.site .wrap { padding: 24px; color: var(--fg-dim); font-size: 13px; }
+    .status-badge { display: inline-block; padding: 2px 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+    .status-spec { background: #444; color: #fff; }
+    .status-building { background: #ca5010; color: #fff; }
+    .status-shipped { background: #107c10; color: #fff; }
+    .status-verified { background: var(--accent-dark); color: #fff; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div class="brand">
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <span class="tagline">{{ site.tagline }}</span>
+      </div>
+      <nav class="main">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/paradigms/' | relative_url }}">Paradigms</a>
+        <a href="{{ '/research/' | relative_url }}">Research</a>
+        <a href="{{ '/captures/' | relative_url }}">Captures</a>
+        <a href="{{ '/essays/' | relative_url }}">Essays</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="https://github.com/Chinmay-KB/wp_pivot_flutter/blob/master/docs/ROADMAP.md">Roadmap ↗</a>
+        <a href="{{ site.github_repo }}">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    {{ content }}
+  </div>
+
+  <footer class="site">
+    <div class="wrap">
+      Built as part of <a href="{{ site.github_repo }}">wp_pivot_flutter</a> —
+      preserving the Windows Phone design language through measurement, not memory.
+      Raw capture data ships with every conclusion.
+    </div>
+  </footer>
+</body>
+</html>
