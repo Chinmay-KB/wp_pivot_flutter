@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:wp_pivot_flutter/src/custom_appbar.dart';
+import 'package:wp_pivot_flutter/src/pivot_controller.dart';
 
-/// This is a Flutter implementation of pivot style tabs in Windows Phone 7.x and 8.x
-/// Pass a list of string you want as tabs and voila !
-/// This plugin is currently using [GlobalKey] for parent->child communication,
-/// which is not ideal. This will be improved in the nexr update
-
+/// A Flutter implementation of pivot style tabs in Windows Phone 7.x and 8.x.
+///
+/// Pass a list of strings you want as tabs and voila!
+///
+/// Selection state lives in a [PivotController]. If none is provided, an
+/// internal one is created; pass your own to drive the pivot from the outside
+/// (e.g. to keep it in sync with a [PageView]).
 class WpPivot extends StatefulWidget implements PreferredSizeWidget {
   const WpPivot({
-    required Key key,
+    super.key,
     required this.tabTitles,
     this.backgroundColor = Colors.black,
     this.selectedTabColor = Colors.white,
@@ -20,7 +23,8 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
     this.titleFontSize = 16,
     this.titleColor = Colors.white,
     required this.title,
-  }) : super(key: key);
+    this.controller,
+  });
 
   /// Background color of the Appbar and tab bar, default is [Colors.black]
   final Color backgroundColor;
@@ -35,11 +39,9 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
   final FontWeight fontWeight, titleFontWeight;
 
   /// List of all the tab names
-  @required
   final List<String> tabTitles;
 
   /// Font size of the tab names, default is [36]
-  @required
   final double fontSize;
 
   /// Set the pivot title
@@ -50,21 +52,100 @@ class WpPivot extends StatefulWidget implements PreferredSizeWidget {
 
   /// Color of pivot title, default is [Colors.white]
   final Color titleColor;
-  @override
-  State<StatefulWidget> createState() => WpPivotState();
+
+  /// Controls which tab is selected.
+  ///
+  /// When omitted, the widget manages its own internal controller.
+  /// The controller's [PivotController.length] should match
+  /// [tabTitles.length]; in debug mode an assertion enforces this.
+  final PivotController? controller;
 
   @override
-  Size get preferredSize => Size.fromHeight(fontSize * 1.5 + 42.5011);
+  State<WpPivot> createState() => _WpPivotState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + fontSize * 1.7);
 }
 
-class WpPivotState extends State<WpPivot> {
-  final ItemScrollController itemScrollController = ItemScrollController();
+const Duration _kScrollDuration = Duration(milliseconds: 600);
+const Curve _kScrollCurve = Curves.fastLinearToSlowEaseIn;
 
-  final ItemPositionsListener itemPositionsListener =
+class _WpPivotState extends State<WpPivot> {
+  PivotController? _internalController;
+  final ItemScrollController _itemScrollController = ItemScrollController();
+  final ItemPositionsListener _itemPositionsListener =
       ItemPositionsListener.create();
-  int highlightedIndex = 0;
+  int? _lastScrolledIndex;
+
+  PivotController get _effectiveController =>
+      widget.controller ?? _internalController!;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.controller == null) {
+      _internalController = PivotController(length: widget.tabTitles.length);
+    }
+    _effectiveController.addListener(_handleSelectionChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant WpPivot oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.controller, widget.controller)) {
+      oldWidget.controller?.removeListener(_handleSelectionChanged);
+      if (widget.controller == null && _internalController == null) {
+        _internalController = PivotController(length: widget.tabTitles.length);
+      } else {
+        _internalController?.dispose();
+        _internalController = null;
+      }
+      _effectiveController.addListener(_handleSelectionChanged);
+      _lastScrolledIndex = null;
+      _scrollToSelection(animated: false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _effectiveController.removeListener(_handleSelectionChanged);
+    _internalController?.dispose();
+    super.dispose();
+  }
+
+  void _handleSelectionChanged() {
+    setState(() {});
+    _scrollToSelection();
+  }
+
+  void _scrollToSelection({bool animated = true}) {
+    final index = _effectiveController.index;
+    if (_lastScrolledIndex == index) return;
+    _lastScrolledIndex = index;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_itemScrollController.isAttached) return;
+      _itemScrollController.scrollTo(
+        index: index,
+        duration: animated ? _kScrollDuration : Duration.zero,
+        curve: _kScrollCurve,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    assert(() {
+      if (widget.controller != null &&
+          widget.controller!.length != widget.tabTitles.length) {
+        throw FlutterError(
+          'WpPivot.controller has length ${widget.controller!.length}, but '
+          '${widget.tabTitles.length} tab titles were provided. '
+          'The controller length must match tabTitles.length.',
+        );
+      }
+      return true;
+    }());
+
     return Scaffold(
       backgroundColor: widget.backgroundColor,
       appBar: CustomAppBar(
@@ -81,28 +162,26 @@ class WpPivotState extends State<WpPivot> {
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
               child: ScrollablePositionedList.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-                itemScrollController: itemScrollController,
-                itemPositionsListener: itemPositionsListener,
+                itemScrollController: _itemScrollController,
+                itemPositionsListener: _itemPositionsListener,
                 itemBuilder: (BuildContext context, int index) {
                   return (index != widget.tabTitles.length)
                       ? Padding(
-                          padding: EdgeInsets.only(right: 28),
+                          padding: const EdgeInsets.only(right: 28),
                           child: Text(
                             widget.tabTitles[index],
                             style: TextStyle(
                               fontSize: widget.fontSize,
-                              color: (highlightedIndex == index)
+                              color: (_effectiveController.index == index)
                                   ? widget.selectedTabColor
                                   : widget.unselectedTabColor,
                               fontWeight: widget.fontWeight,
                             ),
                           ),
                         )
-                      : Container(
-                          width: 50,
-                        );
+                      : Container(width: 50);
                 },
                 itemCount: widget.tabTitles.length + 1,
               ),
@@ -111,35 +190,5 @@ class WpPivotState extends State<WpPivot> {
         ],
       ),
     );
-  }
-
-  /// Function to take care of page change, currently only an increment of a decrement by 1 is allowed
-  handlePagechange(int currentPage) {
-    if (currentPage > highlightedIndex)
-      increase();
-    else
-      decrease();
-  }
-
-  increase() {
-    if (highlightedIndex != widget.tabTitles.length - 1)
-      setState(() {
-        itemScrollController.scrollTo(
-            index: highlightedIndex + 1,
-            curve: Curves.fastLinearToSlowEaseIn,
-            duration: Duration(milliseconds: 600));
-        highlightedIndex++;
-      });
-  }
-
-  decrease() {
-    if (highlightedIndex != 0)
-      setState(() {
-        itemScrollController.scrollTo(
-            index: highlightedIndex - 1,
-            curve: Curves.fastLinearToSlowEaseIn,
-            duration: Duration(milliseconds: 600));
-        highlightedIndex--;
-      });
   }
 }
