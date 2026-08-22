@@ -3,13 +3,13 @@ layout: default
 title: Resources
 ---
 
-<h1 class="accent-bar">Metro &amp; Windows Phone Design Resources</h1>
+<h1>Metro &amp; Windows Phone Design Resources</h1>
 
 <p>Everything worth reading about the Metro design language, gathered in one place.
 The official Microsoft docs are mostly dead links now, so wherever possible these
-point at Wayback Machine captures — primary sources, not someone's retelling of them.</p>
+point at Wayback Machine captures: primary sources, not someone's retelling of them.</p>
 
-<h2 class="accent-bar">Primary sources (Microsoft, archived)</h2>
+<h2>Primary sources (Microsoft, archived)</h2>
 
 <table>
   <thead><tr><th>Document</th><th>What it is</th></tr></thead>
@@ -41,48 +41,48 @@ point at Wayback Machine captures — primary sources, not someone's retelling o
   </tbody>
 </table>
 
-<h2 class="accent-bar">Typography</h2>
+<h2>Typography</h2>
 <ul>
-  <li><a href="https://github.com/microsoft/Selawik">Selawik</a> — Microsoft's open-source,
+  <li><a href="https://github.com/microsoft/Selawik">Selawik</a>: Microsoft's open-source,
   metrically-compatible Segoe UI replacement (SIL OFL). This is the font strategy this
   project uses: identical metrics, no licensing problem.</li>
-  <li><a href="https://learn.microsoft.com/en-us/typography/font-list/segoe-ui">Segoe UI spec</a> —
+  <li><a href="https://learn.microsoft.com/en-us/typography/font-list/segoe-ui">Segoe UI spec</a>:
   the official character/spec reference on Microsoft Learn.</li>
   <li><a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/">Using
-  UI System Fonts (Smashing Magazine)</a> — practical context on Segoe's role among system fonts.</li>
+  UI System Fonts (Smashing Magazine)</a>: practical context on Segoe's role among system fonts.</li>
 </ul>
 
-<h2 class="accent-bar">Icons &amp; assets</h2>
+<h2>Icons &amp; assets</h2>
 <ul>
   <li><a href="https://www.benday.com/blog/list-of-standard-icons-for-windows-phone-7-wp7">List of
-  standard WP7 app bar icons</a> — the canonical glyph set with names.</li>
+  standard WP7 app bar icons</a>: the canonical glyph set with names.</li>
   <li><a href="https://blogs.windows.com/windowsdeveloper/2010/07/27/windows-phone-7-design-resources-ui-guide-and-design-templates/">WP7
-  Design Templates announcement</a> — points at the official PSD/AI template kits Microsoft shipped.</li>
+  Design Templates announcement</a>: points at the official PSD/AI template kits Microsoft shipped.</li>
 </ul>
 
-<h2 class="accent-bar">History &amp; analysis</h2>
+<h2>History &amp; analysis</h2>
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Metro_(design_language)">Wikipedia: Metro (design
-  language)</a> — the best single overview with a dense reference list; start here.</li>
+  language)</a>: the best single overview with a dense reference list; start here.</li>
   <li><a href="https://davidvkimball.com/posts/zunes-design-language-and-how-it-evolved-into-windows-phone">Zune's
-  Design Language and How It Evolved into Windows Phone</a> — the pre-WP7 origin story.</li>
+  Design Language and How It Evolved into Windows Phone</a>: the pre-WP7 origin story.</li>
   <li><a href="https://medium.com/mossyblog/the-principles-of-microsoft-metro-ui-decoded-e52fa8bf9f4c">The
-  principles of Microsoft Metro UI decoded</a> — community breakdown of the core principles.</li>
+  principles of Microsoft Metro UI decoded</a>: community breakdown of the core principles.</li>
   <li><a href="https://spaceforfreedom.wordpress.com/2012/01/07/metro-ui-a-brief-story/">Metro UI —
-  A Brief Story</a> — contemporary 2012 account.</li>
+  A Brief Story</a>: contemporary 2012 account.</li>
 </ul>
 
-<h2 class="accent-bar">Community recreations</h2>
+<h2>Community recreations</h2>
 <ul>
-  <li><a href="https://github.com/god-s-perfect-idiot/MetroUIrevival">MetroUIrevival</a> —
+  <li><a href="https://github.com/god-s-perfect-idiot/MetroUIrevival">MetroUIrevival</a>:
   curated Metro-styled resources for Android.</li>
   <li>A Jetpack Compose kit recreating WP8 (panorama, pivot, live tiles, LongListSelector) exists
-  on GitHub under the <code>windows-phone</code> topic — proof this nostalgia has legs beyond Flutter.</li>
+  on GitHub under the <code>windows-phone</code> topic. Proof this nostalgia has legs beyond Flutter.</li>
 </ul>
 
 <blockquote>
   Know a dead link I should replace with a Wayback capture, or a resource missing
-  from this list? Open a PR — this page is meant to be the definitive index.
+  from this list? Open a PR. This page is meant to be the definitive index.
 </blockquote>
 
 <p class="lead">This page seeds the <a href="{{ '/essays/' | relative_url }}">Essays</a> research:
