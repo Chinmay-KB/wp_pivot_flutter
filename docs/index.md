@@ -4,7 +4,7 @@ title: Home
 ---
 
 <div class="hero">
-  <div class="kicker">A research project · validated on Lumia 1020 hardware</div>
+  <p class="kicker">wp pivot research</p>
   <h1>Windows Phone,<br/>measured — not remembered.</h1>
   <p class="lead">
     Every "Metro-inspired" UI kit out there was built from screenshots and fuzzy
@@ -16,32 +16,52 @@ title: Home
 </div>
 
 <div class="tiles">
-  <div class="tile">
-    <h3><a href="{{ '/paradigms/' | relative_url }}">Paradigm Encyclopedia</a></h3>
-    <p>Pivot, Panorama, LongListSelector, turnstile transitions — every Windows Phone UI paradigm, documented with video, measurements and implementation status. I wasted time reverse-engineering these so you don't have to.</p>
+  <div class="tile wide accent">
+    <a class="tile-link" href="{{ '/paradigms/' | relative_url }}" aria-label="Paradigm Encyclopedia"></a>
+    <div>
+      <p class="tile-kicker">the encyclopedia</p>
+      <h2 class="tile-title">Paradigms</h2>
+      <p>Pivot, Panorama, turnstile transitions — measured, filmed, documented.</p>
+    </div>
   </div>
-  <div class="tile">
-    <h3><a href="{{ '/research/' | relative_url }}">Published Research</a></h3>
-    <p>Easing curves fitted to tracked motion. Theme colors pulled straight off the OS via root access, not eyeballed from PNGs. The full Segoe type ramp. Scroll physics with the derivations shown.</p>
+  <div class="tile narrow">
+    <a class="tile-link" href="{{ '/research/' | relative_url }}" aria-label="Published Research"></a>
+    <div>
+      <h2 class="tile-title">Research</h2>
+      <p>Easing curves fitted to tracked motion. Colors pulled off the OS via root access, not eyeballed from PNGs.</p>
+    </div>
   </div>
-  <div class="tile">
-    <h3><a href="{{ '/captures/' | relative_url }}">Capture Sessions</a></h3>
-    <p>Every recording session: device build, theme, accent, frame rate, and links to the raw data releases. We show our work — raw footage included, warts and all.</p>
+  <div class="tile narrow">
+    <a class="tile-link" href="{{ '/captures/' | relative_url }}" aria-label="Capture Sessions"></a>
+    <div>
+      <h2 class="tile-title">Captures</h2>
+      <p>Every recording session: build number, theme, accent, frame rate. Raw footage included, warts and all.</p>
+    </div>
   </div>
-  <div class="tile">
-    <h3><a href="{{ '/essays/' | relative_url }}">Essays &amp; Legacy</a></h3>
-    <p>Why Metro mattered. Typography-first design, authentically digital interfaces — an archive of the ideas, kept for the people who still miss them.</p>
+  <div class="tile narrow">
+    <a class="tile-link" href="{{ '/resources/' | relative_url }}" aria-label="Metro Design Resources"></a>
+    <div>
+      <h2 class="tile-title">Resources</h2>
+      <p>The Codename Metro PDF, the WP7 UI guide, Selawik, icons — the whole paper trail, archived links fixed.</p>
+    </div>
+  </div>
+  <div class="tile narrow">
+    <a class="tile-link" href="{{ '/essays/' | relative_url }}" aria-label="Essays and Legacy"></a>
+    <div>
+      <h2 class="tile-title">Essays</h2>
+      <p>Why Metro mattered. Kept for the people who still miss it.</p>
+    </div>
   </div>
 </div>
 
-<h2 class="accent-bar">The method</h2>
+<h2>the method</h2>
 
-<ol>
-  <li><strong>Capture</strong> — the phone mirrors over USB at full resolution. No camera pointed at a screen, thank you.</li>
-  <li><strong>Measure</strong> — track element positions frame by frame, fit cubic-Bézier easing curves to the trajectories, publish the residuals. Colors get sampled per theme and accent, then cross-checked against the OS resource files (root access has its perks).</li>
-  <li><strong>Specify</strong> — everything measured becomes a design token or spec document in the repo.</li>
-  <li><strong>Implement</strong> — Flutter components built against those tokens, starting with a v2 rewrite of the Pivot.</li>
-  <li><strong>Verify</strong> — automated pixel and frame-motion diffs against the hardware captures. "Close enough" is not the bar; indistinguishable is.</li>
+<ol class="steps">
+  <li data-step="1"><strong>Capture</strong> — the phone mirrors over USB at full resolution. No camera pointed at a screen, thank you.</li>
+  <li data-step="2"><strong>Measure</strong> — track element positions frame by frame, fit cubic-Bézier easing curves to the trajectories, publish the residuals. Colors get sampled per theme and accent, then cross-checked against OS resource files (root access has its perks).</li>
+  <li data-step="3"><strong>Specify</strong> — everything measured becomes a design token or spec document in the repo.</li>
+  <li data-step="4"><strong>Implement</strong> — Flutter components built against those tokens, starting with a v2 rewrite of the Pivot.</li>
+  <li data-step="5"><strong>Verify</strong> — automated pixel and frame-motion diffs against the hardware captures. "Close enough" is not the bar; indistinguishable is.</li>
 </ol>
 
 <blockquote>

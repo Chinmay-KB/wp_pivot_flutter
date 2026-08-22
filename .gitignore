@@ -77,3 +77,5 @@ build/
 # pub publish swap artifacts
 .README.md.github_backup
 README.md.publish-backup
+.preview/
+.impeccable/
