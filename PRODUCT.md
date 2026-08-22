@@ -73,3 +73,8 @@ type ramp, tile-based navigation. This is a binding aesthetic brief.
 
 Standard web accessibility expected: contrast-aware accent usage on black, keyboard
 navigable nav, semantic headings. No specific compliance target recorded.
+
+Status: nav and tiles have visible `:focus-visible` outlines; tile links use their
+visible titles as accessible names. Still open: the brand wordmark is an `h1` on
+every page alongside the page title's `h1` (two h1s per page); collapsing it to a
+single document `h1` is a known follow-up.
