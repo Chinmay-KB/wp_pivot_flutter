@@ -24,14 +24,14 @@ constants. Emulator and physical-device evidence must remain explicitly distinct
       gesture events, and platform metadata.
 - [x] Establish capture quality and uncertainty; do not treat held video frames
       as additional motion observations.
-- [ ] Publish trajectories, fits/residuals, layout measurements, and findings.
+- [x] Publish trajectories, fits/residuals, layout measurements, and findings.
 - [x] Capture the unmodified Flutter baseline with matching content/viewport.
 - [x] Improve interaction and layout while retaining a documented migration path.
 - [x] Test cancellation, header taps, continuous drag, wrap, reversal, lifecycle,
       accessibility, and controller behavior as supported by the native evidence.
 - [x] Compare the improved actual Flutter output with native footage, quantitatively
       and visually; disclose remaining discrepancies.
-- [ ] Publish research/capture pages and downloadable evidence.
+- [x] Publish research/capture pages and downloadable evidence.
 - [ ] Raise PR with playable side-by-side comparison and verification results.
 
 ## Scope of the first reference scene
@@ -96,3 +96,18 @@ than the Flutter control; preserve them and use native evidence for widget desig
   The release source snapshot must include this changed bridge.
 - USB hardware query returned `no devices` (projection access unavailable). No
   physical-device comparison is claimed. Site publication and final PR are next.
+
+## Publication verified
+
+- Dataset release `pivot-evidence-2026-08-27` is public. All 26 original release
+  assets match local SHA-256 digests; the test log and publication verification
+  are additional attachments. Archives retain all native/baseline/prototype/final
+  collections and include per-member inventories.
+- Documentation-only PR #57 was built and merged to publish the study without
+  merging the Flutter implementation. The existing master/docs Pages configuration
+  is unchanged. The actual Jekyll page and all three public MP4s return HTTP 200;
+  the public MP4 bytes match the verified local files.
+- Desktop direct-video playback reached the end in browser inspection. A 390px
+  iframe preview loads the embedded media; this is not a Codex mobile-app test.
+- Publication evidence: `research/pivot/publication.json`. Flutter implementation
+  remains on `codex/pivot-native-fidelity` for its separate review PR.

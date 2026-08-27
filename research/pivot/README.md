@@ -48,8 +48,9 @@ fidelity percentage or proof of native display latency.
   a trajectory-instrumentation control, not a completely uninstrumented build.
 
 Original images, guest logs and host timing are retained in the ignored local
-`artifacts/` directory. Publication is pending; a local artifact path is not a
-public evidence link. Core/control manifests record source hashes, package hash
+`artifacts/` directory and in the [public evidence release](https://github.com/Chinmay-KB/wp_pivot_flutter/releases/tag/pivot-evidence-2026-08-27).
+The [published study](https://chinmaykabi.com/wp_pivot_flutter/research/pivot/) includes
+playable comparisons and interpretation. Core/control manifests record source hashes, package hash
 expectations, and clock semantics. Pilot provenance is less complete and remains
 labeled as pilot evidence.
 
@@ -153,9 +154,10 @@ The replay supplies measured timestamps to gesture events; see
 
 ## Remaining work toward the goal
 
-Finish inspecting the final rendered comparisons, publish the raw assets and study,
-verify public media, and raise the implementation PR with native-versus-Flutter
-comparisons. Hardware cross-checks remain separate: a USB projection status query
+The raw assets and study are published; ten final comparison scenarios were
+inspected and all 40 video variants decoded. Public page/media responses and
+release hashes are recorded in `publication.json`. The implementation PR retains
+the native-versus-Flutter comparisons. Hardware cross-checks remain separate: a USB projection status query
 on this host returned no devices during the confirmation session. Broader input
 threshold sampling, instrumentation influence and interactive runtime smoothness
 remain explicit limits rather than conclusions of the deterministic replay.
