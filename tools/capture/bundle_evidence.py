@@ -50,9 +50,9 @@ def main():
     files=[(p,p.as_posix()) for p in Path('research/pivot').rglob('*') if p.is_file()]
     assets.append(archive(args.output/'pivot-analysis.zip',files))
     source_paths=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],text=True).split('\0')
-    allowed={'lib','tools','assets'}
+    allowed={'lib','tools','assets','example','test'}
     files=[(Path(p),'wp_pivot_flutter/'+p) for p in source_paths if p and Path(p).is_file()
-           and (Path(p).parts[0] in allowed or p in ['pubspec.yaml','pubspec.lock','README.md','CHANGELOG.md'])]
+           and (Path(p).parts[0] in allowed or p in ['pubspec.yaml','pubspec.lock','README.md','CHANGELOG.md','.gitattributes'])]
     files += [(p,'glance/app/'+p.relative_to(args.glance_app).as_posix())
               for p in (args.glance_app/'wpmirror').rglob('*')
               if p.is_file() and p.suffix in ['.py','.ps1']]
