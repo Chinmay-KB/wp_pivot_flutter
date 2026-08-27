@@ -32,7 +32,7 @@ constants. Emulator and physical-device evidence must remain explicitly distinct
 - [x] Compare the improved actual Flutter output with native footage, quantitatively
       and visually; disclose remaining discrepancies.
 - [x] Publish research/capture pages and downloadable evidence.
-- [ ] Raise PR with playable side-by-side comparison and verification results.
+- [x] Raise PR with playable side-by-side comparison and verification results.
 
 ## Scope of the first reference scene
 
@@ -111,3 +111,10 @@ than the Flutter control; preserve them and use native evidence for widget desig
   iframe preview loads the embedded media; this is not a Codex mobile-app test.
 - Publication evidence: `research/pivot/publication.json`. Flutter implementation
   remains on `codex/pivot-native-fidelity` for its separate review PR.
+- Implementation PR #58 is open with the study, paired preview, playable native
+  versus Flutter clips, quantitative differences and test results. The public
+  header comparison played to its end (1.833333 s) in browser verification; all
+  three embedded public videos report readyState 4 without a media error.
+- Remaining fidelity validation: hardware comparison once USB projection is
+  available, and interactive runtime timing/smoothness beyond deterministic
+  replay. This work has not established a universal native-fidelity guarantee.
