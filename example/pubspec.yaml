@@ -53,6 +53,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/runtime_replays.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

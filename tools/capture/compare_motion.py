@@ -15,7 +15,7 @@ from PIL import Image
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from analyze_native import COLORS, read_csv
+from analyze_native import COLORS, read_csv, require_comparable_timing
 
 
 def color_mask(rgb, color):
@@ -54,6 +54,7 @@ def describe(values):
 
 
 def compare(native_dir, analysis, flutter_dir, output):
+    require_comparable_timing(json.loads((analysis/'quality.json').read_text()))
     native_rows = read_csv(analysis/'image_tracks.csv')
     flutter_rows = read_csv(flutter_dir/'frames.csv')
     manifest = json.loads((flutter_dir/'manifest.json').read_text())

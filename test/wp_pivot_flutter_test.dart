@@ -21,7 +21,7 @@ Widget _wrap(GlobalKey key, {PivotController? controller}) {
 
 void main() {
   group('WpPivotView native interaction', () {
-    for (final collection in ['core-01', 'confirmation-01']) {
+    for (final collection in ['core-01', 'confirmation-01', 'header-01']) {
       testWidgets('matches selection outcomes for recorded $collection inputs',
           (tester) async {
         final fonts = FontLoader(wpPivotFontFamily);
@@ -41,7 +41,7 @@ void main() {
             .map((d) => File('${d.path}/replay.json'))
             .where((f) => f.existsSync())
             .toList();
-        expect(files.length, 21);
+        expect(files.length, collection == 'header-01' ? 9 : 21);
         for (final file in files) {
           final data =
               jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;

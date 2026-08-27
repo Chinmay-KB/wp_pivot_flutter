@@ -7,7 +7,15 @@ actual native recordings rather than with an illustrated reference.
 
 ## Current implementation and confirmation
 
-There are now 48 native motion trials: the original 27 plus 21 fresh confirmation
+**Supplement:** [header/title gestures](header-01/README.md) add nine trials and
+596 PNGs, bringing the retained native total to **57 trials / 3,830 PNGs**. The
+gesture surface now includes title and headers. All **51 selection traces** and
+**20 widget tests** pass. Title callback timing is unqualified and excluded from
+aligned motion comparisons. A separate [release-web runtime study](runtime-01/README.md)
+reports actual engine timings, with a 6.10ms p95 total span over 678 measured frames.
+The original collection and its historical results below remain unchanged.
+
+The original release contains 48 native motion trials: 27 initial plus 21 fresh confirmation
 trials, with 3,234 original PNGs in total. All native frame hashes pass verification.
 The resting native style snapshot is a separate artifact.
 

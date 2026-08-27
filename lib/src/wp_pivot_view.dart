@@ -282,6 +282,64 @@ class _WpPivotViewState extends State<WpPivotView>
     }
   }
 
+  // Native header-01 recordings show that title, headers and content share
+  // the Pivot drag surface. Child taps and vertical scrolling still compete
+  // in the normal gesture arena.
+  Widget _gestureSurface(Widget child) => Listener(
+        onPointerDown: (event) {
+          if (_pointer != null) return;
+          _pointer = event.pointer;
+          _current = event.localPosition;
+          _lastMotionTime = _lastPointerTime = event.timeStamp;
+          _segmentVelocity = 0;
+          _stationaryMoveTime = null;
+        },
+        onPointerMove: (event) {
+          if (_pointer != event.pointer) return;
+          final dx = event.localPosition.dx - _current.dx;
+          if (dx != 0) {
+            final elapsed = (event.timeStamp - _lastMotionTime).inMicroseconds;
+            _segmentVelocity = elapsed > 0 ? dx * 1000000 / elapsed : 0;
+            _lastMotionTime = event.timeStamp;
+            _stationaryMoveTime = null;
+          } else {
+            _stationaryMoveTime = event.timeStamp;
+          }
+          _lastPointerTime = event.timeStamp;
+          _current = event.localPosition;
+        },
+        onPointerUp: (event) {
+          if (_pointer == event.pointer) {
+            _lastPointerTime = event.timeStamp;
+            _pointer = null;
+          }
+        },
+        onPointerCancel: (event) {
+          if (_pointer == event.pointer) _pointer = null;
+        },
+        child: RawGestureDetector(
+          behavior: HitTestBehavior.opaque,
+          gestures: {
+            HorizontalDragGestureRecognizer:
+                GestureRecognizerFactoryWithHandlers<
+                        HorizontalDragGestureRecognizer>(
+                    () => HorizontalDragGestureRecognizer(), (recognizer) {
+              recognizer
+                ..onlyAcceptDragOnThreshold = true
+                ..gestureSettings = DeviceGestureSettings(
+                    touchSlop: widget.motion.dragThreshold * _scale)
+                ..onStart = _startDrag
+                ..onUpdate = (_) {
+                  _updateDrag();
+                }
+                ..onEnd = _endDrag
+                ..onCancel = _cancelDrag;
+            })
+          },
+          child: child,
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     assert(widget.children.length == widget.tabTitles.length,
@@ -334,7 +392,7 @@ class _WpPivotViewState extends State<WpPivotView>
           math.min(165 * _scale + extra, constraints.maxHeight);
       return Material(
           color: widget.backgroundColor,
-          child: Column(children: [
+          child: _gestureSurface(Column(children: [
             PivotHeader(
                 title: widget.title,
                 titles: widget.tabTitles,
@@ -356,79 +414,25 @@ class _WpPivotViewState extends State<WpPivotView>
                 onSelected: _changing ? null : _select),
             Expanded(
                 child: ClipRect(
-                    child: Listener(
-              onPointerDown: (event) {
-                if (_pointer != null) return;
-                _pointer = event.pointer;
-                _current = event.localPosition;
-                _lastMotionTime = _lastPointerTime = event.timeStamp;
-                _segmentVelocity = 0;
-                _stationaryMoveTime = null;
-              },
-              onPointerMove: (event) {
-                if (_pointer != event.pointer) return;
-                final dx = event.localPosition.dx - _current.dx;
-                if (dx != 0) {
-                  final elapsed =
-                      (event.timeStamp - _lastMotionTime).inMicroseconds;
-                  _segmentVelocity = elapsed > 0 ? dx * 1000000 / elapsed : 0;
-                  _lastMotionTime = event.timeStamp;
-                  _stationaryMoveTime = null;
-                } else {
-                  _stationaryMoveTime = event.timeStamp;
-                }
-                _lastPointerTime = event.timeStamp;
-                _current = event.localPosition;
-              },
-              onPointerUp: (event) {
-                if (_pointer == event.pointer) {
-                  _lastPointerTime = event.timeStamp;
-                  _pointer = null;
-                }
-              },
-              onPointerCancel: (event) {
-                if (_pointer == event.pointer) _pointer = null;
-              },
-              child: RawGestureDetector(
-                behavior: HitTestBehavior.opaque,
-                gestures: {
-                  HorizontalDragGestureRecognizer:
-                      GestureRecognizerFactoryWithHandlers<
-                              HorizontalDragGestureRecognizer>(
-                          () => HorizontalDragGestureRecognizer(),
-                          (recognizer) {
-                    recognizer
-                      ..onlyAcceptDragOnThreshold = true
-                      ..gestureSettings = DeviceGestureSettings(
-                          touchSlop: widget.motion.dragThreshold * _scale)
-                      ..onStart = _startDrag
-                      ..onUpdate = (_) {
-                        _updateDrag();
-                      }
-                      ..onEnd = _endDrag
-                      ..onCancel = _cancelDrag;
-                  })
-                },
-                child: IgnorePointer(
-                    ignoring: _changing,
-                    child: Transform.translate(
-                        offset: Offset(_bodyX, 0),
-                        child: RepaintBoundary(
-                            child: IndexedStack(
-                          index: widget.children.isEmpty ? null : _displayed,
-                          sizing: StackFit.expand,
-                          children: [
-                            for (var i = 0; i < widget.children.length; i++)
-                              TickerMode(
-                                  enabled: i == _displayed,
-                                  child: KeyedSubtree(
-                                      key: ValueKey(i),
-                                      child: widget.children[i]))
-                          ],
-                        )))),
-              ),
-            ))),
-          ]));
+                    child: IgnorePointer(
+                        ignoring: _changing,
+                        child: Transform.translate(
+                            offset: Offset(_bodyX, 0),
+                            child: RepaintBoundary(
+                                child: IndexedStack(
+                              index:
+                                  widget.children.isEmpty ? null : _displayed,
+                              sizing: StackFit.expand,
+                              children: [
+                                for (var i = 0; i < widget.children.length; i++)
+                                  TickerMode(
+                                      enabled: i == _displayed,
+                                      child: KeyedSubtree(
+                                          key: ValueKey(i),
+                                          child: widget.children[i]))
+                              ],
+                            )))))),
+          ])));
     });
     if (widget.safeArea) surface = SafeArea(child: surface);
     return CallbackShortcuts(

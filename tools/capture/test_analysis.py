@@ -1,11 +1,16 @@
 """Unit checks for failure-prone measurement logic; native data is verified separately."""
 import unittest
 import numpy as np
-from analyze_native import marker_bounds, bar_left, header_match, match_input_clocks, COLORS
+from analyze_native import marker_bounds, bar_left, header_match, match_input_clocks, require_comparable_timing, COLORS
 from compare_motion import calibrate_bar, track_bar, sample_error
 
 
 class MeasurementTests(unittest.TestCase):
+    def test_buffered_callbacks_cannot_make_aligned_motion_claims(self):
+        require_comparable_timing(dict(clock_alignment=dict(receipt_spread_ms=21)))
+        with self.assertRaisesRegex(ValueError, 'Unqualified'):
+            require_comparable_timing(dict(clock_alignment=dict(receipt_spread_ms=638)))
+
     def test_comparison_calibrates_legacy_padding_and_clipped_edge(self):
         image=np.zeros((800,480,3),dtype=np.uint8)
         image[134:140,16:464]=COLORS[0]

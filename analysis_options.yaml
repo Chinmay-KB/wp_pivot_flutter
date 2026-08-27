@@ -1,5 +1,7 @@
 analyzer:
   exclude:
+    # Historical build-source snapshots are evidence, not the current package.
+    - artifacts/**
     - build/**
     - android/**
     - ios/**

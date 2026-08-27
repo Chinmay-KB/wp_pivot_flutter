@@ -118,3 +118,26 @@ than the Flutter control; preserve them and use native evidence for widget desig
 - Remaining fidelity validation: hardware comparison once USB projection is
   available, and interactive runtime timing/smoothness beyond deterministic
   replay. This work has not established a universal native-fidelity guarantee.
+
+## Header/title gesture fix and real runtime measurement
+
+- Nine additional native trials / 596 verified PNGs establish that title and
+  headers share the native Pivot drag surface. Expanded the Flutter detector
+  accordingly; all 51 native selection traces and 20 widget tests pass.
+- Title-area guest touch callbacks are buffered by hundreds of milliseconds.
+  Retained those trials, labeled timing unqualified, and added a 100ms receipt-
+  spread rejection gate to both aligned comparison tools. This threshold rejects
+  unusable alignment; it does not guarantee timing accuracy below the threshold.
+- Two header-swipe actual Flutter captures and eight derived MP4s are verified
+  by full decode and expected frame counts. Forward/backward body-position MAE
+  is 6.26/5.18px; both have zero visibility mismatches in 42 sampled frames.
+- Real release-web runtime run: four warm-ups plus 12 measured trials, 939 raw
+  engine frames / 678 measured frames, all selection outcomes correct. Total
+  engine-span p95 6.10ms, maximum 28.70ms (one over 16.667ms); animation interval
+  median 16.60ms, p95 17.30ms. Browser visible, 360×600, DPR 1, Chromium 151.
+  Raw data, compiled build and exact build sources retained. These measurements
+  do not establish display presentation, physical input latency or mobile speed.
+- Current entrypoint removes one unused import from the measured build. Exact
+  original source hashes match the retained runtime build-source snapshot.
+- USB query again returned no devices; no Lumia validation claimed. Publication
+  of the header/runtime supplement and PR #58 update are the next steps.

@@ -16,7 +16,8 @@ interpretation.</p>
     <tr><th>Date</th><th>Paradigm</th><th>Theme / Accent</th><th>Data</th></tr>
   </thead>
   <tbody>
-    <tr><td>2026-08-27</td><td>Pivot / WP8.1 emulator</td><td>Dark / fixed reference colors</td><td><a href="{{ '/research/pivot/' | relative_url }}">48 trials, style snapshot, comparisons and raw data</a></td></tr>
+    <tr><td>2026-08-27</td><td>Pivot / WP8.1 emulator</td><td>Dark / fixed reference colors</td><td><a href="{{ '/research/pivot/' | relative_url }}">57 trials, style snapshot, comparisons and raw data</a></td></tr>
+    <tr><td>2026-08-27</td><td>Pivot / Flutter release web</td><td>360×600 / DPR 1</td><td><a href="{{ '/research/pivot/#runtime-smoothness' | relative_url }}">12 measured trials, engine timings and compiled probe</a></td></tr>
   </tbody>
 </table>
 

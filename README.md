@@ -63,10 +63,12 @@ The existing `WpPivot` header-only API and `PivotController` remain available.
 
 The native font and rasterizer differ from Flutter's. Capture timing is too coarse
 to establish physical display latency; flick parameters remain provisional beyond
-the recorded inputs. The regression suite replays 21 native core and 21 fresh
-confirmation input traces, including successful flicks, cancellations, reversal,
-wrapping and ignored gestures during transitions. Independent
-hardware validation and broader gesture sampling remain separate work.
+the recorded inputs. The regression suite replays 21 native core, 21 confirmation
+and nine header/title input traces, including successful flicks, cancellations,
+reversal, wrapping and ignored gestures during transitions. Header and title swipes
+share the content gesture surface. A separate release-web runtime probe measures
+real engine frame timing, not physical display latency or Lumia performance.
+Independent hardware validation and broader gesture sampling remain separate work.
 
 ## Legacy header-only example
 

@@ -22,7 +22,8 @@ class PivotExample extends StatelessWidget {
 }
 
 class ResearchPivot extends StatelessWidget {
-  const ResearchPivot({super.key});
+  const ResearchPivot({super.key, this.onChanged});
+  final ValueChanged<int>? onChanged;
   static const names = ['first', 'second', 'third', 'fourth'];
   static const colors = [
     Color(0xff1ba1e2),
@@ -34,6 +35,7 @@ class ResearchPivot extends StatelessWidget {
   @override
   Widget build(BuildContext context) => WpPivotView(
         title: 'PIVOT RESEARCH',
+        onChanged: onChanged,
         tabTitles: names,
         children: [
           for (var i = 0; i < names.length; i++)

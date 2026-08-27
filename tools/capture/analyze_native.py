@@ -20,6 +20,17 @@ import matplotlib.pyplot as plt
 
 COLORS = [(27, 161, 226), (96, 169, 23), (240, 150, 9), (162, 0, 255)]
 
+# A conservative rejection gate, not a promised accuracy bound. Six 60Hz frames
+# of receipt spread cannot support a useful shared motion timeline. Title-area
+# Touch.FrameReported callbacks in header-01 were buffered by over 600ms.
+MAX_RECEIPT_SPREAD_MS = 100.0
+
+
+def require_comparable_timing(quality):
+    if quality['clock_alignment']['receipt_spread_ms'] > MAX_RECEIPT_SPREAD_MS:
+        raise ValueError('Unqualified host/guest clock alignment: retain the trial '
+                         'for layout/selection, not an aligned motion comparison.')
+
 
 def read_csv(path):
     with path.open(newline='', encoding='utf-8-sig') as source:
@@ -169,7 +180,10 @@ def analyze(directory, output):
                  body_telemetry_aliased_callbacks=aliases,
                  body_telemetry_total_callbacks=len(groups),
                  body_telemetry_qualified=False,
-                 qualification='Image observations only; header telemetry assessed by interval compatibility. No physical display timing claim.')
+                 coarse_alignment_accepted=alignment['receipt_spread_ms'] <= MAX_RECEIPT_SPREAD_MS,
+                 qualification=('Image observations only; header telemetry assessed by interval compatibility. No physical display timing claim.'
+                   if alignment['receipt_spread_ms'] <= MAX_RECEIPT_SPREAD_MS else
+                   'REJECTED for aligned motion: buffered input callbacks make host/guest alignment unreliable. Layout and selection outcomes only.'))
     (output/'quality.json').write_text(json.dumps(stats,indent=2))
     # Actual guest events, normalized to a shared pre-roll, for Flutter replay.
     events = [dict(t_ms=float(r['t_ms'])-down+500, event=r['event'].lower(),
@@ -201,7 +215,8 @@ def analyze(directory, output):
         for u in up: ax.axvline(u-down,color='#777777',ls='--',lw=.7)
         ax.grid(alpha=.2)
         ax.set_xlim(-250,max(r['t_ms'] for r in observed))
-    fig.suptitle(directory.name+' — native WP8.1 emulator\nDashed: release; dots are observations, not interpolated frames',fontsize=12)
+    warning = '' if stats['coarse_alignment_accepted'] else ' — TIMING UNQUALIFIED'
+    fig.suptitle(directory.name+' — native WP8.1 emulator'+warning+'\nDashed: callback release; dots are observations, not interpolated frames',fontsize=12)
     fig.savefig(output/'trajectories.png',dpi=150)
     plt.close(fig)
     return stats

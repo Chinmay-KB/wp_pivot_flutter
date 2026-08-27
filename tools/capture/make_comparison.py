@@ -12,6 +12,7 @@ from pathlib import Path
 import imageio_ffmpeg
 import numpy as np
 from PIL import Image
+from analyze_native import require_comparable_timing
 
 
 def read_csv(path):
@@ -48,6 +49,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--font',type=Path,default=Path('C:/Windows/Fonts/segoeui.ttf'))
     args=parser.parse_args()
+    require_comparable_timing(json.loads((args.analysis/'quality.json').read_text()))
     args.output.mkdir(parents=True,exist_ok=True)
     flutter_manifest=json.loads((args.flutter/'manifest.json').read_text())
     improved=flutter_manifest.get('variant')=='native-motion-implementation'
