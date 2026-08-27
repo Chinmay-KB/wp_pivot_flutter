@@ -15,6 +15,10 @@ title: Home
   </p>
 </div>
 
+<p><a href="{{ '/research/pivot/' | relative_url }}">New: the Pivot motion study</a>
+— 48 native emulator trials, raw evidence and native-versus-Flutter comparisons.
+The source is labeled throughout; Lumia validation remains a separate step.</p>
+
 <div class="tiles">
   <a class="tile wide accent" href="{{ '/paradigms/' | relative_url }}">
     <div>
@@ -52,17 +56,17 @@ title: Home
 <h2>the method</h2>
 
 <ol class="steps">
-  <li data-step="1"><strong>Capture</strong>: the phone mirrors over USB at full resolution. No camera pointed at a screen, thank you.</li>
-  <li data-step="2"><strong>Measure</strong>: track element positions frame by frame, fit cubic-Bézier easing curves to the trajectories, publish the residuals. Colors get sampled per theme and accent, then cross-checked against OS resource files (root access has its perks).</li>
+  <li data-step="1"><strong>Capture</strong>: record native controls through the emulator SDK or phone USB projection. Label the source, preserve original frames, and measure acquisition timing.</li>
+  <li data-step="2"><strong>Measure</strong>: track element positions frame by frame, fit motion models where supported, and publish residuals and uncertainty. Keep layout, behavior and timing checks separate.</li>
   <li data-step="3"><strong>Specify</strong>: everything measured becomes a design token or spec document in the repo.</li>
   <li data-step="4"><strong>Implement</strong>: Flutter components built against those tokens, starting with a v2 rewrite of the Pivot.</li>
-  <li data-step="5"><strong>Verify</strong>: automated pixel and frame-motion diffs against the hardware captures. "Close enough" is not the bar; indistinguishable is.</li>
+  <li data-step="5"><strong>Verify</strong>: compare against retained native captures, test fresh input traces, and publish remaining differences. Hardware confirmation is identified separately.</li>
 </ol>
 
 <blockquote>
   Fidelity to the <em>feel</em> of Windows Phone is the goal: layout, typography,
-  color and motion. No Microsoft IP gets redistributed here: fonts are referenced,
-  never bundled.
+  color and motion. Proprietary Segoe font files are not redistributed; the
+  Selawik fallback is distributed under its Open Font License.
 </blockquote>
 
 <p>Follow along on <a href="{{ site.github_repo }}">GitHub</a>: every milestone is broken into small, trackable issues. If you own Windows Phone hardware or have captured footage of your own, contributions are very welcome.</p>

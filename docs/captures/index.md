@@ -5,21 +5,21 @@ title: Captures
 
 <h1>Capture Sessions</h1>
 
-<p>Every measurement on this site traces back to a recorded session on the Lumia
-1020. Sessions are captured over USB at full resolution: no camera pointed at a
-screen, no shaky hands. Each one carries a manifest: device build number, theme,
-accent color, frame rate, tool versions. If a measurement looks wrong later, we
-can trace it back to the exact footage it came from.</p>
+<p>Each session identifies its source, OS build, theme, capture timing and tool
+versions. The first published Pivot collections come from the WP8.1 emulator;
+they are not labeled as Lumia footage. Hardware sessions will have their own
+entries. Original frames and delivered inputs remain available alongside the
+interpretation.</p>
 
 <table>
   <thead>
     <tr><th>Date</th><th>Paradigm</th><th>Theme / Accent</th><th>Data</th></tr>
   </thead>
   <tbody>
-    <tr><td colspan="4"><em>No sessions published yet. Capture rig verification just wrapped; sessions incoming.</em></td></tr>
+    <tr><td>2026-08-27</td><td>Pivot / WP8.1 emulator</td><td>Dark / fixed reference colors</td><td><a href="{{ '/research/pivot/' | relative_url }}">48 trials, style snapshot, comparisons and raw data</a></td></tr>
   </tbody>
 </table>
 
 <p>Raw full-resolution recordings and extracted frame sequences live in GitHub
 Releases (they're too chunky for git); trimmed highlight clips get embedded in the
-encyclopedia entries. The index above regenerates from the session manifests.</p>
+research pages. Release inventories include per-file hashes.</p>
