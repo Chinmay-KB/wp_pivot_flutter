@@ -140,4 +140,9 @@ than the Flutter control; preserve them and use native evidence for widget desig
 - Current entrypoint removes one unused import from the measured build. Exact
   original source hashes match the retained runtime build-source snapshot.
 - USB query again returned no devices; no Lumia validation claimed. Publication
-  of the header/runtime supplement and PR #58 update are the next steps.
+  of the header/runtime supplement and PR #58 update were the next steps.
+- Supplemental release `pivot-evidence-2026-08-27-header-runtime` is public; all
+  11 initial assets match local SHA-256 digests. Documentation PR #59 passed its
+  Jekyll workflow and was squash-merged. The public page contains both new studies;
+  the two new MP4s and runtime plot match local hashes. The forward header video
+  loaded and played to its end in browser inspection. PR #58 now links all of it.

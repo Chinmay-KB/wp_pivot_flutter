@@ -1,0 +1,90 @@
+{
+  "release": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/tag/pivot-evidence-2026-08-27-header-runtime",
+  "assets": [
+    {
+      "file": "header-final-checks.log",
+      "sha256": "sha256:e846405bd72853d94aa209a5f1298e7c9e137dc0998bfb5c7bae5067ee3fbf83",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header-final-checks.log"
+    },
+    {
+      "file": "header-flutter-analyze.log",
+      "sha256": "sha256:81c1cf1c0e28bb1d190375c1b80045db317f5462c3230c7ab9f9d4b6bf0daf61",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header-flutter-analyze.log"
+    },
+    {
+      "file": "header-regression.log",
+      "sha256": "sha256:be2c0ec74160d0e885ba1171a1ab18b547ebae66df827ec0b1bdc970f76b8619",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header-regression.log"
+    },
+    {
+      "file": "header_drag_next-pointers.mp4",
+      "sha256": "sha256:7da1d97a8d8d8884063f72a9ee3826b6be415ac496063837d842b1f65249e273",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header_drag_next-pointers.mp4"
+    },
+    {
+      "file": "header_drag_next.mp4",
+      "sha256": "sha256:4df0f99d43e8c823262348030b5519458e5ea2bd28961677ed5444c093af30af",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header_drag_next.mp4"
+    },
+    {
+      "file": "header_drag_previous-pointers.mp4",
+      "sha256": "sha256:87113c041bd2a203922e8f8e247017086b0fa198cc45749f7d87a2d606616416",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header_drag_previous-pointers.mp4"
+    },
+    {
+      "file": "header_drag_previous.mp4",
+      "sha256": "sha256:5c749d8fa37799173dd413dcab53f1da738a9753e983a1ecee9d1153e64c9c84",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/header_drag_previous.mp4"
+    },
+    {
+      "file": "pivot-header.zip",
+      "sha256": "sha256:443705f56e47f987e3f47fc744b3bff1e436a0656d4720cb20fc83c53d3cce18",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/pivot-header.zip"
+    },
+    {
+      "file": "pivot-runtime.zip",
+      "sha256": "sha256:a1c73c960cdd99f91afd96bb0525fbfbe7abd4b1b66484dec643150201c7e4fb",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/pivot-runtime.zip"
+    },
+    {
+      "file": "pivot-source.zip",
+      "sha256": "sha256:2189fa7ff2d66e3b82c88467e1304b1ca87f792107a9fb8bbf5379cd742e43ff",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/pivot-source.zip"
+    },
+    {
+      "file": "release-manifest.json",
+      "sha256": "sha256:c6a28a23080daffc57840cbeafe1ac900aa9e65ca0f24eb08aaecfb67a9595c5",
+      "url": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/download/pivot-evidence-2026-08-27-header-runtime/release-manifest.json"
+    }
+  ],
+  "status": "Publication complete and verified.",
+  "documentation_pr": "https://github.com/Chinmay-KB/wp_pivot_flutter/pull/59",
+  "documentation_commit": "10d89531af5ebd74029733fc0309e0642023987c",
+  "site": "https://chinmaykabi.com/wp_pivot_flutter/research/pivot/",
+  "site_current": true,
+  "public_media": [
+    {
+      "url": "https://chinmaykabi.com/wp_pivot_flutter/media/pivot/header_drag_next.mp4",
+      "sha256": "4df0f99d43e8c823262348030b5519458e5ea2bd28961677ed5444c093af30af",
+      "matches": true
+    },
+    {
+      "url": "https://chinmaykabi.com/wp_pivot_flutter/media/pivot/header_drag_previous.mp4",
+      "sha256": "5c749d8fa37799173dd413dcab53f1da738a9753e983a1ecee9d1153e64c9c84",
+      "matches": true
+    },
+    {
+      "url": "https://chinmaykabi.com/wp_pivot_flutter/media/pivot/runtime-frame-cost.png",
+      "sha256": "a5fd5b30f26badc7c84ad6d53a19f962bdebb6b5fb59d219669f4cf7a8226ad3",
+      "matches": true
+    }
+  ],
+  "browser_playback": {
+    "file": "header_drag_next.mp4",
+    "duration_seconds": 2.633333,
+    "ready_state": 4,
+    "ended": true,
+    "error": null
+  },
+  "implementation_pr": "https://github.com/Chinmay-KB/wp_pivot_flutter/pull/58"
+}
