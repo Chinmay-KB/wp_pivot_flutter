@@ -16,7 +16,7 @@ title: Home
 </div>
 
 <p><a href="{{ '/research/pivot/' | relative_url }}">New: the Pivot motion study</a>
-— 48 native emulator trials, raw evidence and native-versus-Flutter comparisons.
+— 57 native emulator trials, raw evidence, native-versus-Flutter comparisons and a release-web runtime timing study.
 The source is labeled throughout; Lumia validation remains a separate step.</p>
 
 <div class="tiles">

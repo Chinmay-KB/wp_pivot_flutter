@@ -137,6 +137,77 @@ history. Selection agreement does not establish identical motion or frame rate.
 
 ## Download every observation
 
+### Header and title gestures: nine more native trials
+
+The next collection found a missing interaction surface: native Pivot accepts
+horizontal drags on its headers **and its title**, while our implementation had
+listened only inside the content. The detector now surrounds all three regions.
+All nine recorded selection sequences pass, alongside the 42 original traces;
+the widget suite now has 20 passing tests. These new cases informed the fix and
+are not held-out confirmation of it.
+
+This adds 596 original PNGs, for **57 native trials / 3,830 PNGs** across releases.
+Native acquisition in this batch ranges from 13.53 to 25.27fps, with a maximum
+gap of 260ms in the slowest run. Three title-drag trials have buffered touch
+callbacks with 628–670ms receipt spread. They are retained for layout and selection
+evidence, but excluded from timing fits and aligned motion comparisons.
+The slowest header trial also fails the alignment gate with 145.68ms receipt
+spread. All four rejected trials remain available; neither chosen comparison
+trial is among them.
+
+<video controls playsinline preload="metadata" width="960" height="856"
+  style="width:100%;height:auto;background:#000"
+  poster="{{ '/media/pivot/header_drag_next.png' | relative_url }}">
+  <source src="{{ '/media/pivot/header_drag_next.mp4' | relative_url }}" type="video/mp4">
+  Your browser cannot play this video. Use the download below.
+</video>
+
+[Download the forward header-swipe comparison]({{ '/media/pivot/header_drag_next.mp4' | relative_url }})
+· [Backward header swipe]({{ '/media/pivot/header_drag_previous.mp4' | relative_url }})
+
+The sampled shared-visible body-position MAE is **6.26px forward / 5.18px backward**,
+with no visibility mismatches in either trial's 42 sampled frames. Motion-only
+MAE is 9.52px / 8.08px. These errors include capture/clock uncertainty; font and
+rasterizer differences remain. No title-drag timing score is claimed.
+
+## Runtime smoothness
+
+We also ran the actual Flutter scene in a **release web build**, using real elapsed
+time to replay native input paths. Four scenarios each received one warm-up and
+three measured repetitions. All 12 measured trials selected the expected page.
+This was Chromium 151 on Windows, a 360×600 logical viewport at DPR 1, with the
+document reporting visible throughout.
+
+| Engine measurement | Median | 95th percentile | Maximum |
+| --- | ---: | ---: | ---: |
+| Build work | 3.00ms | 5.20ms | 11.60ms |
+| Raster work/submission | 0.40ms | 0.80ms | 24.00ms |
+| Total frame span | 3.70ms | 6.10ms | 28.70ms |
+| Post-selection frame interval | 16.60ms | 17.30ms | 29.30ms |
+
+There were 678 measured engine frames; one total span exceeded the chosen 16.667ms
+budget. Input scheduling lateness was 9.27ms at p95 and 15.23ms maximum. Small frame
+interval variations around 16.667ms are not automatically dropped frames. Cadence
+includes all gaps inside the continuous post-selection animation windows.
+
+![Measured release-web frame work, including the outlier]({{ '/media/pivot/runtime-frame-cost.png' | relative_url }})
+
+These results support smooth animation on this host. They do **not** measure
+physical display presentation, the native browser touch path, native Windows
+Flutter, mobile performance, or the Lumia. Deterministic 60Hz test replays remain
+a different kind of evidence. The raw run includes every engine timing, actual
+input timestamp, selection and visibility event.
+
+### Supplemental download
+
+[Header gestures and runtime evidence release]({{ site.github_repo }}/releases/tag/pivot-evidence-2026-08-27-header-runtime)
+contains all nine new native trials, two Flutter frame captures, clean/pointer
+comparison videos, quality reports, the raw runtime run, exact compiled probe and
+build sources, and updated reproduction tools. Each ZIP has a SHA-256 inventory.
+The four timing-unqualified trials remain included and labeled.
+
+### Original release
+
 [Open the versioned evidence release]({{ site.github_repo }}/releases/tag/pivot-evidence-2026-08-27)
 
 | Archive | Contents |
@@ -165,6 +236,6 @@ ordinary Flutter widget tests do not require it.
 5. Keep fresh confirmation runs separate from inputs used to tune an implementation.
 
 See the [protocol and reproduction commands]({{ site.github_repo }}/tree/pivot-evidence-2026-08-27/research/pivot).
-The next fidelity checks are wider gesture sampling, interactive runtime performance,
+The next fidelity checks are wider gesture sampling, mobile runtime performance,
 and a separately labeled Lumia cross-check. Emulator data is useful evidence;
 it is not a substitute for those measurements.
