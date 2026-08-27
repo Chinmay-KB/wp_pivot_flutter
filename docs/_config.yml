@@ -1,11 +1,11 @@
 # Site config for wp_pivot_flutter research site
 title: WP Pivot Research
-tagline: Recreating the Windows Phone design language in Flutter — measured on real Lumia 1020 hardware.
+tagline: Recreating Windows Phone in Flutter, with traceable native evidence.
 description: >-
   A research project preserving the Windows Phone / Metro design language:
-  capturing ground truth from real hardware, measuring motion, color and
-  typography, and rebuilding it faithfully in Flutter. Every claim is backed by
-  published raw data.
+  recording native controls, measuring motion, color and typography, and
+  rebuilding them in Flutter. Emulator and hardware sources are identified
+  separately, with raw evidence and limitations beside the findings.
 url: https://chinmay-kb.github.io/wp_pivot_flutter
 baseurl: /wp_pivot_flutter
 github_repo: https://github.com/Chinmay-KB/wp_pivot_flutter
