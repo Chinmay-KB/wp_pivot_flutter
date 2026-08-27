@@ -132,6 +132,9 @@ def main():
                     expected_installed_package_sha256=hashlib.sha256(package.read_bytes()).hexdigest(),
                     package_identity_note='Hash of the package built/deployed before this run; not read back from the guest.',
                     recorder_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+    provenance['glance_source_sha256']={name:hashlib.sha256((args.glance_app/'wpmirror'/name).read_bytes()).hexdigest()
+                                       for name in ['emulator.py','xde_bridge.ps1']}
+    provenance['scenario_plan_sha256']=hashlib.sha256(args.plan.read_bytes()).hexdigest()
     target=next(t for t in deployment_targets() if t['name']=='Emulator 8.1 WVGA 4 inch 512MB')
     isetool=sdk_paths()['deploy'].parent.parent/'IsolatedStorageExplorerTool/ISETool.exe'
     args.output.mkdir(parents=True)

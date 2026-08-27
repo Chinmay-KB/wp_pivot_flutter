@@ -20,16 +20,16 @@ constants. Emulator and physical-device evidence must remain explicitly distinct
 ## Gates (not yet satisfied)
 
 - [x] Build a minimal native reference using Microsoft's real Pivot control.
-- [ ] Capture a reproducible native scenario matrix, clean frames, timestamps,
+- [x] Capture a reproducible native scenario matrix, clean frames, timestamps,
       gesture events, and platform metadata.
-- [ ] Establish capture quality and uncertainty; do not treat held video frames
+- [x] Establish capture quality and uncertainty; do not treat held video frames
       as additional motion observations.
 - [ ] Publish trajectories, fits/residuals, layout measurements, and findings.
-- [ ] Capture the unmodified Flutter baseline with matching content/viewport.
-- [ ] Improve interaction and layout while retaining a documented migration path.
-- [ ] Test cancellation, header taps, continuous drag, wrap, reversal, lifecycle,
+- [x] Capture the unmodified Flutter baseline with matching content/viewport.
+- [x] Improve interaction and layout while retaining a documented migration path.
+- [x] Test cancellation, header taps, continuous drag, wrap, reversal, lifecycle,
       accessibility, and controller behavior as supported by the native evidence.
-- [ ] Compare the improved actual Flutter output with native footage, quantitatively
+- [x] Compare the improved actual Flutter output with native footage, quantitatively
       and visually; disclose remaining discrepancies.
 - [ ] Publish research/capture pages and downloadable evidence.
 - [ ] Raise PR with playable side-by-side comparison and verification results.
@@ -68,3 +68,31 @@ than the Flutter control; preserve them and use native evidence for widget desig
   establish coarse comparability, not absence of subtle instrumentation overhead.
 - Publication, improved Flutter code, full gesture coverage, hardware checks and
   final PR remain outstanding. No public evidence release has been claimed.
+
+## Revised implementation and fresh confirmation
+
+- Added `WpPivotView` with separate native-reference header/body phases and an
+  explicit migration from the unchanged header-only API. Bundled unmodified
+  OFL Selawik fonts, with license and source hashes.
+- 21 fresh native confirmation trials add both-direction successful flicks,
+  reverse drags, same-contact reversal, selected-header taps and forward wrap.
+  All 1,696 new PNG hashes pass, bringing the native total to 48 trials / 3,234 PNGs.
+- Candidate source hashes were frozen before checking the new outcomes. All 21
+  fresh selection sequences match, as do all 21 original core traces. The widget
+  replay required a ticker-start correction across idle gaps; the implementation's
+  motion was not adjusted in response to these confirmation outcomes.
+- 19 Flutter widget tests and 6 Python measurement checks pass. Flutter analysis
+  passes. The release web example builds and a live browser header tap selects
+  the second page; this is a functional check, not a runtime fps benchmark.
+- Ten final comparison scenarios have clean native/Flutter video, side-by-side
+  video, and a separate pointer version. All 40 MP4s decode fully and their decoded
+  frame counts match the source-frame mapping CSVs.
+- Final image metrics are under `research/pivot/comparisons/final/`. Body position
+  errors and visible-page mismatches are separate. Default layout matches native
+  bar coordinates; timing remains limited by native capture uncertainty.
+- Added a bounded `gesture` operation to the existing Glance SDK bridge for timed
+  paths and release-at-final-vertex. Five malformed requests were rejected before
+  any pointer event on the connected emulator; 11 existing emulator tests pass.
+  The release source snapshot must include this changed bridge.
+- USB hardware query returned `no devices` (projection access unavailable). No
+  physical-device comparison is claimed. Site publication and final PR are next.

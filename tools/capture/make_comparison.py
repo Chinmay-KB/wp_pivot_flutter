@@ -49,21 +49,25 @@ def main():
     parser.add_argument('--font',type=Path,default=Path('C:/Windows/Fonts/segoeui.ttf'))
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=True)
+    flutter_manifest=json.loads((args.flutter/'manifest.json').read_text())
+    improved=flutter_manifest.get('variant')=='native-motion-implementation'
+    flutter_video='flutter-improved.mp4' if improved else 'flutter-baseline.mp4'
+    flutter_label='Flutter improved - test replay' if improved else 'Flutter 2.0 baseline - test replay'
     native=read_csv(args.analysis/'image_tracks.csv')
     flutter=read_csv(args.flutter/'frames.csv')
     start=max(-500,float(native[0]['t_ms']),float(flutter[0]['t_ms']))
     end=min(float(native[-1]['t_ms']),float(flutter[-1]['t_ms']))
     times=np.arange(start,end,1000/30)
     ni=encode(args.native,native,times,args.output/'native.mp4')
-    fi=encode(args.flutter,flutter,times,args.output/'flutter-baseline.mp4')
+    fi=encode(args.flutter,flutter,times,args.output/flutter_video)
     # forward slashes + escaped drive colon for ffmpeg filter syntax.
     font=args.font.resolve().as_posix().replace(':','\\:')
     filtergraph=(f"[0:v]pad=iw:ih+56:0:56:black,drawtext=fontfile='{font}':text='Native WP8.1 emulator':"
                  "fontcolor=white:fontsize=22:x=16:y=14[n];"
-                 f"[1:v]pad=iw:ih+56:0:56:black,drawtext=fontfile='{font}':text='Flutter 2.0 baseline - test replay':"
+                 f"[1:v]pad=iw:ih+56:0:56:black,drawtext=fontfile='{font}':text='{flutter_label}':"
                  "fontcolor=white:fontsize=22:x=16:y=14[f];[n][f]hstack=inputs=2[v]")
     subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(),'-y','-loglevel','error',
-                    '-i',str(args.output/'native.mp4'),'-i',str(args.output/'flutter-baseline.mp4'),
+                    '-i',str(args.output/'native.mp4'),'-i',str(args.output/flutter_video),
                     '-filter_complex',filtergraph,'-map','[v]','-an','-c:v','libx264','-crf','18',
                     '-pix_fmt','yuv420p','-movflags','+faststart',str(args.output/'comparison.mp4')],check=True)
     replay=json.loads((args.analysis/'replay.json').read_text())
@@ -85,6 +89,7 @@ def main():
         writer.writerows(zip(range(len(times)),times,ni,fi))
     (args.output/'manifest.json').write_text(json.dumps(dict(
         native_trial=args.native.name,flutter_trial=args.flutter.name,delivery_fps=30,
+        flutter_variant=flutter_manifest.get('variant'),
         source_sampling='Zero-order hold of captured PNGs; no interpolation, no time stretching.',
         alignment='Native midpoint acquisition time + median guest/host input offset; Flutter guest-event replay clock.',
         annotation='Separate annotated copy: white square follows last delivered guest touch point only while contact is down; source images/clean clips unchanged.',

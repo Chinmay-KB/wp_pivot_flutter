@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 import 'baseline_scene.dart';
+import 'improved_scene.dart';
 
 void main() {
   const replayPath = String.fromEnvironment('REPLAY');
@@ -16,6 +18,7 @@ void main() {
   const regularPath = String.fromEnvironment('FONT_REGULAR');
   const lightPath = String.fromEnvironment('FONT_LIGHT');
   const boldPath = String.fromEnvironment('FONT_BOLD');
+  const variant = String.fromEnvironment('VARIANT', defaultValue: 'baseline');
 
   testWidgets('render measured guest input through the baseline widget',
       (tester) async {
@@ -29,8 +32,16 @@ void main() {
     }
     output.createSync(recursive: true);
     Directory('$outputPath/frames').createSync();
-    final loader = FontLoader('EvidenceSegoeUI');
-    for (final path in [regularPath, lightPath, boldPath]) {
+    final fontPaths = variant == 'improved'
+        ? [
+            'assets/fonts/selawksl.ttf',
+            'assets/fonts/selawk.ttf',
+            'assets/fonts/selawksb.ttf'
+          ]
+        : [regularPath, lightPath, boldPath];
+    final loader = FontLoader(
+        variant == 'improved' ? wpPivotFontFamily : 'EvidenceSegoeUI');
+    for (final path in fontPaths) {
       loader.addFont(
           Future.value(ByteData.sublistView(File(path).readAsBytesSync())));
     }
@@ -45,8 +56,12 @@ void main() {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            fontFamily: 'EvidenceSegoeUI', platform: TargetPlatform.windows),
-        home: const BaselineScene(),
+            fontFamily:
+                variant == 'improved' ? wpPivotFontFamily : 'EvidenceSegoeUI',
+            platform: TargetPlatform.windows),
+        home: variant == 'improved'
+            ? const ImprovedScene()
+            : const BaselineScene(),
       ),
     ));
     await tester.pumpAndSettle();
@@ -124,7 +139,9 @@ void main() {
     File('$outputPath/manifest.json')
         .writeAsStringSync(const JsonEncoder.withIndent('  ').convert({
       'source': 'flutter-test-engine',
-      'variant': 'unmodified-2.0.0-baseline',
+      'variant': variant == 'baseline'
+          ? 'unmodified-2.0.0-baseline'
+          : 'native-motion-implementation',
       'native_trial': replay['source_trial'],
       'viewport': [480, 800],
       'device_pixel_ratio': 1,
@@ -133,11 +150,15 @@ void main() {
       'sample_fps': 60,
       'clock': 'deterministic tester pump; not wall-clock performance',
       'input': 'guest touch events replayed at their recorded relative times',
-      'font':
-          'locally installed Segoe UI; not native Segoe WP; font files not distributed',
-      'font_paths': [regularPath, lightPath, boldPath],
-      'baseline_style':
-          'Existing example header sizes, weights, colors and PageView wiring; standardized research page content',
+      'font': variant == 'improved'
+          ? 'Bundled Selawik 1.01 (OFL), the actual package default; not native Segoe WP'
+          : 'locally installed Segoe UI; not native Segoe WP; font files not distributed',
+      'font_paths': fontPaths,
+      'positions_note':
+          'Element transforms can include hidden IndexedStack children; use image observations for visible trajectories.',
+      'scene_style': variant == 'baseline'
+          ? 'Existing example header sizes, weights, colors and PageView wiring; standardized research page content'
+          : 'WpPivotView package defaults with native-reference page content',
     }));
     await tester.pumpWidget(const SizedBox());
   });

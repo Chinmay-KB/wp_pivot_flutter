@@ -1,8 +1,36 @@
 # Native Pivot evidence: first collection
 
-This is an ongoing study, not a completed fidelity claim. The Flutter library has
-not yet been tuned. The current comparison is deliberately against the existing
-2.0.0 widget and example controller wiring.
+This is an ongoing study, not a completed fidelity claim. The retained baseline
+uses the existing 2.0.0 widget and example controller wiring. The revised
+`WpPivotView` owns the header and content motion; both versions are compared with
+actual native recordings rather than with an illustrated reference.
+
+## Current implementation and confirmation
+
+There are now 48 native motion trials: the original 27 plus 21 fresh confirmation
+trials, with 3,234 original PNGs in total. All native frame hashes pass verification.
+The resting native style snapshot is a separate artifact.
+
+The full view uses native reference geometry, cyclic header rearrangement,
+drag-linked header/body travel and separate content exit/entry phases. Its bundled
+Selawik fonts are OFL-licensed substitutes, not identical Segoe WP fonts.
+
+The 21 fresh trials add selected-header taps, reverse committed/cancelled drags,
+successful next/previous flicks, same-contact reversal and forward wrapping. The
+candidate matches all 21 selection sequences without changing its motion in
+response to those outcomes; the 21 earlier core input traces also pass. See
+[candidate provenance and evaluation](confirmation-01/evaluation.json). The first
+event-only widget replay had an idle-gap ticker-start bug; the corrected replay
+pumps a frame after each input and passes all 19 widget tests. Image captures use
+the separate regular-frame replay harness.
+
+Pilot image comparisons under `comparisons/` report positions and visible-page
+mismatches separately. The revised resting page bar matches native x/y/width
+24/165/432, versus the baseline's 16/134/448. Moving-page position MAE decreases
+from 313.0 to 32.2 px for the header tap, 158.6 to 4.7 px for the committed drag,
+and 305.3 to 16.1 px for previous wrapping in the `improved-02` pilot comparison.
+These are image-sampling comparisons with timing uncertainty, not a single
+fidelity percentage or proof of native display latency.
 
 ## Sources and provenance
 
@@ -19,7 +47,7 @@ not yet been tuned. The current comparison is deliberately against the existing
   disabled. Low-overhead input logging remains enabled, so this is specifically
   a trajectory-instrumentation control, not a completely uninstrumented build.
 
-Original images, guest logs and host timing are currently in the ignored local
+Original images, guest logs and host timing are retained in the ignored local
 `artifacts/` directory. Publication is pending; a local artifact path is not a
 public evidence link. Core/control manifests record source hashes, package hash
 expectations, and clock semantics. Pilot provenance is less complete and remains
@@ -125,9 +153,9 @@ The replay supplies measured timestamps to gesture events; see
 
 ## Remaining work toward the goal
 
-Qualify instrumentation influence, repair/extend delivered gesture scenarios,
-resolve skipped-header behavior and body motion, then implement and test the
-Flutter changes against retained reference data. Publish raw assets and the full
-study on the website, verify playable mobile media, and raise the final PR with
-native-versus-improved-Flutter comparisons. Hardware cross-checks remain separate
-from this emulator evidence.
+Finish inspecting the final rendered comparisons, publish the raw assets and study,
+verify public media, and raise the implementation PR with native-versus-Flutter
+comparisons. Hardware cross-checks remain separate: a USB projection status query
+on this host returned no devices during the confirmation session. Broader input
+threshold sampling, instrumentation influence and interactive runtime smoothness
+remain explicit limits rather than conclusions of the deterministic replay.

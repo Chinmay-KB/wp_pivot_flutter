@@ -1,3 +1,14 @@
+## [Unreleased]
+
+* Add `WpPivotView`: complete Pivot layout, cyclic headers, release-time selection,
+  separate content exit/entry, gesture cancellation, keyboard navigation and
+  reduced-motion support.
+* Add configurable `PivotMotion` and bundled OFL-licensed Selawik fonts.
+* Replace the example's PageView synchronization with the full control.
+* Add a native WP reference app, timestamped evidence collection, image tracking,
+  Flutter input replay, comparison video generation and recorded-input regressions.
+* Preserve the existing header-only `WpPivot` and controller API.
+
 ## [2.0.0] 21 August 2026.
 
 * **BREAKING**: Replaced the GlobalKey-based API with a `PivotController`

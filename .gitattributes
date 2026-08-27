@@ -1,0 +1,2 @@
+# Preserve the upstream license text, including its original trailing space.
+assets/fonts/OFL.txt -whitespace

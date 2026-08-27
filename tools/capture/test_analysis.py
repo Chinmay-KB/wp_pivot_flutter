@@ -2,9 +2,27 @@
 import unittest
 import numpy as np
 from analyze_native import marker_bounds, bar_left, header_match, match_input_clocks, COLORS
+from compare_motion import calibrate_bar, track_bar, sample_error
 
 
 class MeasurementTests(unittest.TestCase):
+    def test_comparison_calibrates_legacy_padding_and_clipped_edge(self):
+        image=np.zeros((800,480,3),dtype=np.uint8)
+        image[134:140,16:464]=COLORS[0]
+        geometry=calibrate_bar(image)
+        self.assertEqual(geometry,dict(x=16,y=134,width=448))
+        image[:]=0;image[134:140,:200]=COLORS[0]
+        self.assertEqual(track_bar(image,geometry,COLORS[0]),-248)
+        self.assertIsNone(track_bar(image,geometry,COLORS[1]))
+
+    def test_missing_page_is_not_a_perfect_positional_match(self):
+        errors,mismatch=sample_error([24,None,None,None],[None,24,None,None])
+        self.assertEqual(errors,[])
+        self.assertTrue(mismatch)
+        errors,mismatch=sample_error([24,None,None,None],[30,450,None,None])
+        self.assertEqual(errors,[6])
+        self.assertTrue(mismatch)
+
     def test_fractional_edge_and_clipping(self):
         image=np.zeros((800,480,3),dtype=np.uint8)
         image[314:378,91:154]=COLORS[1] # 63 solid pixels + antialiased edges.

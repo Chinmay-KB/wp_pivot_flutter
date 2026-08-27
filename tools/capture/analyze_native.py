@@ -175,7 +175,10 @@ def analyze(directory, output):
     events = [dict(t_ms=float(r['t_ms'])-down+500, event=r['event'].lower(),
                    x=float(r['x']),y=float(r['y'])) for r in inputs if r['event'] in ('Down','Move','Up')]
     (output/'replay.json').write_text(json.dumps(dict(source_trial=directory.name,
-        viewport=manifest['resolution'], events=events, end_ms=events[-1]['t_ms']+1400),indent=2))
+        viewport=manifest['resolution'], events=events,
+        selection_events=[dict(t_ms=float(r['t_ms'])-down+500,index=int(r['id']))
+                          for r in inputs if r['event']=='selection' and float(r['t_ms'])>=down],
+        end_ms=events[-1]['t_ms']+1400),indent=2))
 
     fig, axes = plt.subplots(3,1,figsize=(10,9),sharex=True,layout='constrained')
     if len(ht): axes[0].plot(ht,hx,color='#555555',label='Guest header telemetry',lw=1.3)

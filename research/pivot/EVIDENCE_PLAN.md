@@ -1,7 +1,8 @@
 # Pivot evidence collection plan
 
-Status: proposed protocol, 2026-08-27. This step is planning only; it does not
-approve existing pilot data as ground truth or change the Flutter implementation.
+Status: proposed protocol, reviewed against the local evidence on 2026-08-27.
+This step is planning only; it does not approve existing data as ground truth or
+change the Flutter implementation.
 Sol Advisor route remains solo: the primary agent owns planning and verification.
 
 ## Objective and first boundary
@@ -27,14 +28,25 @@ interchangeable label for emulator footage.
   passive input/element-position logging.
 - Capture runner and initial seven scenarios: `tools/capture/record_native.py`
   and `tools/capture/pivot_scenarios.json`.
-- Three local pilot trials under `artifacts/native-pilot-01/`: header-next,
-  drag-commit, and wrap-previous. Their manifests report 22.23, 22.61, and 26.07
-  captured fps, respectively; the largest reported frame-start interval is
-  129.59 ms. These are acquisition statistics, not native rendering fps.
-- Guest input/trajectory files exist. Their coordinates, timing, and instrumentation
-  overhead have not yet been validated against the captured images.
-- The Flutter header currently uses a 600 ms `fastLinearToSlowEaseIn` transition.
-  This is the baseline to investigate, not evidence of native behavior.
+- Local native collections already contain 27 motion trials: three pilots,
+  21 core trials, and three trajectory-logging controls. A separate resting style
+  snapshot also exists. Preserve and index these before recording replacements.
+- Existing analysis qualifies the images for layout and coarse motion. Native
+  capture is roughly 19-27 acquired fps, with some larger gaps. Encoded playback
+  fps must not be presented as native rendering fps.
+- Header telemetry has image cross-checks; body coordinate logs disagree with
+  visible motion and are not qualified for trajectory fitting. Instrumentation
+  overhead and fine display timing remain unresolved. See `README.md` for the
+  existing results and limitations; this planning review did not rerun analysis.
+- The retained Flutter baseline uses the original header's 600 ms
+  `fastLinearToSlowEaseIn` transition. Local implementation experiments and
+  improved replay artifacts also exist; preserve their provenance and keep them
+  separate from the unchanged baseline. Their existence is not a fidelity verdict.
+- Nominal flick requests were not delivered reliably as intended. Successful
+  flicks, both-direction coverage, and reversal within the same contact still need
+  fresh evidence. Reserve confirmation runs that have not been used to tune code.
+- Evidence publication and hardware confirmation remain pending. Local file paths
+  are not accessible publication links for mobile readers.
 
 ## 1. Qualify the measurement system before collecting at scale
 
@@ -169,6 +181,11 @@ or desktop playback work there.
    checks, then a final PR with playable native-versus-Flutter comparisons and
    explicit remaining differences.
 
-The immediate next action after this plan is agreed is to qualify the existing
-pilot captures. No new capture run, implementation change, or publication was
-performed as part of writing this plan.
+The immediate next action after this plan is agreed is to audit and index the
+existing collections, then assemble one header-tap and one slow-drag reference
+bundle with their quality reports and unchanged Flutter comparisons. Reuse valid
+recordings; repeat only failed or insufficient cases. Freeze the candidate build
+before collecting fresh confirmation gestures, and use those runs to evaluate,
+not tune, that candidate. If they drive another change, collect a new confirmation
+set. No new capture run, implementation change, or publication was performed as
+part of this planning review.

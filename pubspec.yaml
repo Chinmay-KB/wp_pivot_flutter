@@ -23,6 +23,17 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/fonts/OFL.txt
+  fonts:
+    - family: Selawik
+      fonts:
+        - asset: assets/fonts/selawksl.ttf
+          weight: 300
+        - asset: assets/fonts/selawk.ttf
+          weight: 400
+        - asset: assets/fonts/selawksb.ttf
+          weight: 600
 
   # To add assets to your package, add an assets section, like this:
   # assets:

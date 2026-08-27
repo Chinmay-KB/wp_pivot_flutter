@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-08-27T20:38:04.302169+00:00",
+  "repository_commit": "1234873fe011098002577a23b181844ffc330d3d",
+  "source_sha256": {
+    "lib/wp_pivot_flutter.dart": "58a2f325054f99d68c1fb7118901ce86253167163370af4cc84540197be20458",
+    "lib/src/custom_appbar.dart": "18ffcddd6c1cd19b4f6625de9f20da54a1c9224255f4f5cc0ebf5c49f3ed914e",
+    "lib/src/pivot_controller.dart": "b113d565da796ff74bdbf795d3cd146933e2c0c623d39fb7c0e10f71124d1fb6",
+    "lib/src/pivot_header.dart": "cedde1a55423847c858f6ccdd3d759784e567e7c6ef8a2790748cdb49a947c58",
+    "lib/src/pivot_motion.dart": "d677557f23657ac2de8f284a95d8e4b6dec516196e1c8716195e0d70befbfdd8",
+    "lib/src/wp_pivot.dart": "e8dcde3f86491b1dfbe61cac772a0b6afa69d101dbdffc78dedc3b77e58db1b0",
+    "lib/src/wp_pivot_view.dart": "050591a114ecc0362bb95895a44aaf61913b711a18552b54066b38ffbd270177",
+    "pubspec.yaml": "dd70736bc1802b5434ab7c5e85bddc49fadc01e50da09a0ca4cfb3550dbf2b01"
+  },
+  "note": "Candidate frozen while native-confirmation-01 is collected. Previous core inputs were used during tuning; these new input paths were not.",
+  "evaluation_source_sha256": {
+    "lib/wp_pivot_flutter.dart": "58a2f325054f99d68c1fb7118901ce86253167163370af4cc84540197be20458",
+    "lib/src/custom_appbar.dart": "18ffcddd6c1cd19b4f6625de9f20da54a1c9224255f4f5cc0ebf5c49f3ed914e",
+    "lib/src/pivot_controller.dart": "b113d565da796ff74bdbf795d3cd146933e2c0c623d39fb7c0e10f71124d1fb6",
+    "lib/src/pivot_header.dart": "6628231e5d39b10ab317aad9488e9083366d30d81e6c0ee815c498397d3a18ce",
+    "lib/src/pivot_motion.dart": "d677557f23657ac2de8f284a95d8e4b6dec516196e1c8716195e0d70befbfdd8",
+    "lib/src/wp_pivot.dart": "e8dcde3f86491b1dfbe61cac772a0b6afa69d101dbdffc78dedc3b77e58db1b0",
+    "lib/src/wp_pivot_view.dart": "4b1e665b1ac128a1ba2f062240104fc2b3bfda11e36810064293fed580d982ab",
+    "pubspec.yaml": "dd70736bc1802b5434ab7c5e85bddc49fadc01e50da09a0ca4cfb3550dbf2b01"
+  },
+  "pre_evaluation_changes": "Before reading confirmation outcomes: removed a constructor assert incompatible with const widgets (equivalent build assert remains), and exposed header tap semantics. Default gesture/motion behavior is unchanged.",
+  "evaluation_frozen_at": "2026-08-27T20:40:53.947886+00:00"
+}

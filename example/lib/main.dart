@@ -1,120 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const PivotExample());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Segoe',
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+class PivotExample extends StatelessWidget {
+  const PivotExample({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Pivot research',
+        theme: ThemeData(
+            fontFamily: wpPivotFontFamily, brightness: Brightness.dark),
+        home: const ColoredBox(
+          color: Colors.black,
+          child: Center(
+            child: SizedBox(width: 480, child: ResearchPivot()),
+          ),
+        ),
+      );
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  static const _tabTitles = [
-    'Tab 1',
-    'Tab 2',
-    'Tab 3',
-    'Tab 4',
-    'Tab 5',
-    'Tab 6',
-    'Tab 7',
-    'Tab 8',
+class ResearchPivot extends StatelessWidget {
+  const ResearchPivot({super.key});
+  static const names = ['first', 'second', 'third', 'fourth'];
+  static const colors = [
+    Color(0xff1ba1e2),
+    Color(0xff60a917),
+    Color(0xfff09609),
+    Color(0xffa200ff)
   ];
 
-  final PivotController _pivotController =
-      PivotController(length: _tabTitles.length);
-  final PageController _pageController = PageController();
-
   @override
-  void initState() {
-    super.initState();
-    // Pivot -> PageView
-    _pivotController.addListener(_syncPageToPivot);
-  }
-
-  @override
-  void dispose() {
-    _pivotController.removeListener(_syncPageToPivot);
-    _pivotController.dispose();
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _syncPageToPivot() {
-    if (!_pageController.hasClients) return;
-    final page = _pageController.page?.round();
-    if (page != _pivotController.index) {
-      _pageController.animateToPage(
-        _pivotController.index,
-        duration: const Duration(milliseconds: 600),
-        curve: Curves.fastLinearToSlowEaseIn,
+  Widget build(BuildContext context) => WpPivotView(
+        title: 'PIVOT RESEARCH',
+        tabTitles: names,
+        children: [
+          for (var i = 0; i < names.length; i++)
+            LayoutBuilder(builder: (context, constraints) {
+              final scale = constraints.maxWidth / 480;
+              return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24 * scale),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(height: 6 * scale, color: colors[i]),
+                        SizedBox(height: 24 * scale),
+                        Text('${names[i]} page',
+                            style: TextStyle(
+                                fontSize: 32 * scale,
+                                height: 1.3301,
+                                color: Colors.white)),
+                        SizedBox(height: 12 * scale),
+                        Text('Swipe to explore',
+                            style: TextStyle(
+                                fontSize: 24 * scale,
+                                height: 1.3301,
+                                color: const Color(0xffa6a6a6))),
+                        SizedBox(height: 32 * scale),
+                        Container(
+                            width: 64 * scale,
+                            height: 64 * scale,
+                            color: colors[i]),
+                      ]));
+            })
+        ],
       );
-    }
-  }
-
-  // PageView -> Pivot
-  void _onPageChanged(int value) {
-    if (_pivotController.index != value) {
-      _pivotController.animateTo(value);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: WpPivot(
-        controller: _pivotController,
-        backgroundColor: Colors.black,
-        fontSize: 36.2,
-        fontWeight: FontWeight.w400,
-        selectedTabColor: Colors.white,
-        unselectedTabColor: Colors.white38,
-        tabTitles: _tabTitles,
-        title: "Title",
-        titleColor: Colors.white,
-        titleFontSize: 14,
-        titleFontWeight: FontWeight.bold,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: _onPageChanged,
-          children: <Widget>[
-            for (final title in _tabTitles)
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'This is ${title.toLowerCase()} page',
-                  style: const TextStyle(color: Colors.white, fontSize: 24),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
 }

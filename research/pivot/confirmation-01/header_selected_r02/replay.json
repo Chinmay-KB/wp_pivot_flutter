@@ -1,0 +1,29 @@
+{
+  "source_trial": "header_selected_r02",
+  "viewport": [
+    480,
+    800
+  ],
+  "events": [
+    {
+      "t_ms": 500.0,
+      "event": "down",
+      "x": 65.0,
+      "y": 95.0
+    },
+    {
+      "t_ms": 583.0028,
+      "event": "move",
+      "x": 65.0,
+      "y": 95.0
+    },
+    {
+      "t_ms": 583.1091999999999,
+      "event": "up",
+      "x": 65.0,
+      "y": 95.0
+    }
+  ],
+  "selection_events": [],
+  "end_ms": 1983.1091999999999
+}
