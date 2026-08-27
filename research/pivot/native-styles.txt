@@ -1,0 +1,76 @@
+text=PIVOT RESEARCH
+font_family=Segoe WP Semibold
+font_size=22.6669998168945
+font_weight=Normal
+foreground=#FFFFFFFF
+size=179.123336791992,30.1499996185303
+
+text=first
+font_family=Segoe WP SemiLight
+font_size=72
+font_weight=Normal
+foreground=#FFFFFFFF
+size=114.326667785645,95.7666702270508
+
+text=second
+font_family=Segoe WP SemiLight
+font_size=72
+font_weight=Normal
+foreground=#FFFFFFFF
+size=221.059997558594,95.7666702270508
+
+text=third
+font_family=Segoe WP SemiLight
+font_size=72
+font_weight=Normal
+foreground=#FFFFFFFF
+size=143.399993896484,95.7666702270508
+
+text=fourth
+font_family=Segoe WP SemiLight
+font_size=72
+font_weight=Normal
+foreground=#FFFFFFFF
+size=191.110000610352,95.7666702270508
+
+text=first page
+font_family=Segoe WP
+font_size=32
+font_weight=Normal
+foreground=#FFFFFFFF
+size=132.543334960938,42.5633316040039
+
+text=Swipe to explore
+font_family=Segoe WP
+font_size=24
+font_weight=Normal
+foreground=#FFA6A6A6
+size=175.536666870117,31.9233341217041
+
+text=second page
+font_family=Segoe WP
+font_size=32
+font_weight=Normal
+foreground=#FFFFFFFF
+size=179.806671142578,42.5633316040039
+
+text=Swipe to explore
+font_family=Segoe WP
+font_size=24
+font_weight=Normal
+foreground=#FFA6A6A6
+size=175.536666870117,31.9233341217041
+
+text=fourth page
+font_family=Segoe WP
+font_size=32
+font_weight=Normal
+foreground=#FFFFFFFF
+size=166.889999389648,42.5633316040039
+
+text=Swipe to explore
+font_family=Segoe WP
+font_size=24
+font_weight=Normal
+foreground=#FFA6A6A6
+size=175.536666870117,31.9233341217041

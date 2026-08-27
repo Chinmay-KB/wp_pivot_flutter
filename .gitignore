@@ -79,3 +79,9 @@ build/
 README.md.publish-backup
 .preview/
 .impeccable/
+
+# Native reference builds and full-resolution evidence stay out of git.
+**/bin/
+**/obj/
+artifacts/
+__pycache__/
