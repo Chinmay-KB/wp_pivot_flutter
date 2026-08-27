@@ -11,15 +11,16 @@ publish the conclusion. That's the deal.</p>
 
 <h2>Animations &amp; motion</h2>
 <ul>
+  <li><a href="{{ '/research/pivot/' | relative_url }}">Pivot motion study: native recordings, Flutter comparisons and downloadable evidence</a></li>
   <li><em>Pivot flick dynamics</em>: in progress (M3)</li>
   <li><em>Page transition suite</em>: planned (M3)</li>
   <li><em>List entrance stagger + semantic zoom</em>: planned (M3)</li>
   <li><em>Micro-interactions (tilt, toggle, press)</em>: planned (M3)</li>
 </ul>
-<p>Method, for the curious: track element positions across frames of real hardware
-footage, fit cubic-Bézier easing curves to the trajectories, publish the curve
+<p>Method, for the curious: track element positions across native frames, identify
+the source as emulator or hardware, fit motion models to the trajectories, publish the model
 parameters alongside the residuals so you can see how good (or bad) the fit is.
-Where a "transition" turns out to be a velocity handoff rather than a single curve,
+Where a transition turns out to be a velocity handoff rather than a single curve,
 that gets documented too. The phone doesn't care what fits nicely.</p>
 
 <h2>Color</h2>

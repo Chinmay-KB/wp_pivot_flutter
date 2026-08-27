@@ -21,9 +21,11 @@ check my pixel-level conclusions against both sources independently. When the
 screen capture and the OS resources agree, you can trust the number.</p>
 
 <h2>Honest limits</h2>
-<p>Bit-exact rendering across display pipelines has physical limits. The bar here
-is "indistinguishable to a human": roughly 95%+ overlap in the automated diffs.
-I'd rather publish that number and let you judge than claim pixel perfection.</p>
+<p>Bit-exact rendering across display pipelines has physical limits. We report
+layout, motion, visible-page behavior and runtime performance separately; a single
+pixel-overlap percentage cannot establish that an interaction feels identical.
+The first Pivot study uses emulator evidence. Capture timing, font differences
+and outstanding hardware checks are stated beside the results.</p>
 
 <h2>How to contribute</h2>
 <ul>
