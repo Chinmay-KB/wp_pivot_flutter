@@ -5,15 +5,33 @@ If you want to work on an existing issue, then do comment on the issue and I wil
 ### Installation
 You can view the dart package published [here](https://pub.dev/packages/wp_pivot_flutter).
 
-Add the following dependencies to pubspec.yaml
-```
-dependencies:
-  wp_pivot_flutter: ^0.0.2
-```
-Now in your dart code, you can use
-```
+Use the version shown in the package's [installation instructions](https://pub.dev/packages/wp_pivot_flutter/install).
+The repository may contain a newer version that has not yet been published.
+Import the package with:
+
+```dart
 import 'package:wp_pivot_flutter/wp_pivot_flutter.dart';
 ```
+
+### Local development and release checks
+
+The library requires Flutter 3.22 / Dart 3.4 or later. Repository development uses
+`flutter_lints` 6, which requires Dart 3.8 or later; use a Flutter SDK that includes it.
+
+```sh
+flutter pub get
+flutter analyze
+flutter test --reporter expanded
+cd example
+flutter pub get
+flutter build web --release
+```
+
+From the repository root, `./tool/publish_with_pub_readme.sh` validates the package
+with the package-facing README and restores the GitHub README afterwards. It is a
+dry run unless explicitly passed `--publish`. Update `pubspec.yaml`, `CHANGELOG.md`
+and the example's path-dependency lock entry together. `.pubignore` keeps research
+and capture artifacts out of the archive; preserve their published provenance.
 
 ### Git workflow
 

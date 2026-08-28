@@ -1,13 +1,21 @@
-## [Unreleased]
+## [2.1.0] 28 August 2026.
 
 * Add `WpPivotView`: complete Pivot layout, cyclic headers, release-time selection,
   separate content exit/entry, gesture cancellation, keyboard navigation and
   reduced-motion support.
 * Add configurable `PivotMotion` and bundled OFL-licensed Selawik fonts.
+* Support swipes across the title, headers and content, with 51 recorded native
+  selection traces covered by regression tests.
 * Replace the example's PageView synchronization with the full control.
 * Add a native WP reference app, timestamped evidence collection, image tracking,
   Flutter input replay, comparison video generation and recorded-input regressions.
+* Add an opt-in release-web runtime probe and timing-alignment validation for
+  comparisons. Measurements use the WP8.1 emulator; Lumia hardware validation
+  remains pending, and Selawik is not identical to Segoe WP.
 * Preserve the existing header-only `WpPivot` and controller API.
+* Declare Flutter 3.22 / Dart 3.4 as the minimum supported SDKs for the new APIs.
+* Refresh package documentation and exclude repository research, media and capture
+  tooling from the package archive while retaining the library, fonts and example.
 
 ## [2.0.0] 21 August 2026.
 
