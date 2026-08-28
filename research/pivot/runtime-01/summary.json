@@ -1,0 +1,328 @@
+{
+  "valid": true,
+  "errors": [],
+  "frame_cost": {
+    "build": {
+      "count": 678,
+      "p50_ms": 3.0,
+      "p95_ms": 5.20015,
+      "max_ms": 11.6,
+      "over_60hz_budget": 0
+    },
+    "raster": {
+      "count": 678,
+      "p50_ms": 0.4,
+      "p95_ms": 0.799,
+      "max_ms": 24.0,
+      "over_60hz_budget": 1
+    },
+    "total": {
+      "count": 678,
+      "p50_ms": 3.7,
+      "p95_ms": 6.1,
+      "max_ms": 28.7,
+      "over_60hz_budget": 1
+    }
+  },
+  "animation_cadence": {
+    "count": 534,
+    "p50_ms": 16.601,
+    "p95_ms": 17.29935,
+    "max_ms": 29.301,
+    "over_60hz_budget": 264
+  },
+  "input_lateness": {
+    "count": 141,
+    "p50_ms": 2.737900001490061,
+    "p95_ms": 9.26729999701979,
+    "max_ms": 15.231100004470363,
+    "over_60hz_budget": 0
+  },
+  "trials": [
+    {
+      "scenario": "core-01/header_next_r01",
+      "repetition": 1,
+      "selection": [
+        1
+      ],
+      "frame_count": 48,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.6,
+        "p95_ms": 17.301,
+        "max_ms": 17.801,
+        "over_60hz_budget": 21
+      },
+      "input_lateness": {
+        "count": 3,
+        "p50_ms": 0.5040000014901125,
+        "p95_ms": 3.1385700014901654,
+        "max_ms": 3.431300001490172,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "core-01/drag_commit_r01",
+      "repetition": 1,
+      "selection": [
+        1
+      ],
+      "frame_count": 64,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.6,
+        "p95_ms": 17.284,
+        "max_ms": 17.599,
+        "over_60hz_budget": 18
+      },
+      "input_lateness": {
+        "count": 20,
+        "p50_ms": 3.5114499977649984,
+        "p95_ms": 10.984099996945364,
+        "max_ms": 14.662499995529515,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "confirmation-01/flick_next_path_r01",
+      "repetition": 1,
+      "selection": [
+        1
+      ],
+      "frame_count": 50,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.701,
+        "p95_ms": 17.18,
+        "max_ms": 17.401,
+        "over_60hz_budget": 27
+      },
+      "input_lateness": {
+        "count": 5,
+        "p50_ms": 3.3347000014900914,
+        "p95_ms": 4.346320002085986,
+        "max_ms": 4.558100001489947,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "header-01/header_drag_next_r01",
+      "repetition": 1,
+      "selection": [
+        1
+      ],
+      "frame_count": 64,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.601,
+        "p95_ms": 17.1794,
+        "max_ms": 17.5,
+        "over_60hz_budget": 22
+      },
+      "input_lateness": {
+        "count": 19,
+        "p50_ms": 2.3409999970197077,
+        "p95_ms": 5.869150001341083,
+        "max_ms": 7.215099999999893,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "core-01/header_next_r01",
+      "repetition": 2,
+      "selection": [
+        1
+      ],
+      "frame_count": 49,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.700000000000003,
+        "p95_ms": 17.301,
+        "max_ms": 17.601,
+        "over_60hz_budget": 23
+      },
+      "input_lateness": {
+        "count": 3,
+        "p50_ms": 3.703999997019764,
+        "p95_ms": 6.518569999702026,
+        "max_ms": 6.831300000000056,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "core-01/drag_commit_r01",
+      "repetition": 2,
+      "selection": [
+        1
+      ],
+      "frame_count": 65,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.601,
+        "p95_ms": 17.285999999999998,
+        "max_ms": 17.799,
+        "over_60hz_budget": 21
+      },
+      "input_lateness": {
+        "count": 20,
+        "p50_ms": 1.6814500014900204,
+        "p95_ms": 7.484339998435486,
+        "max_ms": 9.26729999701979,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "confirmation-01/flick_next_path_r01",
+      "repetition": 2,
+      "selection": [
+        1
+      ],
+      "frame_count": 49,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.599,
+        "p95_ms": 17.1792,
+        "max_ms": 17.299,
+        "over_60hz_budget": 19
+      },
+      "input_lateness": {
+        "count": 5,
+        "p50_ms": 3.958099999999831,
+        "p95_ms": 6.346299996125526,
+        "max_ms": 6.399199995529443,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "header-01/header_drag_next_r01",
+      "repetition": 2,
+      "selection": [
+        1
+      ],
+      "frame_count": 64,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.699,
+        "p95_ms": 17.08415,
+        "max_ms": 17.101,
+        "over_60hz_budget": 23
+      },
+      "input_lateness": {
+        "count": 19,
+        "p50_ms": 3.8493000044702512,
+        "p95_ms": 6.380730001191886,
+        "max_ms": 6.616799998509805,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "core-01/header_next_r01",
+      "repetition": 3,
+      "selection": [
+        1
+      ],
+      "frame_count": 47,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.601,
+        "p95_ms": 17.2792,
+        "max_ms": 17.899,
+        "over_60hz_budget": 21
+      },
+      "input_lateness": {
+        "count": 3,
+        "p50_ms": 0.004000001490112481,
+        "p95_ms": 0.20857000551347935,
+        "max_ms": 0.23130000596052014,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "core-01/drag_commit_r01",
+      "repetition": 3,
+      "selection": [
+        1
+      ],
+      "frame_count": 65,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.6995,
+        "p95_ms": 18.22415,
+        "max_ms": 29.301,
+        "over_60hz_budget": 23
+      },
+      "input_lateness": {
+        "count": 20,
+        "p50_ms": 4.314550001490147,
+        "p95_ms": 11.881029999850943,
+        "max_ms": 12.26729999701979,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "confirmation-01/flick_next_path_r01",
+      "repetition": 3,
+      "selection": [
+        1
+      ],
+      "frame_count": 50,
+      "animation_cadence": {
+        "count": 45,
+        "p50_ms": 16.699,
+        "p95_ms": 17.1802,
+        "max_ms": 17.299,
+        "over_60hz_budget": 24
+      },
+      "input_lateness": {
+        "count": 5,
+        "p50_ms": 3.3347000014900914,
+        "p95_ms": 4.4863200026820325,
+        "max_ms": 4.658100002980063,
+        "over_60hz_budget": 0
+      }
+    },
+    {
+      "scenario": "header-01/header_drag_next_r01",
+      "repetition": 3,
+      "selection": [
+        1
+      ],
+      "frame_count": 63,
+      "animation_cadence": {
+        "count": 44,
+        "p50_ms": 16.649500000000003,
+        "p95_ms": 17.19985,
+        "max_ms": 17.301,
+        "over_60hz_budget": 22
+      },
+      "input_lateness": {
+        "count": 19,
+        "p50_ms": 1.807199998509759,
+        "p95_ms": 14.340010003129189,
+        "max_ms": 15.231100004470363,
+        "over_60hz_budget": 0
+      }
+    }
+  ],
+  "method": "Raw Flutter FrameTiming in a release web build; warm-ups excluded. Cadence is adjacent engine vsync-start intervals inside each 750ms post-selection animation window. Large gaps retained. All costs are engine work/submission, not physical display presentation. 16.667ms is the chosen 60Hz comparison budget, not an inferred display rate.",
+  "browser": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "visibility": [
+      {
+        "t_ms": 12724.79999999702,
+        "state": "visible"
+      },
+      {
+        "t_ms": 46021.89999999851,
+        "state": "visible"
+      }
+    ]
+  },
+  "viewport": [
+    360,
+    600
+  ],
+  "device_pixel_ratio": 1,
+  "raw_sha256": "1b9876e67ad25d4ec4121e7f81dbcf1a54104732645467edaeff083c2853f512",
+  "analysis_sha256": "e5ec5e66262aa857b00ee274c7431b7b63ac9a1e8a32cf5cb1b01be378e3b190"
+}

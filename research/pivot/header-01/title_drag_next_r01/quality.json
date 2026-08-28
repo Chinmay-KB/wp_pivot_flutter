@@ -1,0 +1,32 @@
+{
+  "trial": "title_drag_next_r01",
+  "source": "native-windows-phone-emulator",
+  "frame_count": 65,
+  "capture_fps": 21.422400533953333,
+  "capture_interval_p50_ms": 42.11040000000003,
+  "capture_interval_p95_ms": 79.33763999999975,
+  "capture_interval_max_ms": 101.0646999999999,
+  "hashes_valid": true,
+  "invalid_frames": [],
+  "clock_alignment": {
+    "matched_samples": 19,
+    "offset_ms": 903.8711999999998,
+    "offset_min_ms": 700.8067000000003,
+    "offset_max_ms": 1338.7567999999997,
+    "receipt_spread_ms": 637.9500999999993,
+    "drift_estimated": false
+  },
+  "actual_first_contact_ms": 364.95870000000014,
+  "render_callback_interval_p50_ms": 16.187450000000126,
+  "header_interval_check_count": 65,
+  "header_interval_error_p95_px": 0.2642400000000008,
+  "header_interval_error_max_px": 5.220799999999997,
+  "header_motion_check_count": 24,
+  "header_motion_interval_error_p95_px": 2.893699999999992,
+  "marker_edge_uncertainty_px": 1,
+  "body_telemetry_aliased_callbacks": 207,
+  "body_telemetry_total_callbacks": 207,
+  "body_telemetry_qualified": false,
+  "coarse_alignment_accepted": false,
+  "qualification": "REJECTED for aligned motion: buffered input callbacks make host/guest alignment unreliable. Layout and selection outcomes only."
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "product_id": "651a3a1c-b46b-4506-944f-992243bb8cce",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.75,
+  "post_roll_seconds": 1.25,
+  "purpose": "Fresh inputs for checking the existing candidate. Outcomes are observations, not implied by scenario names.",
+  "scenarios": [
+    {"id":"header_selected", "actions":[{"op":"tap","x":65,"y":95}]},
+    {"id":"drag_previous", "actions":[
+      {"op":"tap","x":235,"y":95},{"op":"wait","seconds":1.1},
+      {"op":"swipe","x":80,"y":500,"x1":420,"y1":500,"ms":800}
+    ]},
+    {"id":"drag_cancel_previous", "actions":[
+      {"op":"tap","x":235,"y":95},{"op":"wait","seconds":1.1},
+      {"op":"swipe","x":120,"y":500,"x1":200,"y1":500,"ms":800}
+    ]},
+    {"id":"flick_next_path", "actions":[{"op":"gesture","points":[
+      {"t_ms":0,"x":400,"y":500},{"t_ms":40,"x":360,"y":500},
+      {"t_ms":80,"x":300,"y":500},{"t_ms":120,"x":180,"y":500}
+    ]}]},
+    {"id":"flick_previous_path", "actions":[{"op":"gesture","points":[
+      {"t_ms":0,"x":80,"y":500},{"t_ms":40,"x":120,"y":500},
+      {"t_ms":80,"x":180,"y":500},{"t_ms":120,"x":300,"y":500}
+    ]}]},
+    {"id":"same_contact_reverse", "actions":[{"op":"gesture","points":[
+      {"t_ms":0,"x":420,"y":500},{"t_ms":150,"x":380,"y":500},
+      {"t_ms":400,"x":250,"y":500},{"t_ms":650,"x":100,"y":500},
+      {"t_ms":900,"x":220,"y":500},{"t_ms":1150,"x":350,"y":500},
+      {"t_ms":1350,"x":400,"y":500},{"t_ms":1500,"x":400,"y":500}
+    ]}]},
+    {"id":"wrap_next", "actions":[
+      {"op":"tap","x":439,"y":95},{"op":"wait","seconds":1.1},
+      {"op":"tap","x":250,"y":95},{"op":"wait","seconds":1.1},
+      {"op":"swipe","x":420,"y":500,"x1":80,"y1":500,"ms":800}
+    ]}
+  ]
+}

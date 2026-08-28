@@ -1,0 +1,14 @@
+{
+  "source": "native-windows-phone-emulator",
+  "os": "8.10.12358.0",
+  "control": "Microsoft.Phone.Controls.Pivot; Microsoft.Phone 8.0.0.0",
+  "viewport": [
+    480,
+    800
+  ],
+  "capture": "native-style-01/native.png",
+  "image_sha256": "5e156b69334283a7f4494d227ddf5c5bad230de31bb65f36cb533bf33101e118",
+  "styles_sha256": "635f424354d54c687392bafa8f26c8e6335acbc46e29788f210b7dd228fcdeb2",
+  "note": "Font/style properties read at app shutdown. Text brush values do not account for ancestor opacity. Tracked text copy has trailing blank lines removed; styles_sha256 refers to the original export.",
+  "source_styles_path": "native-style-01/guest/IsolatedStore/styles.txt"
+}

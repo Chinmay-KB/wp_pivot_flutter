@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "product_id": "651a3a1c-b46b-4506-944f-992243bb8cce",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.75,
+  "post_roll_seconds": 1.25,
+  "purpose": "Explore whether native Pivot gestures extend across the header and title surfaces. Names describe requests, not observed outcomes.",
+  "scenarios": [
+    {"id":"header_drag_next", "actions":[{"op":"swipe","x":420,"y":95,"x1":80,"y1":95,"ms":800}]},
+    {"id":"header_drag_previous", "actions":[{"op":"swipe","x":80,"y":95,"x1":420,"y1":95,"ms":800}]},
+    {"id":"title_drag_next", "actions":[{"op":"swipe","x":420,"y":30,"x1":80,"y1":30,"ms":800}]}
+  ]
+}

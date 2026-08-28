@@ -1,0 +1,31 @@
+{
+  "trial": "drag_commit_r01",
+  "source": "native-windows-phone-emulator",
+  "frame_count": 68,
+  "capture_fps": 22.611986114350568,
+  "capture_interval_p50_ms": 33.059199999999976,
+  "capture_interval_p95_ms": 82.98971999999993,
+  "capture_interval_max_ms": 105.48220000000015,
+  "hashes_valid": true,
+  "invalid_frames": [],
+  "clock_alignment": {
+    "matched_samples": 17,
+    "offset_ms": 731.7395000000001,
+    "offset_min_ms": 721.8378999999999,
+    "offset_max_ms": 740.7506999999998,
+    "receipt_spread_ms": 18.912799999999947,
+    "drift_estimated": false
+  },
+  "actual_first_contact_ms": 944.4231,
+  "render_callback_interval_p50_ms": 16.383399999999938,
+  "header_interval_check_count": 68,
+  "header_interval_error_p95_px": 1.848114999999991,
+  "header_interval_error_max_px": 12.241699999999994,
+  "header_motion_check_count": 14,
+  "header_motion_interval_error_p95_px": 9.101355000000003,
+  "marker_edge_uncertainty_px": 1,
+  "body_telemetry_aliased_callbacks": 204,
+  "body_telemetry_total_callbacks": 204,
+  "body_telemetry_qualified": false,
+  "qualification": "Image observations only; header telemetry assessed by interval compatibility. No physical display timing claim."
+}

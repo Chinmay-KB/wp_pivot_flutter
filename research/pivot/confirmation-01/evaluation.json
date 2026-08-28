@@ -1,0 +1,12 @@
+{
+  "native_trials": 21,
+  "native_frames": 1696,
+  "native_hashes_valid": true,
+  "selection_outcomes_matched": 21,
+  "core_regression_outcomes_matched": 21,
+  "flutter_tests_passed": 19,
+  "candidate_source_unchanged": true,
+  "verification_log_sha256": "9e4f62ac3f1ddab46607acf35df5c32ce1347820f77e77597925f2f819486b46",
+  "harness_correction": "Initial event-only test delayed ticker start across idle gaps and falsely failed six multi-contact trials. Pumping the scheduled frame immediately after each event fixed the test clock. No implementation gesture/motion changes were made in response to confirmation outcomes.",
+  "scope": "Selection outcomes only. Image motion comparisons and runtime smoothness are separate checks."
+}

@@ -1,10 +1,11 @@
 name: wp_pivot_flutter
-description: A Windows Phone style pivot tab bar implementation in Flutter
-version: 2.0.0
+description: Windows Phone style Pivot navigation for Flutter, with cyclic headers, gesture tracking, and configurable page transitions.
+version: 2.1.0
 homepage: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
 
 dependencies:
   flutter:
@@ -23,6 +24,17 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/fonts/OFL.txt
+  fonts:
+    - family: Selawik
+      fonts:
+        - asset: assets/fonts/selawksl.ttf
+          weight: 300
+        - asset: assets/fonts/selawk.ttf
+          weight: 400
+        - asset: assets/fonts/selawksb.ttf
+          weight: 600
 
   # To add assets to your package, add an assets section, like this:
   # assets:

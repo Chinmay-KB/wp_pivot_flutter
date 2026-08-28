@@ -1,0 +1,200 @@
+[
+  {
+    "trial": "drag_cancel_previous_r01",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      101.18,
+      918.8
+    ]
+  },
+  {
+    "trial": "drag_cancel_previous_r02",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      99.38,
+      909.71
+    ]
+  },
+  {
+    "trial": "drag_cancel_previous_r03",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      83.93,
+      913.4
+    ]
+  },
+  {
+    "trial": "drag_previous_r01",
+    "selections": [
+      1,
+      0
+    ],
+    "contacts_ms": [
+      88.5,
+      967.5
+    ]
+  },
+  {
+    "trial": "drag_previous_r02",
+    "selections": [
+      1,
+      0
+    ],
+    "contacts_ms": [
+      137.95,
+      933.58
+    ]
+  },
+  {
+    "trial": "drag_previous_r03",
+    "selections": [
+      1,
+      0
+    ],
+    "contacts_ms": [
+      100.69,
+      924.8
+    ]
+  },
+  {
+    "trial": "flick_next_path_r01",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      146.8
+    ]
+  },
+  {
+    "trial": "flick_next_path_r02",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      136.0
+    ]
+  },
+  {
+    "trial": "flick_next_path_r03",
+    "selections": [
+      1
+    ],
+    "contacts_ms": [
+      151.75
+    ]
+  },
+  {
+    "trial": "flick_previous_path_r01",
+    "selections": [
+      3
+    ],
+    "contacts_ms": [
+      133.63
+    ]
+  },
+  {
+    "trial": "flick_previous_path_r02",
+    "selections": [
+      3
+    ],
+    "contacts_ms": [
+      116.32
+    ]
+  },
+  {
+    "trial": "flick_previous_path_r03",
+    "selections": [
+      3
+    ],
+    "contacts_ms": [
+      149.61
+    ]
+  },
+  {
+    "trial": "header_selected_r01",
+    "selections": [],
+    "contacts_ms": [
+      97.29
+    ]
+  },
+  {
+    "trial": "header_selected_r02",
+    "selections": [],
+    "contacts_ms": [
+      83.11
+    ]
+  },
+  {
+    "trial": "header_selected_r03",
+    "selections": [],
+    "contacts_ms": [
+      97.17
+    ]
+  },
+  {
+    "trial": "same_contact_reverse_r01",
+    "selections": [],
+    "contacts_ms": [
+      1515.82
+    ]
+  },
+  {
+    "trial": "same_contact_reverse_r02",
+    "selections": [],
+    "contacts_ms": [
+      1515.04
+    ]
+  },
+  {
+    "trial": "same_contact_reverse_r03",
+    "selections": [],
+    "contacts_ms": [
+      1527.8
+    ]
+  },
+  {
+    "trial": "wrap_next_r01",
+    "selections": [
+      2,
+      3,
+      0
+    ],
+    "contacts_ms": [
+      101.22,
+      82.81,
+      889.92
+    ]
+  },
+  {
+    "trial": "wrap_next_r02",
+    "selections": [
+      2,
+      3,
+      0
+    ],
+    "contacts_ms": [
+      101.86,
+      101.07,
+      911.53
+    ]
+  },
+  {
+    "trial": "wrap_next_r03",
+    "selections": [
+      2,
+      3,
+      0
+    ],
+    "contacts_ms": [
+      86.86,
+      98.92,
+      862.16
+    ]
+  }
+]

@@ -1,0 +1,199 @@
+{
+  "release": "https://github.com/Chinmay-KB/wp_pivot_flutter/releases/tag/pivot-evidence-2026-08-27",
+  "assets": [
+    {
+      "name": "drag_cancel_previous-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "drag_cancel_previous.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "drag_commit-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "drag_commit.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "drag_previous-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "drag_previous.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "flick_next_path-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "flick_next_path.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "flick_previous_path-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "flick_previous_path.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "header_next-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "header_next.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "header_selected-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "header_selected.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "pivot-analysis.zip",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "pivot-comparisons.zip",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "pivot-flutter.zip",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "pivot-native.zip",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "pivot-source.zip",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "release-manifest.json",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "same_contact_reverse-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "same_contact_reverse.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "wrap_next-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "wrap_next.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "wrap_previous-pointers.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    },
+    {
+      "name": "wrap_previous.mp4",
+      "size_matches": true,
+      "digest_matches": true,
+      "state": "uploaded"
+    }
+  ],
+  "site": {
+    "url": "https://chinmaykabi.com/wp_pivot_flutter/research/pivot/",
+    "page_status": 200,
+    "study_present": true,
+    "media": [
+      {
+        "name": "header_next",
+        "status": 200,
+        "content_type": "video/mp4",
+        "bytes": 73906,
+        "matches_local": true
+      },
+      {
+        "name": "drag_commit",
+        "status": 200,
+        "content_type": "video/mp4",
+        "bytes": 89513,
+        "matches_local": true
+      },
+      {
+        "name": "wrap_previous",
+        "status": 200,
+        "content_type": "video/mp4",
+        "bytes": 89055,
+        "matches_local": true
+      }
+    ]
+  },
+  "documentation_pr": "https://github.com/Chinmay-KB/wp_pivot_flutter/pull/57",
+  "documentation_commit": "6629dff38d86bd8c887b2b8d6d5b6b8575f18738",
+  "preview_checks": {
+    "jekyll_build": "33115692921",
+    "desktop_video_played_to_end": true,
+    "desktop_end_time_seconds": 1.833333,
+    "narrow_iframe_width_css_px": 390,
+    "narrow_video_loaded": true,
+    "codex_mobile_app_verified": false
+  }
+}

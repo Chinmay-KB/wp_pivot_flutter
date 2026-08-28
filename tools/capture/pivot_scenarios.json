@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "product_id": "651a3a1c-b46b-4506-944f-992243bb8cce",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.75,
+  "post_roll_seconds": 1.25,
+  "scenarios": [
+    {"id": "header_next", "actions": [{"op":"tap","x":235,"y":95}]},
+    {"id": "header_skip", "actions": [{"op":"tap","x":439,"y":95}]},
+    {"id": "drag_cancel", "actions": [{"op":"swipe","x":360,"y":500,"x1":300,"y1":500,"ms":800}]},
+    {"id": "drag_commit", "actions": [{"op":"swipe","x":420,"y":500,"x1":80,"y1":500,"ms":800}]},
+    {"id": "flick_next", "actions": [{"op":"swipe","x":400,"y":500,"x1":150,"y1":500,"ms":120}]},
+    {"id": "wrap_previous", "actions": [{"op":"swipe","x":80,"y":500,"x1":420,"y1":500,"ms":150}]},
+    {"id": "reverse_after_release", "actions": [
+      {"op":"swipe","x":400,"y":500,"x1":150,"y1":500,"ms":120},
+      {"op":"wait","seconds":0.06},
+      {"op":"swipe","x":100,"y":500,"x1":380,"y1":500,"ms":180}
+    ]}
+  ]
+}
