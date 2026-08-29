@@ -1,0 +1,9 @@
+<phone:PhoneApplicationPage x:Class="PanoramaReference.MainPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+ xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+ SupportedOrientations="Portrait" Orientation="Portrait"
+ shell:SystemTray.IsVisible="False" Background="Black">
+ <phone:Panorama x:Name="NativePanorama" Title="panorama" Background="Black" />
+</phone:PhoneApplicationPage>

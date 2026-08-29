@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+ <DefaultLanguage xmlns="" code="en-US" />
+ <App xmlns="" ProductID="{C895C055-B418-4C72-AB3F-07BC05EEC202}" Title="Panorama Reference"
+  RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="WP Panorama Research"
+  Description="Native Panorama measurement scene" Publisher="WP Panorama Research"
+  PublisherID="{A90EF3F0-7894-44EF-87F5-0EBCA90F0A1D}">
+  <IconPath IsRelative="true" IsResource="false">Assets\Icon.png</IconPath>
+  <Capabilities />
+  <Tasks><DefaultTask Name="_default" NavigationPage="MainPage.xaml" /></Tasks>
+  <Tokens><PrimaryToken TokenID="PanoramaReferenceToken" TaskName="_default"><TemplateFlip>
+   <SmallImageURI IsRelative="true" IsResource="false">Assets\Icon.png</SmallImageURI>
+   <Count>0</Count><BackgroundImageURI IsRelative="true" IsResource="false">Assets\Icon.png</BackgroundImageURI>
+   <Title>Panorama Reference</Title><BackContent /><BackBackgroundImageURI /><BackTitle /><DeviceLockImageURI /><HasLarge />
+  </TemplateFlip></PrimaryToken></Tokens>
+  <ScreenResolutions><ScreenResolution Name="ID_RESOLUTION_WVGA" /><ScreenResolution Name="ID_RESOLUTION_WXGA" /><ScreenResolution Name="ID_RESOLUTION_HD720P" /></ScreenResolutions>
+ </App>
+</Deployment>

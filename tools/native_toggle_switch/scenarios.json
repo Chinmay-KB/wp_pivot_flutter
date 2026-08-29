@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec203",
+  "control": "Microsoft.Phone.Controls.ToggleSwitch",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.75,
+  "post_roll_seconds": 1.25,
+  "scenarios": [
+    {"id": "wifi_tap", "actions": [{"op": "tap", "x": 382, "y": 167}]},
+    {"id": "bluetooth_tap", "actions": [{"op": "tap", "x": 382, "y": 277}]},
+    {"id": "wifi_slow_drag_cancel", "actions": [{"op": "swipe", "x": 378, "y": 194, "x1": 393, "y1": 194, "ms": 800}]},
+    {"id": "wifi_slow_drag_commit", "actions": [{"op": "swipe", "x": 378, "y": 194, "x1": 445, "y1": 194, "ms": 800}]}
+  ]
+}

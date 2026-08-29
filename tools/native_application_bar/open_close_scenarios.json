@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec201",
+  "control": "Microsoft.Phone.Shell.ApplicationBar",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 1.0,
+  "post_roll_seconds": 0.8,
+  "note": "Open/close in recorded actions (not only cleanup). Ellipsis (443,742) verified white on grok/initial-inspect/initial.png.",
+  "scenarios": [
+    {
+      "id": "expanded_open_close",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 443, "y": 742},
+        {"op": "wait", "seconds": 0.5},
+        {"op": "key", "name": "back"},
+        {"op": "wait", "seconds": 0.5}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    }
+  ]
+}

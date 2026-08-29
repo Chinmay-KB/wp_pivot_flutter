@@ -23,7 +23,8 @@ def save_json(path, value):
     path.write_text(json.dumps(value, indent=2), encoding='utf-8')
 
 
-def record_trial(capture, control, scenario, directory, pre_roll, post_roll, app_status, provenance):
+def record_trial(capture, control, scenario, directory, pre_roll, post_roll, app_status, provenance,
+                 control_name='Microsoft.Phone.Controls.Pivot (Silverlight WP8.0 app on WP8.1 OS)'):
     directory.mkdir(parents=True, exist_ok=False)
     frame_dir = directory / 'frames'
     frame_dir.mkdir()
@@ -91,7 +92,7 @@ def record_trial(capture, control, scenario, directory, pre_roll, post_roll, app
     changed = sum(a['sha256'] != b['sha256'] for a,b in zip(frames,frames[1:]))
     manifest = {
         'schema_version':1, 'source':'native-windows-phone-emulator',
-        'control':'Microsoft.Phone.Controls.Pivot (Silverlight WP8.0 app on WP8.1 OS)',
+        'control':control_name,
         'scenario':scenario, 'native_status':app_status,
         'resolution':[width,height], 'host':platform.platform(),
         'capture_backend':'Microsoft.Xde.Interface.AutomationClient.CaptureImage',

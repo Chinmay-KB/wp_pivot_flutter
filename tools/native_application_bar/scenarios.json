@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec201",
+  "control": "Microsoft.Phone.Shell.ApplicationBar",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.5,
+  "post_roll_seconds": 0.8,
+  "scenarios": [
+    {
+      "id": "collapsed_pilot",
+      "expected_initial_state": "default",
+      "actions": [{"op": "tap", "x": 198, "y": 764}],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "expanded_pilot",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 443, "y": 742},
+        {"op": "wait", "seconds": 0.25}
+      ],
+      "cleanup_actions": [
+        {"op": "key", "name": "back"},
+        {"op": "key", "name": "back"}
+      ]
+    },
+    {
+      "id": "minimized_pilot",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 240, "y": 198},
+        {"op": "wait", "seconds": 0.25}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    }
+  ]
+}
