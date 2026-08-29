@@ -10,10 +10,11 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 ![Pivots in action](https://github.com/Chinmay-KB/wp_pivot_flutter/blob/master/showcase/ezgif-4-446097008731.gif)
 
 > **2026 Update:** This project is evolving beyond the Pivot control into a systematic,
-> research-driven recreation of the Windows Phone UI in Flutter — measured against real Lumia
-> 1020 hardware. See [docs/ROADMAP.md](docs/ROADMAP.md) for the vision and methodology,
+> research-driven recreation of the Windows Phone UI in Flutter. The first published
+> Pivot study uses the WP8.1 emulator; Lumia 1020 validation remains pending. See
+> [docs/ROADMAP.md](docs/ROADMAP.md) for the vision and methodology,
 > and the research site at **[chinmaykabi.com/wp_pivot_flutter](https://chinmaykabi.com/wp_pivot_flutter/)**
-> for published measurements, capture sessions and essays.
+> for the study, project status, and source material.
 
 
 

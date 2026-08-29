@@ -1,25 +1,29 @@
 ---
 layout: default
 title: Captures
+body_class: index-page
 ---
 
-<h1>Capture Sessions</h1>
+<header class="page-mast">
+  <div class="mast-title"><h1>Captures</h1></div>
+  <div class="mast-copy"><p class="page-deck">Recorded evidence used by the Pivot study. Emulator, Flutter runtime, and future hardware sources are labeled independently.</p></div>
+</header>
 
-<p>Every measurement on this site traces back to a recorded session on the Lumia
-1020. Sessions are captured over USB at full resolution: no camera pointed at a
-screen, no shaky hands. Each one carries a manifest: device build number, theme,
-accent color, frame rate, tool versions. If a measurement looks wrong later, we
-can trace it back to the exact footage it came from.</p>
+<section class="manual-section" aria-labelledby="collections-title">
+  <header class="section-label"><h2 id="collections-title">Collections</h2></header>
+  <div class="section-body">
+    <ul class="record-list">
+      <li class="record-row"><a href="{{ '/research/pivot/' | relative_url }}">Native Pivot</a><span class="record-meta">WP8.1 emulator · build 8.10.12358.0 · 57 trials · 3,830 PNGs</span><span class="status-badge status-available">Published</span></li>
+      <li class="record-row"><a href="{{ site.github_repo }}/releases/tag/pivot-evidence-2026-08-27-header-runtime">Flutter runtime</a><span class="record-meta">Release web build · 12 measured trials · raw engine timing</span><span class="status-badge status-available">Published</span></li>
+    </ul>
+    <p class="quiet-note">The releases retain input traces, manifests, comparisons, quality reports, and SHA-256 inventories.</p>
+  </div>
+</section>
 
-<table>
-  <thead>
-    <tr><th>Date</th><th>Paradigm</th><th>Theme / Accent</th><th>Data</th></tr>
-  </thead>
-  <tbody>
-    <tr><td colspan="4"><em>No sessions published yet. Capture rig verification just wrapped; sessions incoming.</em></td></tr>
-  </tbody>
-</table>
-
-<p>Raw full-resolution recordings and extracted frame sequences live in GitHub
-Releases (they're too chunky for git); trimmed highlight clips get embedded in the
-encyclopedia entries. The index above regenerates from the session manifests.</p>
+<section class="manual-section" aria-labelledby="hardware-title">
+  <header class="section-label"><h2 id="hardware-title">Hardware</h2></header>
+  <div class="section-body">
+    <p class="empty-statement">Lumia confirmation is still pending.</p>
+    <p class="quiet-note">Current native recordings come from the emulator. They are not Lumia captures.</p>
+  </div>
+</section>

@@ -1,242 +1,261 @@
 <!DOCTYPE html>
-<!--
-  DIRECTION CONTRACT (impeccable new-work, user-pinned brief: authentic Metro)
-  THESIS: The site IS a Windows Phone start screen. Navigation is a tile grid on
-  true black; content pages read as WP8.1 system pages (light type ramp,
-  hairline rules). Refuses: generic doc-site cards, sidebar layouts, soft
-  rounded "AI beige", em-dash reveals in headings.
-  OWN-WORLD: #000 ground, Segoe UI/Selawik Light type ramp (Light 200 display /
-  Regular 400 body), one accent (#1ba1e2) used in WP's own grammar (selected
-  nav state, step numerals, th color, links, one accent tile per grid),
-  square flat tiles (#1d1d1d) with tight 8px gutters, lowercase labels,
-  thin #2a2a2a separators, border-radius banned on all system surfaces,
-  no drop shadows.
-  STORY: visitor lands on a start screen of tiles -> taps into research
-  sections that feel like native WP settings/hub pages. The site itself is
-  the project's first proof of fidelity.
-  FIRST VIEWPORT: full-black; left-aligned huge light-weight wordmark +
-  tagline; lowercase nav row with pivot-style selected state; below it a
-  tile grid (wide accent encyclopedia tile + dark tiles).
-  FORM: user-pinned direction (authentic Metro), code-first build. seed key:
-  pinned-brief-metro-2026. FINISH: unreviewed and undocumented is unfinished;
-  this build ends with the finish review, the verdict, DESIGN.md, and every
-  shipping raster carrying its provenance.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="theme-color" content="#f3f0e8">
+  <title>{% if page.title and page.title != 'Home' %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ site.description }}">
   <style>
     :root {
-      --accent: #1ba1e2;          /* phone blue */
-      --bg: #000000;              /* true black, like an AMOLED WP */
-      --surface: #111111;         /* slightly raised */
-      --fg: #ffffff;
-      --fg-dim: #a6a6a6;          /* WP secondary text */
-      --hairline: #2a2a2a;
-      --tile-a: #1ba1e2;          /* accent tile */
-      --tile-dark: #1d1d1d;       /* dark tile */
+      --paper: #f3f0e8;
+      --paper-deep: #e8e3d9;
+      --ink: #111111;
+      --muted: #595852;
+      --rule: #8b8981;
+      --rule-light: #c9c5bb;
+      --blue: #0067b8;
+      --blue-dark: #004b86;
+      --amber: #855300;
+      --white: #ffffff;
+      --content: 1520px;
     }
     * { box-sizing: border-box; }
-    html, body, button, input, select, textarea, pre, code,
-    .tile, .status-badge, table, th, td, blockquote {
-      border-radius: 0;
-    }
-    html { -webkit-text-size-adjust: 100%; }
+    html { color-scheme: light; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "Segoe UI", "Selawik", -apple-system, Roboto, Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: "Segoe UI Variable", "Segoe UI", "Selawik", system-ui, sans-serif;
+      font-size: 16px; font-weight: 400; line-height: 1.55;
     }
+    ::selection { background: var(--blue); color: var(--white); }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    a { color: var(--blue-dark); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+    a:hover { color: var(--blue); }
+    img, video { display: block; max-width: 100%; }
+    .skip-link {
+      position: fixed; z-index: 20; left: 16px; top: 12px; padding: 8px 12px;
+      background: var(--ink); color: var(--white); transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .shell { width: min(calc(100% - 32px), var(--content)); margin-inline: auto; }
 
-    .wrap { max-width: 1024px; margin: 0 auto; padding: 0 24px 96px; }
+    .site-header { border-bottom: 1px solid var(--ink); }
+    .site-header .shell {
+      min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 28px;
+    }
+    .brand {
+      color: var(--ink); font-size: clamp(1.35rem, 2.2vw, 2rem); font-weight: 650;
+      letter-spacing: -.035em; line-height: 1; text-decoration: none; white-space: nowrap;
+    }
+    .main-nav { display: flex; align-items: stretch; gap: clamp(16px, 2.7vw, 42px); }
+    .main-nav a {
+      color: var(--ink); display: grid; place-items: center; min-height: 66px; position: relative;
+      font-size: .78rem; font-weight: 650; letter-spacing: .07em; text-decoration: none; text-transform: uppercase;
+    }
+    .main-nav a::after { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: transparent; }
+    .main-nav a:hover::after, .main-nav a.current::after { background: var(--blue); }
 
-    /* ---- header: WP system tray feel ---- */
-    header.site { background: transparent; }
-    header.site .wrap { padding-top: 20px; padding-bottom: 8px; }
-    .brand h1 {
-      margin: 0; font-size: clamp(30px, 5vw, 44px);
-      font-weight: 200; letter-spacing: -0.01em; line-height: 1.05;
-    }
-    .brand h1 a { color: var(--fg); text-decoration: none; }
-    .tagline {
-      display: block; margin-top: 2px;
-      color: var(--fg-dim); font-size: 14px; font-weight: 300;
-    }
-    nav.main {
-      margin-top: 18px; display: flex; flex-wrap: wrap; gap: 4px 26px;
-      text-transform: lowercase;
-    }
-    nav.main a {
-      color: var(--fg); text-decoration: none; font-size: 15px; font-weight: 300;
-      padding: 2px 0;
-    }
-    nav.main a:hover { color: var(--accent); }
-    nav.main a.current { color: var(--accent); }
-    nav.main a:focus-visible,
-    main a:focus-visible {
-      outline: 1px solid var(--accent); outline-offset: 3px;
-    }
-
-    /* ---- WP page-title grammar: big light heading + thin accent rule ---- */
+    main { min-height: 66vh; }
+    .inner main { width: min(calc(100% - 32px), var(--content)); margin: 0 auto; padding: 0 0 112px; }
+    .inner main > :first-child { margin-top: 0; }
+    main h1, main h2, main h3 { text-wrap: balance; }
     main h1 {
-      font-size: clamp(34px, 6vw, 56px); font-weight: 200;
-      line-height: 1.06; margin: 40px 0 6px; letter-spacing: -0.01em;
+      max-width: 14ch; margin: 0 0 40px; font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 600; letter-spacing: -.04em; line-height: .94;
     }
     main h2 {
-      font-size: 24px; font-weight: 300; margin: 2.2em 0 10px;
-      padding-bottom: 6px; border-bottom: 1px solid var(--hairline);
+      margin: 72px 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--ink);
+      font-size: 1.15rem; font-weight: 650; letter-spacing: .055em; text-transform: uppercase;
     }
-    .tile .tile-title { border-bottom: none; padding-bottom: 0; margin: 0 0 6px; }
-    main h3 { font-size: 19px; font-weight: 400; margin: 1.6em 0 8px; }
-    main p { color: #d9d9d9; max-width: 72ch; }
-    main li { color: #d9d9d9; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    blockquote {
-      margin: 1.4em 0; padding: 12px 20px;
-      background: transparent; border-left: none; border: none;
-      font-weight: 200; font-style: normal;
-      font-size: 22px; color: var(--fg); line-height: 1.4;
+    main h3 { margin: 36px 0 10px; font-size: 1.1rem; font-weight: 650; }
+    main p, main li { max-width: 72ch; }
+    main p { margin: 0 0 1.15em; }
+    main ul, main ol { padding-left: 1.2em; }
+    main li { margin: .55em 0; }
+    main strong { font-weight: 650; }
+    main blockquote {
+      max-width: 36ch; margin: 48px 0; padding: 0; border: 0;
+      font-size: clamp(1.45rem, 3vw, 2.25rem); font-weight: 350; letter-spacing: -.025em; line-height: 1.2;
     }
-
-    code, pre { font-family: Consolas, "Cascadia Code", monospace; }
-    pre { background: var(--surface); padding: 14px 16px; overflow-x: auto; }
-    code { background: var(--surface); padding: 2px 6px; font-size: 90%; }
+    code, pre { font-family: "Cascadia Code", Consolas, monospace; }
+    code { background: var(--paper-deep); padding: .08em .32em; font-size: .9em; }
+    pre { overflow-x: auto; background: var(--ink); color: var(--white); padding: 18px; }
     pre code { background: transparent; padding: 0; }
+    table { width: 100%; margin: 24px 0 42px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { padding: 13px 12px; border-bottom: 1px solid var(--rule-light); text-align: left; vertical-align: top; }
+    th { border-color: var(--ink); color: var(--muted); font-size: .75rem; font-weight: 650; letter-spacing: .065em; text-transform: uppercase; }
+    td:first-child, th:first-child { padding-left: 0; }
+    td:last-child, th:last-child { padding-right: 0; }
+    .status-badge { display: inline-block; color: var(--blue-dark); font-size: .74rem; font-weight: 650; letter-spacing: .065em; text-transform: uppercase; }
+    .status-planned { color: var(--amber); }
+    .status-available { color: #236600; }
+    .status-empty { color: var(--muted); }
 
-    table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-    th {
-      text-align: left; padding: 8px 12px;
-      font-weight: 400; font-size: 13px; text-transform: lowercase;
-      color: var(--accent); border-bottom: 1px solid var(--hairline);
+    .page-mast {
+      display: grid; grid-template-columns: minmax(270px, .72fr) minmax(0, 1.28fr);
+      min-height: 360px; border-bottom: 1px solid var(--ink);
     }
-    td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+    .mast-title { display: flex; align-items: flex-end; padding: 64px 48px 66px 16px; border-right: 1px solid var(--rule); }
+    .page-mast h1 { max-width: 9ch; margin: 0; font-size: clamp(4rem, 7vw, 6rem); }
+    .mast-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 64px clamp(40px, 6vw, 96px) 66px; }
+    .page-deck { max-width: 48ch; margin: 0; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.45; }
+    .page-deck + .page-deck { margin-top: 18px; }
 
-    img, video { max-width: 100%; display: block; }
+    .manual-section { display: grid; grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr); border-bottom: 1px solid var(--ink); }
+    .section-label { padding: 54px 40px 64px 16px; }
+    .section-label h2 {
+      max-width: 10ch; margin: 0; padding: 0; border: 0; font-size: clamp(2rem, 3.4vw, 3.35rem);
+      font-weight: 350; letter-spacing: -.035em; line-height: 1; text-transform: none;
+    }
+    .section-body { min-width: 0; padding: 54px clamp(40px, 6vw, 96px) 64px; border-left: 1px solid var(--rule); }
+    .section-body > :first-child { margin-top: 0; }
+    .section-body > :last-child { margin-bottom: 0; }
+    .section-body > p { font-size: 1.08rem; }
 
-    /* ---- tiles: the signature ---- */
-    .tiles {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-flow: dense;
-      gap: 8px;                       /* WP gutter is tight */
-      margin: 28px 0 8px;
+    .featured-record {
+      display: grid; grid-template-columns: minmax(180px, .75fr) minmax(0, 1.4fr) auto; align-items: start;
+      gap: 28px; padding: 22px 0 26px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+      color: var(--ink); text-decoration: none;
     }
-    .tile p { margin: 0; color: #cfcfcf; font-size: 14px; font-weight: 400; line-height: 1.5; }
-    .tile.accent .tile-kicker { color: #ffffff; }
-    .tile {
-      grid-column: span 2;
-      min-height: 120px;
-      background: var(--tile-dark);
-      padding: 16px 16px 12px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      position: relative;
-      transition: transform .08s ease-out;
+    .featured-record:hover { color: var(--ink); background: var(--paper-deep); }
+    .featured-record .record-name { color: var(--blue-dark); font-size: clamp(1.55rem, 2.6vw, 2.4rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.05; }
+    .record-detail { max-width: 52ch; line-height: 1.5; }
+    .record-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+    .record-row {
+      display: grid; grid-template-columns: minmax(180px, .75fr) minmax(0, 1.4fr) auto;
+      max-width: none; margin: 0; gap: 28px; padding: 18px 0;
+      border-bottom: 1px solid var(--rule-light); align-items: baseline;
     }
-    .tile.wide { grid-column: span 4; }
-    .tile.narrow { grid-column: span 2; }
-    .tile.accent { background: var(--tile-a); }
-    .tile.accent .tile-title, .tile.accent p { color: #ffffff; }
-    .tile::after {                   /* WP glyph corner: subtle chevron */
-      content: "›"; position: absolute; right: 10px; bottom: 2px;
-      font-size: 22px; font-weight: 300; opacity: .35; color: #fff;
+    .record-row:last-child { border-bottom-color: var(--ink); }
+    .record-name { font-weight: 650; }
+    .record-meta { color: var(--muted); }
+    .record-row a { font-weight: 650; }
+    .quiet-note { max-width: 62ch; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--rule-light); color: var(--muted); }
+    .text-action { display: inline-block; margin-top: 24px; padding: 9px 0; border-bottom: 1px solid var(--ink); font-size: .82rem; font-weight: 650; letter-spacing: .055em; text-decoration: none; text-transform: uppercase; }
+    .empty-statement { max-width: 16ch; margin: 0; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 350; letter-spacing: -.035em; line-height: 1.08; }
+
+    .study-page .page-mast { min-height: 520px; }
+    .study-page .page-mast h1 { max-width: 8ch; font-size: clamp(3.8rem, 6vw, 6rem); font-weight: 350; }
+    .study-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 34px; border-top: 1px solid var(--ink); }
+    .study-fact { padding: 14px 18px 0 0; }
+    .study-fact dt { color: var(--muted); font-size: .74rem; font-weight: 650; letter-spacing: .065em; text-transform: uppercase; }
+    .study-fact dd { margin: 5px 0 0; font-weight: 550; }
+    .media-evidence { margin: 0 0 42px; }
+    .media-evidence video, .media-evidence img { width: 100%; height: auto; background: var(--ink); }
+    .media-evidence figcaption { display: flex; justify-content: space-between; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--rule-light); color: var(--muted); font-size: .82rem; }
+    .media-evidence figcaption strong { color: var(--ink); }
+    .study-page .section-body h3 { margin-top: 42px; font-size: 1.25rem; }
+    .study-page .section-body table { margin-top: 26px; }
+    .study-page .section-body li { max-width: 68ch; }
+    .download-list a { display: block; padding: 16px 0; border-bottom: 1px solid var(--rule-light); font-weight: 650; text-decoration: none; }
+
+    .hero-sheet {
+      width: min(calc(100% - 32px), var(--content)); margin: 28px auto 0;
+      display: grid; grid-template-columns: minmax(420px, .95fr) minmax(560px, 1.35fr);
+      min-height: 650px; border-bottom: 1px solid var(--ink);
     }
-    @media (hover: hover) {
-      a.tile:hover, a.tile:focus-visible { transform: scale(.97); text-decoration: none; }
+    .hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 72px 54px 84px 18px; border-right: 1px solid var(--rule); }
+    .hero-copy h1 { max-width: none; margin: 0 0 32px; font-size: clamp(3.4rem, 4.4vw, 4.8rem); }
+    .title-line { display: block; white-space: nowrap; }
+    .hero-copy .lead { max-width: 36ch; margin: 0; font-size: 1.25rem; line-height: 1.5; }
+    .primary-link {
+      display: flex; justify-content: space-between; align-items: center; max-width: 360px; padding: 10px 0;
+      border-bottom: 1px solid var(--ink); font-size: .82rem; font-weight: 650; letter-spacing: .055em;
+      text-decoration: none; text-transform: uppercase;
     }
-    a.tile:active { transform: scale(.97); }
-    a.tile:focus-visible {
-      outline: 1px solid var(--accent); outline-offset: 2px; text-decoration: none;
+    .primary-link span { font-size: 1.5rem; font-weight: 350; transition: transform .18s cubic-bezier(.2,.8,.2,1); }
+    .primary-link:hover span { transform: translateX(6px); }
+    .study-feature { display: flex; flex-direction: column; justify-content: center; padding: 72px clamp(40px, 6vw, 96px); }
+    .study-feature h2 {
+      max-width: 12ch; margin: 0 0 24px; padding: 0; border: 0;
+      font-size: clamp(3rem, 5vw, 5.2rem); font-weight: 350; letter-spacing: -.04em; line-height: .98; text-transform: none;
+    }
+    .study-summary { max-width: 46ch; margin: 0 0 42px; font-size: 1.15rem; line-height: 1.55; }
+
+    .research-index { width: min(calc(100% - 32px), var(--content)); margin: 0 auto 88px; }
+    .research-index h2 { margin: 0; padding: 20px 0 14px; border-bottom: 1px solid var(--ink); font-size: .86rem; }
+    .index-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .index-link { min-height: 150px; padding: 24px 26px; border-right: 1px solid var(--rule-light); color: var(--ink); text-decoration: none; }
+    .index-link:last-child { border-right: 0; }
+    .index-link strong { display: block; margin-bottom: 20px; color: var(--blue-dark); font-size: .88rem; letter-spacing: .045em; text-transform: uppercase; }
+    .index-link span { display: block; max-width: 25ch; font-size: .9rem; line-height: 1.45; }
+    .index-link:hover { background: var(--paper-deep); }
+
+    .site-footer { border-top: 1px solid var(--ink); }
+    .site-footer .shell { display: flex; justify-content: space-between; gap: 24px; padding: 24px 0 42px; color: var(--muted); font-size: .8rem; }
+    @media (max-width: 1050px) {
+      .site-header .shell { align-items: flex-start; flex-direction: column; padding-top: 18px; }
+      .main-nav { width: 100%; overflow-x: auto; }
+      .main-nav a { min-height: 48px; }
+      .hero-sheet { grid-template-columns: .9fr 1.1fr; }
+      .hero-copy h1 { font-size: 3.25rem; }
+      .title-line { white-space: normal; }
+      .study-feature { padding-inline: 42px; }
+      .study-feature h2 { font-size: 3.4rem; }
+      .page-mast { grid-template-columns: minmax(230px, .58fr) minmax(0, 1fr); }
+      .manual-section { grid-template-columns: minmax(190px, .3fr) minmax(0, 1fr); }
+      .featured-record, .record-row { grid-template-columns: minmax(150px, .65fr) minmax(0, 1fr) auto; gap: 20px; }
+    }
+    @media (max-width: 760px) {
+      .shell { width: min(calc(100% - 24px), var(--content)); }
+      .brand { font-size: 1.4rem; }
+      .hero-sheet { width: min(calc(100% - 24px), var(--content)); grid-template-columns: 1fr; margin-top: 16px; }
+      .hero-copy { min-height: 590px; padding: 54px 4px 64px; border-right: 0; }
+      .hero-copy h1 { font-size: clamp(3.1rem, 13vw, 4rem); }
+      .study-feature { padding: 52px 4px 64px; border-top: 1px solid var(--ink); }
+      .study-feature h2 { font-size: clamp(3rem, 14vw, 4.4rem); }
+      .index-grid { grid-template-columns: 1fr 1fr; }
+      .index-link:nth-child(2) { border-right: 0; }
+      .index-link { min-height: 132px; border-bottom: 1px solid var(--rule-light); }
+      .inner main { width: min(calc(100% - 24px), var(--content)); padding-bottom: 80px; }
+      .page-mast, .manual-section { grid-template-columns: 1fr; }
+      .page-mast, .study-page .page-mast { min-height: 0; }
+      .mast-title { min-height: 290px; padding: 52px 4px 48px; border-right: 0; border-bottom: 1px solid var(--rule); }
+      .page-mast h1, .study-page .page-mast h1 { max-width: 9ch; font-size: clamp(3.6rem, 16vw, 5rem); }
+      .mast-copy { padding: 42px 4px 48px; }
+      .section-label { padding: 42px 4px 26px; }
+      .section-label h2 { max-width: 14ch; }
+      .section-body { padding: 0 4px 52px; border-left: 0; }
+      .featured-record, .record-row { grid-template-columns: 1fr; gap: 8px; }
+      .featured-record { padding: 20px 0 22px; }
+      .record-row { padding: 16px 0; }
+      .study-facts { grid-template-columns: 1fr 1fr; }
+      .study-fact { padding-block: 12px; border-bottom: 1px solid var(--rule-light); }
+      .media-evidence figcaption { flex-direction: column; gap: 4px; }
+      table { display: block; overflow-x: auto; }
+      .site-footer .shell { flex-direction: column; }
+    }
+    @media (max-width: 460px) {
+      .index-grid { grid-template-columns: 1fr; }
+      .index-link { border-right: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .tile { transition: none; }
-      a.tile:hover, a.tile:active { transform: none; }
+      html { scroll-behavior: auto; }
+      .primary-link span { transition: none; }
     }
-    .tile .tile-kicker {
-      font-size: 11px; letter-spacing: .12em; text-transform: lowercase;
-      color: var(--accent); margin: 0 0 6px; font-weight: 400;
-    }
-    .tile .tile-title { font-size: 20px; font-weight: 300; margin: 0 0 6px; color: var(--fg); line-height: 1.15; }
-
-    @media (max-width: 720px) {
-      .tiles { grid-template-columns: repeat(2, 1fr); }
-      .tile, .tile.narrow { grid-column: span 2; }   /* two-up medium tiles */
-      .tile.wide { grid-column: span 2; }             /* encyclopedia goes full-bleed */
-    }
-
-    /* ---- hero (home only) ---- */
-    .hero { padding: 34px 0 0; }
-    .hero .kicker {
-      color: var(--accent); font-size: 13px; font-weight: 400;
-      letter-spacing: .02em; margin: 0 0 4px;
-    }
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 64px); font-weight: 200;
-      line-height: 1.04; margin: 0 0 14px; letter-spacing: -0.015em;
-    }
-    .hero p.lead { font-size: 19px; font-weight: 300; color: var(--fg-dim); max-width: 68ch; }
-
-    main ol.steps { list-style: none; margin: 1em 0; padding: 0; max-width: none; }
-    main ol.steps li {
-      padding: 14px 4px; border-bottom: 1px solid var(--hairline);
-      color: #d9d9d9; font-size: 15px;
-    }
-    main ol.steps li::before {
-      content: attr(data-step); display: inline-block;
-      width: 2.2em; color: var(--accent); font-size: 26px; font-weight: 200;
-      vertical-align: -0.12em; margin-right: 10px;
-    }
-
-    /* ---- status badges: flat squares, WP toast palette ---- */
-    .status-badge { display: inline-block; padding: 3px 10px; font-size: 11px; letter-spacing: .08em; text-transform: lowercase; }
-    .status-spec { background: #333333; color: #fff; }
-    .status-building { background: #ca5010; color: #fff; }
-    .status-shipped { background: #107c10; color: #fff; }
-    .status-verified { background: var(--accent); color: #fff; }
-
-    footer.site { border-top: 1px solid var(--hairline); margin-top: 80px; }
-    footer.site .wrap { padding: 22px 24px 40px; color: #9d9d9d; font-size: 13.5px; font-weight: 400; }
   </style>
 </head>
-<body>
-  <header class="site">
-    <div class="wrap">
-      <div class="brand">
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-        <span class="tagline">{{ site.tagline }}</span>
-      </div>
-      <nav class="main">
-        <a href="{{ '/' | relative_url }}" {% if page.url == '/index.html' or page.url == '/' %}class="current"{% endif %}>home</a>
-        <a href="{{ '/paradigms/' | relative_url }}" {% if page.url == '/paradigms/' %}class="current"{% endif %}>paradigms</a>
-        <a href="{{ '/research/' | relative_url }}" {% if page.url == '/research/' %}class="current"{% endif %}>research</a>
-        <a href="{{ '/captures/' | relative_url }}" {% if page.url == '/captures/' %}class="current"{% endif %}>captures</a>
-        <a href="{{ '/resources/' | relative_url }}" {% if page.url == '/resources/' %}class="current"{% endif %}>resources</a>
-        <a href="{{ '/essays/' | relative_url }}" {% if page.url == '/essays/' %}class="current"{% endif %}>essays</a>
-        <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="current"{% endif %}>about</a>
-        <a href="https://github.com/Chinmay-KB/wp_pivot_flutter/blob/master/docs/ROADMAP.md">roadmap ↗</a>
-        <a href="{{ site.github_repo }}">github ↗</a>
+<body class="{% if page.url == '/' or page.url == '/index.html' %}home{% else %}inner{% endif %}{% if page.body_class %} {{ page.body_class }}{% endif %}">
+  <!-- THESIS: A contemporary service manual for evidence-led Metro restoration. OWN-WORLD: warm paper, black ink, Lumia blue, measured rules, Segoe UI, no decorative cards. STORY: literal project purpose -> published Pivot study -> research index. FIRST VIEWPORT: plain project title beside one source-backed study; no campaign slogan, process checklist, or decorative device. FORM: distilled editorial split derived from Bench Specimen; seed key 5b7aad82. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="{{ '/research/' | relative_url }}" {% if page.url == '/research/' %}class="current" aria-current="page"{% endif %}>Research</a>
+        <a href="{{ '/paradigms/' | relative_url }}" {% if page.url == '/paradigms/' %}class="current" aria-current="page"{% endif %}>Paradigms</a>
+        <a href="{{ '/captures/' | relative_url }}" {% if page.url == '/captures/' %}class="current" aria-current="page"{% endif %}>Captures</a>
+        <a href="{{ '/resources/' | relative_url }}" {% if page.url == '/resources/' %}class="current" aria-current="page"{% endif %}>Resources</a>
+        <a href="{{ '/essays/' | relative_url }}" {% if page.url == '/essays/' %}class="current" aria-current="page"{% endif %}>Essays</a>
+        <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="current" aria-current="page"{% endif %}>About</a>
       </nav>
     </div>
   </header>
-
-  <!-- direction contract lives at body start; see comment above -->
-  <div class="wrap">
-    <main>
-      {{ content }}
-    </main>
-  </div>
-
-  <footer class="site">
-    <div class="wrap">
-      Part of <a href="{{ site.github_repo }}">wp_pivot_flutter</a> — measured, not remembered.
-      Raw capture data ships with every conclusion.
+  <main id="content">{{ content }}</main>
+  <footer class="site-footer">
+    <div class="shell">
+      <span>WP Pivot Research · evidence before claims</span>
+      <span><a href="{{ site.github_repo }}">GitHub</a> · <a href="{{ site.github_repo }}/blob/master/docs/ROADMAP.md">Roadmap</a></span>
     </div>
   </footer>
 </body>
