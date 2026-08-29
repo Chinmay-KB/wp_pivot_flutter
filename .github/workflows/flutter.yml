@@ -16,9 +16,11 @@ jobs:
           flutter-version: 3.22.0
           channel: stable
           cache: true
+      - name: Isolate the newer example from legacy Pub
+        # Flutter 3.22's Pub resolves ./example but predates --no-example.
+        # Move the gallery outside the checkout for this package-only lane.
+        run: mv example "$RUNNER_TEMP/wp-pivot-example"
       - name: Resolve package at its declared minimum
-        # Flutter 3.22 predates `pub get --no-example` and does not resolve the
-        # example package implicitly, so the plain command is the compatible form.
         run: flutter pub get
       - name: Analyze package at its declared minimum
         run: flutter analyze --no-pub
