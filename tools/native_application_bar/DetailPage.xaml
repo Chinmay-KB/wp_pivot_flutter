@@ -1,0 +1,46 @@
+<phone:PhoneApplicationPage x:Class="ApplicationBarReference.DetailPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+ xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+ xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+ SupportedOrientations="Portrait" Orientation="Portrait"
+ shell:SystemTray.IsVisible="False" Background="Black">
+ <toolkit:TransitionService.NavigationInTransition>
+  <toolkit:NavigationInTransition>
+   <toolkit:NavigationInTransition.Backward>
+    <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+   </toolkit:NavigationInTransition.Backward>
+   <toolkit:NavigationInTransition.Forward>
+    <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+   </toolkit:NavigationInTransition.Forward>
+  </toolkit:NavigationInTransition>
+ </toolkit:TransitionService.NavigationInTransition>
+ <toolkit:TransitionService.NavigationOutTransition>
+  <toolkit:NavigationOutTransition>
+   <toolkit:NavigationOutTransition.Backward>
+    <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+   </toolkit:NavigationOutTransition.Backward>
+   <toolkit:NavigationOutTransition.Forward>
+    <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+   </toolkit:NavigationOutTransition.Forward>
+  </toolkit:NavigationOutTransition>
+ </toolkit:TransitionService.NavigationOutTransition>
+ <Grid x:Name="LayoutRoot" Background="Black">
+  <Grid.RowDefinitions>
+   <RowDefinition Height="Auto"/>
+   <RowDefinition Height="*"/>
+  </Grid.RowDefinitions>
+  <StackPanel Grid.Row="0" Margin="12,17,0,28">
+   <TextBlock Text="APPLICATION BAR" Foreground="#99FFFFFF" FontSize="20"
+              toolkit:TurnstileFeatherEffect.FeatheringIndex="0"/>
+   <TextBlock Text="detail" Foreground="White" FontSize="72" Margin="9,-7,0,0"
+              toolkit:TurnstileFeatherEffect.FeatheringIndex="1"/>
+  </StackPanel>
+  <StackPanel Grid.Row="1" Margin="12,0,12,0"
+              toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+   <TextBlock Text="page content" Foreground="White" FontSize="24"/>
+   <TextBlock Text="Back closes this page." Foreground="#99FFFFFF" FontSize="20" Margin="0,24,0,0"/>
+  </StackPanel>
+ </Grid>
+</phone:PhoneApplicationPage>

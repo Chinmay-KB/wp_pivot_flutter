@@ -1,0 +1,16 @@
+<phone:PhoneApplicationPage x:Class="ToggleSwitchReference.MainPage"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+ xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+ xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+ SupportedOrientations="Portrait" Orientation="Portrait" shell:SystemTray.IsVisible="False" Background="Black">
+ <Grid Margin="12,0,12,0">
+  <StackPanel>
+   <TextBlock Text="TOGGLE SWITCH" Style="{StaticResource PhoneTextTitle1Style}" Margin="0,20,0,28" />
+   <toolkit:ToggleSwitch x:Name="Wifi" Header="Wi-Fi" IsChecked="False" Checked="ToggleChecked" Unchecked="ToggleUnchecked" />
+   <toolkit:ToggleSwitch x:Name="Bluetooth" Header="Bluetooth" IsChecked="True" Checked="ToggleChecked" Unchecked="ToggleUnchecked" />
+   <toolkit:ToggleSwitch x:Name="Disabled" Header="Disabled" IsChecked="True" IsEnabled="False" />
+  </StackPanel>
+ </Grid>
+</phone:PhoneApplicationPage>

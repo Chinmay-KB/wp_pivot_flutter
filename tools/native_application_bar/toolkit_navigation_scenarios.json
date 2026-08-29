@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec201",
+  "control": "Microsoft.Phone.Controls.Toolkit TransitionFrame + TurnstileFeatherTransition (WPtoolkit 4.2013.8.16)",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 1.0,
+  "post_roll_seconds": 0.8,
+  "note": "Dedicated Toolkit page-transition capture. Does not replace native-nav-01 PhoneApplicationFrame evidence. open-detail tap remains inspected label center (240,285). Wait 1.2s covers sequential ForwardOut then ForwardIn (source: 250+50*index then 350+40*index ms). ContinuumTransition is not in this Toolkit assembly.",
+  "scenarios": [
+    {
+      "id": "toolkit_forward_detail",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 240, "y": 285},
+        {"op": "wait", "seconds": 1.2}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "toolkit_back_from_detail",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 240, "y": 285},
+        {"op": "wait", "seconds": 1.2},
+        {"op": "key", "name": "back"},
+        {"op": "wait", "seconds": 1.2}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec202",
+  "control": "Microsoft.Phone.Controls.Panorama",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.5,
+  "post_roll_seconds": 0.8,
+  "scenarios": [
+    {
+      "id": "clear_swipe",
+      "actions": [
+        {"op": "swipe", "x": 405, "y": 500, "x1": 85, "y1": 500, "ms": 350}
+      ]
+    },
+    {
+      "id": "cancelled_small_drag",
+      "actions": [
+        {"op": "swipe", "x": 320, "y": 500, "x1": 280, "y1": 500, "ms": 650}
+      ]
+    }
+  ]
+}

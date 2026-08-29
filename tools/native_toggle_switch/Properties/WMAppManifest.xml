@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+ <DefaultLanguage xmlns="" code="en-US" />
+ <App xmlns="" ProductID="{C895C055-B418-4C72-AB3F-07BC05EEC203}" Title="ToggleSwitch Reference" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="WP ToggleSwitch Research" Description="Native Windows Phone Toolkit ToggleSwitch measurement scene" Publisher="WP ToggleSwitch Research" PublisherID="{B932D4B2-0B34-4A2C-B6BA-6A18B03525A2}">
+  <IconPath IsRelative="true" IsResource="false">Assets\Icon.png</IconPath><Capabilities /><Tasks><DefaultTask Name="_default" NavigationPage="MainPage.xaml" /></Tasks>
+  <Tokens><PrimaryToken TokenID="ToggleSwitchReferenceToken" TaskName="_default"><TemplateFlip><SmallImageURI IsRelative="true" IsResource="false">Assets\Icon.png</SmallImageURI><Count>0</Count><BackgroundImageURI IsRelative="true" IsResource="false">Assets\Icon.png</BackgroundImageURI><Title>ToggleSwitch Reference</Title><BackContent /><BackBackgroundImageURI /><BackTitle /><DeviceLockImageURI /><HasLarge /></TemplateFlip></PrimaryToken></Tokens>
+  <ScreenResolutions><ScreenResolution Name="ID_RESOLUTION_WVGA" /></ScreenResolutions>
+ </App>
+</Deployment>

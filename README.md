@@ -132,6 +132,16 @@ Widget build(BuildContext context) {
 }
 ```
 
+## Experimental component gallery
+
+Application Bar, Panorama, and ToggleSwitch are available through the separate
+`package:wp_pivot_flutter/wp_components.dart` import. From `example/`, run
+`flutter run -d chrome -t lib/components.dart` to try them together.
+They are experimental: native emulator pilots exist, but motion fidelity is not
+calibrated. See the [component studies](research/components/README.md) for evidence,
+known differences, and the reusable capture/replay workflow. The existing Pivot
+API is unchanged.
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

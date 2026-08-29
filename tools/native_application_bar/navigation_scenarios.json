@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "product_id": "c895c055-b418-4c72-ab3f-07bc05eec201",
+  "control": "Microsoft.Phone.Controls.PhoneApplicationFrame page navigation",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 1.0,
+  "post_roll_seconds": 0.8,
+  "note": "open-detail tap verified from batch-02 grok/initial-inspect/initial.png after deploying the rebuilt XAP. Button outline y~259-306 x~36-443; label cluster y~279-291. (240,282) is inside the hit box but on black fill; capture uses label center (240,285). Ellipsis (443,742) reconfirmed white on the same frame.",
+  "scenarios": [
+    {
+      "id": "forward_detail",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 240, "y": 285},
+        {"op": "wait", "seconds": 0.8}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "back_from_detail",
+      "expected_initial_state": "default",
+      "actions": [
+        {"op": "tap", "x": 240, "y": 285},
+        {"op": "wait", "seconds": 0.8},
+        {"op": "key", "name": "back"},
+        {"op": "wait", "seconds": 0.8}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    }
+  ]
+}

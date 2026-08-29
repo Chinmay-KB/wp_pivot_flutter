@@ -1,3 +1,14 @@
+## Unreleased
+
+* Add opt-in experimental Application Bar, Panorama and ToggleSwitch components
+  through `wp_components.dart`, with a separate interactive example gallery.
+* Add native Windows Phone reference fixtures and explicit pilot capture tools.
+  Pilot evidence does not establish calibrated motion fidelity or hardware timing.
+* Preserve the existing Pivot entrypoint and APIs. No package release is implied.
+* Refresh the example Android toolchain to AGP 9.1.0, Gradle 9.3.1, Kotlin 2.4.0
+  and Java 17 so the gallery builds on current Flutter stable. This is not a
+  package release.
+
 ## [2.1.0] 28 August 2026.
 
 * Add `WpPivotView`: complete Pivot layout, cyclic headers, release-time selection,
