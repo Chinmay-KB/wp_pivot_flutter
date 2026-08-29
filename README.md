@@ -18,7 +18,66 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 
 
 
-## Example
+## Requirements
+
+Version **2.1.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
+[changelog](CHANGELOG.md) for release details and [pub.dev](https://pub.dev/packages/wp_pivot_flutter)
+for registry availability. A merged version is not automatically published.
+
+## Full Pivot: native layout and motion
+
+`WpPivotView` owns both the headers and page content. It follows measurements from
+Microsoft's real Pivot control running on the WP8.1 emulator: cyclic headers,
+drag tracking, release-time selection, and separate outgoing/incoming content
+animations. See the [evidence study](research/pivot/README.md) for recordings,
+methodology and known limits. Emulator evidence is not labeled as Lumia evidence.
+
+```dart
+MaterialApp(
+  theme: ThemeData(fontFamily: wpPivotFontFamily),
+  home: WpPivotView(
+    title: 'MY APPLICATION',
+    tabTitles: const ['first', 'second', 'third'],
+    children: const [
+      Center(child: Text('First page')),
+      Center(child: Text('Second page')),
+      Center(child: Text('Third page')),
+    ],
+  ),
+)
+```
+
+An optional `PivotController` drives selection; dispose controllers you create.
+`onChanged` reports committed selections. Pages keep their state while hidden.
+Arrow keys navigate, headers support keyboard focus and semantic selection, and
+the system reduced-animation setting removes the spatial transitions. `wrap:
+false` disables cycling at the ends. Give the view a bounded width and height.
+
+Geometry scales from a 480-unit reference viewport. Header and title font families,
+weights, colors, and `PivotMotion` parameters can be customized. The package bundles
+unmodified **Selawik 1.01** under the [SIL Open Font License](assets/fonts/OFL.txt);
+no proprietary Segoe font files are redistributed. Selawik is a fallback, not an
+identical copy of Segoe WP. Source and hashes are in [assets/fonts/SOURCE.json](assets/fonts/SOURCE.json).
+
+### Migrating the example
+
+Replace the `WpPivot` app bar plus external `PageView` with one `WpPivotView`, move
+the page widgets into `children`, and remove the two-controller synchronization.
+The full view reproduces native content phases that a stock `PageView` does not.
+The existing `WpPivot` header-only API and `PivotController` remain available.
+
+### Current fidelity limits
+
+The native font and rasterizer differ from Flutter's. Capture timing is too coarse
+to establish physical display latency; flick parameters remain provisional beyond
+the recorded inputs. The regression suite replays 21 native core, 21 confirmation
+and nine header/title input traces, including successful flicks, cancellations,
+reversal, wrapping and ignored gestures during transitions. Header and title swipes
+share the content gesture surface. A separate release-web runtime probe measures
+real engine frame timing, not physical display latency or Lumia performance.
+Independent hardware validation and broader gesture sampling remain separate work.
+
+## Legacy header-only example
 
 Selection state is managed by a `PivotController` - pass your own to drive the
 pivot from the outside, or let the widget create one internally.

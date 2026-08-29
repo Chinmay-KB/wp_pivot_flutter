@@ -1,0 +1,51 @@
+{
+  "native_trial": "flick_next_path_r01",
+  "flutter_variant": "native-motion-implementation",
+  "native_layout": {
+    "x": 24,
+    "y": 165,
+    "width": 432
+  },
+  "flutter_layout": {
+    "x": 24,
+    "y": 165,
+    "width": 432
+  },
+  "layout_delta_px": {
+    "x": 0,
+    "y": 0,
+    "width": 0
+  },
+  "sampled_native_frames": 31,
+  "motion_sample_frames": 10,
+  "shared_visible_position_error": {
+    "count": 27,
+    "mae_px": 8.555555555555555,
+    "p95_px": 40.599999999999994,
+    "max_px": 120.0
+  },
+  "motion_only_shared_visible_position_error": {
+    "count": 9,
+    "mae_px": 25.666666666666668,
+    "p95_px": 89.19999999999997,
+    "max_px": 120.0
+  },
+  "interval_compatible_position_error": {
+    "count": 28,
+    "mae_px": 0.07142857142857142,
+    "p95_px": 0.0,
+    "max_px": 2.0
+  },
+  "visibility_mismatch_frames": 1,
+  "visibility_mismatch_fraction": 0.03225806451612903,
+  "interval_visibility_mismatch_frames": 0,
+  "source_hashes": {
+    "image_tracks.csv": "e3ada83e158bd426ced74c4ebf66ee5b50ea86888cbf9935fef96e263b08b3b6",
+    "manifest.json": "7ae2dc4484bdb5d77094930a4bf4903f427dffad5b016fd13fe1c62f9240be26",
+    "frames.csv": "56d233fd047db51ecc9cce19ae303deda4741286af73df1576476876fbbe3a46",
+    "compare_motion.py": "e91d2c06213678e1935a6b284cbb9d92f65f4d93cc8b4040e42c5ced70207a6a"
+  },
+  "method": "Each native acquisition midpoint compared with latest preceding Flutter PNG. No interpolation or retiming. Equal weight per acquired native image; post-input observations only.",
+  "motion_filter": "Either source has non-resting bar translation or visible-page sets differ.",
+  "limitations": "Position errors include only mutually visible pages; visibility mismatches are reported separately. Native timing is uncertain. Interval metrics use acquisition plus receipt-spread intervals as sensitivity analysis, not certified display latency bounds. Bar edge precision is about 1px; typography and interactive runtime performance are not measured here."
+}

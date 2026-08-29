@@ -1,16 +1,23 @@
-# example
+# Pivot example
 
-A new Flutter project.
+A complete `WpPivotView` with cyclic headers and four sample pages. The example
+uses the package in the parent directory through a path dependency.
 
-## Getting Started
+From this directory, using a Flutter SDK with Dart 3.8+ for the development lints:
 
-This project is a starting point for a Flutter application.
+```sh
+flutter pub get
+flutter run -d chrome
+```
 
-A few resources to get you started if this is your first Flutter project:
+Use `flutter build web --release` for a release web build. The normal entrypoint is
+`lib/main.dart`; no measurement hooks run in the normal demo.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Optional runtime probe
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`lib/runtime_probe.dart` is a separate web-only entrypoint that replays recorded
+inputs from `assets/runtime_replays.json`. It requires the JavaScript measurement
+harness from the repository's `tools/runtime_probe` directory, which is not part
+of the published package. It measures engine frame timing, not physical display
+latency. See the [runtime evidence and reproduction notes](https://github.com/Chinmay-KB/wp_pivot_flutter/tree/master/research/pivot)
+for the harness, build conditions and limits.

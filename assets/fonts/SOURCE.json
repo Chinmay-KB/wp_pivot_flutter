@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/microsoft/Selawik/releases/tag/1.01",
+  "archive": "https://github.com/microsoft/Selawik/releases/download/1.01/Selawik_Release.zip",
+  "archive_sha256": "3f62c51e05e3b5a1e6241cf92a371f0be2ea1183aa87b30718bbd40832a8d423",
+  "files": {
+    "selawk.ttf": "e9d98518d8ac2817782a9a382430463a2e0793ea68350b695bb727d9a830ee1c",
+    "selawksb.ttf": "0a9e9d0549a10f24bef9b3a29e06fe6e0b5c21e7a784c503b048a307841a7783",
+    "selawksl.ttf": "8620960344f12093482cded984a1aafa5a57d24cbf7e9299da125ccf0e9d4102"
+  },
+  "modified": false,
+  "license": "SIL Open Font License 1.1; see OFL.txt"
+}

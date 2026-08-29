@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><base href="/runtime/">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pivot runtime timing probe</title>
+<style>
+html,body {margin:0;background:#000;color:#fff;font:16px system-ui}
+#controls {position:fixed;z-index:10;top:16px;left:400px;max-width:440px}
+button {font:inherit;padding:12px;background:#1ba1e2;color:#fff;border:0}
+pre {position:absolute;z-index:10;top:660px;left:16px;max-width:95vw;
+  white-space:pre-wrap;overflow-wrap:anywhere;background:#111}
+</style></head><body>
+<section id="controls"><h1>Pivot runtime timing probe</h1>
+<p>Release web build. 360 × 600 logical pixels. Keep this tab visible.</p>
+<button id="start" disabled>Start measurement</button>
+<p id="status">Loading Flutter…</p>
+<p>Four warm-up trials, then twelve measured trials. Input is injected through
+Flutter's pointer dispatch using actual wall-clock delays. This does not measure
+physical touch latency or display presentation.</p></section>
+<pre id="report"></pre>
+<script>
+let visibility = [], started = false;
+document.addEventListener('visibilitychange', () => {
+  if (started) visibility.push({t_ms:performance.now(), state:document.visibilityState});
+});
+window.pivotRuntimeReady = start => {
+  document.querySelector('#status').textContent = 'Ready';
+  document.querySelector('#start').disabled = false;
+  document.querySelector('#start').onclick = () => {
+    started = true;
+    visibility = [{t_ms:performance.now(), state:document.visibilityState}];
+    document.querySelector('#report').textContent = '';
+    document.querySelector('#start').disabled = true;
+    document.querySelector('#status').textContent = 'Running';
+    start();
+  };
+};
+window.pivotRuntimeReport = json => {
+  const report = JSON.parse(json);
+  visibility.push({t_ms:performance.now(), state:document.visibilityState});
+  started = false;
+  report.browser = {user_agent:navigator.userAgent, visibility};
+  document.querySelector('#report').textContent = JSON.stringify(report, null, 2);
+  document.querySelector('#status').textContent = report.failure ? 'Failed' : 'Complete';
+  document.querySelector('#start').disabled = false;
+};
+</script><script src="flutter_bootstrap.js" async></script></body></html>

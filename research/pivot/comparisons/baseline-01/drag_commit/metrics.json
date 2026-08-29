@@ -1,0 +1,51 @@
+{
+  "native_trial": "drag_commit_r01",
+  "flutter_variant": "unmodified-2.0.0-baseline",
+  "native_layout": {
+    "x": 24,
+    "y": 165,
+    "width": 432
+  },
+  "flutter_layout": {
+    "x": 16,
+    "y": 134,
+    "width": 448
+  },
+  "layout_delta_px": {
+    "x": -8,
+    "y": -31,
+    "width": 16
+  },
+  "sampled_native_frames": 46,
+  "motion_sample_frames": 26,
+  "shared_visible_position_error": {
+    "count": 42,
+    "mae_px": 86.88095238095238,
+    "p95_px": 303.0,
+    "max_px": 430.0
+  },
+  "motion_only_shared_visible_position_error": {
+    "count": 22,
+    "mae_px": 158.5909090909091,
+    "p95_px": 369.49999999999994,
+    "max_px": 430.0
+  },
+  "interval_compatible_position_error": {
+    "count": 42,
+    "mae_px": 86.78571428571429,
+    "p95_px": 303.0,
+    "max_px": 430.0
+  },
+  "visibility_mismatch_frames": 23,
+  "visibility_mismatch_fraction": 0.5,
+  "interval_visibility_mismatch_frames": 22,
+  "source_hashes": {
+    "image_tracks.csv": "4638ea5454b4c4bf12060dc9277faceb19c35327e107d5c48028e343c9f09a20",
+    "manifest.json": "523826a7105f3a4e0eb16e7115145d2b417340c6c91b9242376e242acc75340f",
+    "frames.csv": "b3842364cb146e4de55e0e26135d3ee69e1580b3ac0144e2804b2dbb91100c9f",
+    "compare_motion.py": "e91d2c06213678e1935a6b284cbb9d92f65f4d93cc8b4040e42c5ced70207a6a"
+  },
+  "method": "Each native acquisition midpoint compared with latest preceding Flutter PNG. No interpolation or retiming. Equal weight per acquired native image; post-input observations only.",
+  "motion_filter": "Either source has non-resting bar translation or visible-page sets differ.",
+  "limitations": "Position errors include only mutually visible pages; visibility mismatches are reported separately. Native timing is uncertain. Interval metrics use acquisition plus receipt-spread intervals as sensitivity analysis, not certified display latency bounds. Bar edge precision is about 1px; typography and interactive runtime performance are not measured here."
+}

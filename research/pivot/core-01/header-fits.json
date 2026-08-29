@@ -1,0 +1,40 @@
+{
+  "header_next": {
+    "model": "1 - (1 - clamp(t / duration, 0, 1)) ** exponent",
+    "time_origin": "guest SelectionChanged callback",
+    "fit_trials": [
+      1,
+      2
+    ],
+    "held_out_trial": 3,
+    "duration_ms": 257.61550398524173,
+    "exponent": 1.1256569180487155,
+    "held_out_rmse_px": 0.8280091813863184,
+    "held_out_max_error_px": 2.881097903393087,
+    "observed_first_settled_samples_ms": [
+      278.1972999999998,
+      272.70759999999996,
+      278.66520000000014
+    ],
+    "not_native_source_constants": true
+  },
+  "header_skip": {
+    "model": "1 - (1 - clamp(t / duration, 0, 1)) ** exponent",
+    "time_origin": "guest SelectionChanged callback",
+    "fit_trials": [
+      1,
+      2
+    ],
+    "held_out_trial": 3,
+    "duration_ms": 352.8365310222439,
+    "exponent": 2.9999999999983826,
+    "held_out_rmse_px": 37.23549692782403,
+    "held_out_max_error_px": 114.38594238994312,
+    "observed_first_settled_samples_ms": [
+      279.7632000000001,
+      276.5866000000001,
+      300.4828
+    ],
+    "not_native_source_constants": true
+  }
+}
