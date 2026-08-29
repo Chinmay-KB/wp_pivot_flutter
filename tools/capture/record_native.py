@@ -72,7 +72,21 @@ def record_trial(capture, control, scenario, directory, pre_roll, post_roll, app
             if action['op'] == 'wait':
                 time.sleep(action['seconds']); continue
             events.append({'host_received_ms':now(), 'event':'request', **action})
-            result = control.call(**action)
+            delivered = action
+            if action['op'] == 'hold':
+                # The XDE bridge exposes down/move/up as a bounded swipe. A
+                # zero-distance swipe therefore gives custom adapters an
+                # explicit held press while retaining every delivered pointer
+                # phase in events.jsonl.
+                delivered = {
+                    'op': 'swipe',
+                    'x': action['x'],
+                    'y': action['y'],
+                    'x1': action['x'],
+                    'y1': action['y'],
+                    'ms': action['ms'],
+                }
+            result = control.call(**delivered)
             events.append({'host_received_ms':now(), 'event':'response', 'result':result})
         time.sleep(post_roll)
     except Exception as exc:

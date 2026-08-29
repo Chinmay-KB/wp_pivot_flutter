@@ -18,9 +18,9 @@ title: Home
 <section class="research-index" aria-labelledby="index-title">
   <h2 id="index-title">Research index</h2>
   <div class="index-grid">
-    <a class="index-link" href="{{ site.github_repo }}"><strong>Package</strong><span>WpPivotView for Flutter, v2.1.0.</span></a>
-    <a class="index-link" href="{{ '/captures/' | relative_url }}"><strong>Captures</strong><span>57 native emulator trials published.</span></a>
-    <a class="index-link" href="{{ '/research/pivot/' | relative_url }}"><strong>Research</strong><span>Pivot recordings, comparisons, and limits.</span></a>
+    <a class="index-link" href="{{ site.github_repo }}"><strong>Package</strong><span>WpPivotView and six opt-in controls, v2.2.0.</span></a>
+    <a class="index-link" href="{{ '/captures/' | relative_url }}"><strong>Captures</strong><span>Pivot plus 17 micro-control emulator trials.</span></a>
+    <a class="index-link" href="{{ '/research/components/micro-controls/' | relative_url }}"><strong>New study</strong><span>Slider, ProgressBar, and TiltEffect measurements.</span></a>
     <a class="index-link" href="{{ '/resources/' | relative_url }}"><strong>Sources</strong><span>Archived Microsoft documents and references.</span></a>
   </div>
 </section>

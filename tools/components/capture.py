@@ -65,15 +65,17 @@ def validate_plan(plan):
             raise ValueError('Scenario needs 1-30 actions.')
         for action in actions + scenario.get('cleanup_actions', [{'op': 'key', 'name': 'back'}]):
             op = action['op']
-            if op not in ('tap', 'swipe', 'wait', 'key'):
+            if op not in ('tap', 'swipe', 'hold', 'wait', 'key'):
                 raise ValueError(f'Unsupported pilot action: {op}')
-            if op in ('tap', 'swipe'):
+            if op in ('tap', 'swipe', 'hold'):
                 for key, bound in [('x', width), ('y', height)] + ([('x1', width), ('y1', height)] if op == 'swipe' else []):
                     value = action[key]
                     if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value < bound:
                         raise ValueError(f'Invalid coordinate {key}')
             if op == 'swipe' and (type(action['ms']) is not int or not 20 <= action['ms'] <= 5000):
                 raise ValueError('Invalid swipe duration.')
+            if op == 'hold' and (type(action['ms']) is not int or not 20 <= action['ms'] <= 5000):
+                raise ValueError('Invalid hold duration.')
             if op == 'wait':
                 value = action['seconds']
                 if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value <= 10:

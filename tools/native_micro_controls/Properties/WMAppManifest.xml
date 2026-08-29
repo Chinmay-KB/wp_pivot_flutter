@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+ <DefaultLanguage xmlns="" code="en-US" />
+ <App xmlns="" ProductID="{00A800D5-A4FD-4DA5-8CED-48F96B3F2A54}" Title="Micro Controls Reference"
+  RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="WP Pivot Research"
+  Description="Native Slider, ProgressBar, and TiltEffect reference scene" Publisher="WP Pivot Research"
+  PublisherID="{5D5D3A4B-3B8D-4CE9-9465-FE244D8B1986}">
+  <IconPath IsRelative="true" IsResource="false">Assets\Icon.png</IconPath>
+  <Capabilities />
+  <Tasks><DefaultTask Name="_default" NavigationPage="MainPage.xaml" /></Tasks>
+  <Tokens><PrimaryToken TokenID="MicroControlsReferenceToken" TaskName="_default"><TemplateFlip>
+   <SmallImageURI IsRelative="true" IsResource="false">Assets\Icon.png</SmallImageURI>
+   <Count>0</Count><BackgroundImageURI IsRelative="true" IsResource="false">Assets\Icon.png</BackgroundImageURI>
+   <Title>Micro Controls Reference</Title><BackContent /><BackBackgroundImageURI /><BackTitle /><DeviceLockImageURI /><HasLarge />
+  </TemplateFlip></PrimaryToken></Tokens>
+  <ScreenResolutions><ScreenResolution Name="ID_RESOLUTION_WVGA" /></ScreenResolutions>
+ </App>
+</Deployment>
+

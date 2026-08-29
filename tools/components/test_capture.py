@@ -52,6 +52,20 @@ class PlanTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             capture.validate_plan(self.plan)
 
+    def test_hold_is_bounded_and_uses_one_point(self):
+        self.plan['scenarios'][0]['actions'][0] = {
+            'op': 'hold',
+            'x': 220,
+            'y': 360,
+            'ms': 600,
+        }
+        self.assertIs(capture.validate_plan(self.plan), self.plan)
+        for duration in (19, 5001, 200.5, True):
+            with self.subTest(duration=duration), self.assertRaises(ValueError):
+                plan = copy.deepcopy(self.plan)
+                plan['scenarios'][0]['actions'][0]['ms'] = duration
+                capture.validate_plan(plan)
+
     def test_cleanup_validated(self):
         self.plan['scenarios'][0]['cleanup_actions'] = [{'op': 'key', 'name': 'start'}]
         with self.assertRaises(ValueError):

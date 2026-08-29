@@ -1,13 +1,20 @@
 ## Unreleased
 
-* Add opt-in experimental Application Bar, Panorama and ToggleSwitch components
-  through `wp_components.dart`, with a separate interactive example gallery.
-* Add native Windows Phone reference fixtures and explicit pilot capture tools.
-  Pilot evidence does not establish calibrated motion fidelity or hardware timing.
-* Preserve the existing Pivot entrypoint and APIs. No package release is implied.
+## [2.2.0] 29 August 2026.
+
+* Add opt-in experimental Application Bar, Panorama, ToggleSwitch, Slider,
+  ProgressBar and TiltEffect components through `wp_components.dart`, with a
+  separate interactive example gallery.
+* Add source-backed Windows Phone geometry and native WP8.1 emulator fixtures.
+  Slider, ProgressBar and TiltEffect include repeated measurement, held-out
+  input replay and an independently recaptured post-freeze Tilt confirmation.
+* Add keyboard and accessibility behavior, controlled state, and reduced-motion
+  fallbacks for the new micro controls.
+* Publish the micro-control measurements, media, integrity limits and reusable
+  analysis/replay tools on the research site.
+* Preserve the existing Pivot entrypoint and APIs.
 * Refresh the example Android toolchain to AGP 9.1.0, Gradle 9.3.1, Kotlin 2.4.0
-  and Java 17 so the gallery builds on current Flutter stable. This is not a
-  package release.
+  and Java 17 so the gallery builds on current Flutter stable.
 
 ## [2.1.0] 28 August 2026.
 

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "study": "micro-controls-wp81-wvga-v1",
+  "reference": "Windows Phone 8.1 WVGA 480x800 emulator",
+  "candidate_version": "2.2.0",
+  "integrity": {
+    "initial_native_trials": 15,
+    "initial_native_pngs": 769,
+    "initial_native_collection_sha256": "1945d53f1ab03f66e3368b35dbf4c073809e5cd3768648053075db4f482e3157",
+    "fresh_tilt_native_trials": 2,
+    "fresh_tilt_native_pngs": 116,
+    "fresh_tilt_collection_sha256": "aaa63fa5dd517c4a34f56d7169c4b5fece37858f75f67d958fa5f4f1be03f6ce",
+    "all_original_png_hashes_valid": true,
+    "all_viewports": [480, 800]
+  },
+  "slider": {
+    "held_out": "repetition_3",
+    "tap_native_final": 83.3333,
+    "tap_flutter_final": 83.33333333333334,
+    "tap_abs_error": 0.00003333333334865074,
+    "drag_native_final": 89.2857,
+    "drag_flutter_final": 89.28571428571429,
+    "drag_abs_error": 0.000014285714286188522,
+    "track_max_edge_error_px": 0,
+    "thumb_max_edge_error_px": 0
+  },
+  "progress": {
+    "determinate_track_max_edge_error_px": 0,
+    "determinate_fill_max_edge_error_px": 0,
+    "indeterminate_marks": 5,
+    "indeterminate_mark_size_px": [4, 4],
+    "held_out_phase_aligned_center_mae_px": 2.1748389189644444,
+    "held_out_phase_aligned_center_max_error_px": 9.127166753087124,
+    "matched_mark_observations": 166,
+    "native_period_status": "unknown_right_censored",
+    "native_period_lower_bound_ms": 3452.2311,
+    "flutter_configured_period_ms": 4500,
+    "period_error_ms": null
+  },
+  "tilt": {
+    "confirmation": "fresh_native_capture_after_candidate_freeze",
+    "pose_rotation_max_error_degrees": 0.0001,
+    "pose_depression_max_error_px": 0.0001,
+    "center_projected_max_edge_error_px": 2,
+    "corner_projected_max_edge_error_px": 0,
+    "flutter_release_delay_ms": 200,
+    "flutter_release_duration_ms": 100,
+    "fresh_native_center_first_changed_after_up_ms": 211.86499999999978,
+    "fresh_native_center_first_changed_to_rest_ms": 100.35179999999991,
+    "fresh_native_corner_first_changed_after_up_ms": 207.84529999999995,
+    "fresh_native_corner_first_changed_to_rest_ms": 90.32920000000013
+  },
+  "limits": [
+    "Emulator evidence is not Lumia hardware evidence.",
+    "Native host acquisition and guest Stopwatch clocks are not aligned.",
+    "The exact native indeterminate repeat period was not observed.",
+    "Selawik and Flutter rasterization differ from native Segoe WP.",
+    "No aggregate fidelity percentage is supported."
+  ]
+}

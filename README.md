@@ -20,9 +20,11 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 
 ## Requirements
 
-Version **2.1.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
+Version **2.2.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
 [changelog](CHANGELOG.md) for release details and [pub.dev](https://pub.dev/packages/wp_pivot_flutter)
 for registry availability. A merged version is not automatically published.
+The repository's example app uses Flutter 3.44+ for its current Android
+toolchain; the package library itself retains the 3.22 minimum.
 
 ## Full Pivot: native layout and motion
 
@@ -134,13 +136,14 @@ Widget build(BuildContext context) {
 
 ## Experimental component gallery
 
-Application Bar, Panorama, and ToggleSwitch are available through the separate
+Application Bar, Panorama, ToggleSwitch, Slider, ProgressBar, and TiltEffect are available through the separate
 `package:wp_pivot_flutter/wp_components.dart` import. From `example/`, run
 `flutter run -d chrome -t lib/components.dart` to try them together.
-They are experimental: native emulator pilots exist, but motion fidelity is not
-calibrated. See the [component studies](research/components/README.md) for evidence,
-known differences, and the reusable capture/replay workflow. The existing Pivot
-API is unchanged.
+They are experimental. The three micro controls have repeated WP8.1 emulator
+measurements and held-out comparisons; the earlier component batch remains pilot
+evidence. See the [component studies](research/components/README.md) for evidence,
+known differences, and the reusable capture/replay workflow. Emulator results do
+not establish Lumia hardware fidelity. The existing Pivot API is unchanged.
 
 ## Contributors ✨
 

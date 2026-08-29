@@ -1,14 +1,16 @@
 # Experimental component studies
 
-This batch adds **Application Bar**, **Panorama**, and **ToggleSwitch** behind
+This work adds **Application Bar**, **Panorama**, **ToggleSwitch**, **Slider**,
+**ProgressBar**, and **TiltEffect** behind
 the opt-in `package:wp_pivot_flutter/wp_components.dart` import. The existing
-Pivot import and 2.1.0 version are unchanged. No release or publication is implied.
+Pivot import remains unchanged. The six-control gallery ships in version 2.2.0.
 
 ## Try the gallery
 
 From `example/`, run `flutter run -d chrome -t lib/components.dart`.
-The three routes exercise commands, minimized/expanded bars, panorama navigation,
-and controlled on/off state. They do not change network settings on the host.
+The six routes exercise commands, minimized/expanded bars, panorama navigation,
+controlled values, progress states, and press-position tilt. They do not change
+network settings on the host.
 
 ## Study scope and acceptance
 
@@ -27,7 +29,7 @@ instead of unavailable named agent roles; runtime role isolation was not verifie
 | Integration | Separate gallery and exports; existing Pivot regression tests |
 | Fidelity | **Open**: no calibrated frame correspondence, fitted curves, repeatability estimate, live runtime benchmark, or hardware cross-check |
 
-These are exploratory pilots used to discover geometry and harness problems.
+The first three controls remain exploratory pilots used to discover geometry and harness problems.
 No numerical fidelity thresholds were frozen before tuning; this batch cannot
 be interpreted as confirmation evidence. `custom` adapters remain unqualified.
 
@@ -58,7 +60,13 @@ bundled Selawik instead of native Segoe WP and substitute icon glyphs. Native an
 Flutter media must not be described as synchronized motion comparisons.
 
 Component details: [Application Bar](application-bar/README.md),
-[Panorama](panorama/scene-contract.md), [ToggleSwitch](toggle-switch/native-source.md).
+[Panorama](panorama/scene-contract.md), [ToggleSwitch](toggle-switch/native-source.md),
+[Slider, ProgressBar, and TiltEffect](micro-controls/README.md).
+
+The micro-control study is a later calibrated batch: 15 repeated native trials
+plus two fresh post-freeze Tilt confirmations, held-out Flutter input replay,
+explicit per-metric acceptance, and immutable source checks. Its results do not
+retroactively qualify the Application Bar, Panorama, or ToggleSwitch pilots.
 
 Toolkit storyboards, icons, and other Microsoft-copyrighted research assets in
 this tree are licensed under the [Microsoft Public License (Ms-PL)](MS-PL.txt).

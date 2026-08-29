@@ -16,8 +16,9 @@ body_class: index-page
       <li class="record-row"><a href="{{ '/research/pivot/' | relative_url }}">Native Pivot</a><span class="record-meta">WP8.1 emulator · build 8.10.12358.0 · 57 trials · 3,830 PNGs</span><span class="status-badge status-available">Published</span></li>
       <li class="record-row"><a href="{{ site.github_repo }}/releases/tag/pivot-evidence-2026-08-27-header-runtime">Flutter runtime</a><span class="record-meta">Release web build · 12 measured trials · raw engine timing</span><span class="status-badge status-available">Published</span></li>
       <li class="record-row"><a href="{{ '/research/components/' | relative_url }}">Component pilots</a><span class="record-meta">WP8.1 emulator · Application Bar, Panorama, and Toggle Switch</span><span class="status-badge">Research notes</span></li>
+      <li class="record-row"><a href="{{ '/research/components/micro-controls/' | relative_url }}">Micro controls</a><span class="record-meta">WP8.1 emulator · 17 trials · 885 native PNGs</span><span class="status-badge status-available">Published</span></li>
     </ul>
-    <p class="quiet-note">Pivot evidence is published in releases. Component pilot artifacts are not a published evidence release.</p>
+    <p class="quiet-note">Pivot and micro-control evidence are published in separate releases. Earlier component pilot artifacts are not a published evidence release.</p>
   </div>
 </section>
 

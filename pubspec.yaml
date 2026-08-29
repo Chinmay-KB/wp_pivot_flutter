@@ -1,6 +1,6 @@
 name: wp_pivot_flutter
 description: Windows Phone style Pivot navigation for Flutter, with cyclic headers, gesture tracking, and configurable page transitions.
-version: 2.1.0
+version: 2.2.0
 homepage: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 environment:
@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^6.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

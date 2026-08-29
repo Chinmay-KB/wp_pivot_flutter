@@ -21,7 +21,7 @@ void _phoneViewport(WidgetTester tester) {
 
 Duration _homeToAppBarDuration() {
   final timing = WpTurnstileFeatherTiming(
-    outgoingMaxIndex: 5,
+    outgoingMaxIndex: 8,
     incomingMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
   );
   return timing.routeDuration();
@@ -39,9 +39,20 @@ Future<void> _tapGalleryEntry(WidgetTester tester, String title) async {
     'application bar' => const ValueKey('wp-phone-entry-tap-3'),
     'panorama' => const ValueKey('wp-phone-entry-tap-4'),
     'toggle switch' => const ValueKey('wp-phone-entry-tap-5'),
+    'slider' => const ValueKey('wp-phone-entry-tap-6'),
+    'progress bar' => const ValueKey('wp-phone-entry-tap-7'),
+    'tilt effect' => const ValueKey('wp-phone-entry-tap-8'),
     _ => throw ArgumentError('Unknown gallery entry: $title'),
   };
-  final finder = find.byKey(tapKey);
+  var finder = find.byKey(tapKey);
+  if (finder.evaluate().isEmpty) {
+    await tester.scrollUntilVisible(
+      find.text(title),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    finder = find.byKey(tapKey);
+  }
   expect(finder, findsOneWidget);
   await tester.ensureVisible(finder);
   final origin = tester.getTopLeft(finder);
@@ -61,6 +72,20 @@ void main() {
     expect(find.bySemanticsLabel('Hardware back'), findsNothing);
     expect(find.text('components'), findsOneWidget);
   });
+
+  for (final entry in <String, Type>{
+    'slider': SliderDemo,
+    'progress bar': ProgressBarDemo,
+    'tilt effect': TiltEffectDemo,
+  }.entries) {
+    testWidgets('${entry.key} demo is discoverable and opens', (tester) async {
+      _phoneViewport(tester);
+      await tester.pumpWidget(_gallery(disableAnimations: true));
+      await _tapGalleryEntry(tester, entry.key);
+      await tester.pumpAndSettle();
+      expect(find.byType(entry.value), findsOneWidget);
+    });
+  }
 
   testWidgets('opening a demo uses WpPhonePageRoute not MaterialPageRoute',
       (tester) async {
@@ -89,7 +114,7 @@ void main() {
     await tester.pumpWidget(_gallery());
     await _tapGalleryEntry(tester, 'application bar');
     await tester.pump();
-    final outPhase = WpTurnstileFeather.forwardOutPhaseMsFor(5);
+    final outPhase = WpTurnstileFeather.forwardOutPhaseMsFor(8);
     await tester.pump(Duration(milliseconds: outPhase + 50));
     final title = tester.widget<Opacity>(find.descendant(
       of: find.byType(ApplicationBarDemo),
