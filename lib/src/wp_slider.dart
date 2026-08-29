@@ -24,7 +24,7 @@ class WpSlider extends StatefulWidget {
     this.min = 0,
     this.max = 10,
     this.divisions,
-    this.accentColor = const Color(0xff1ba1e2),
+    this.accentColor = const Color(0xff3e65ff),
     this.trackColor = const Color(0xff1f1f1f),
     this.thumbColor = Colors.white,
     this.semanticLabel,
@@ -167,6 +167,7 @@ class _WpSliderState extends State<WpSlider> {
                 painter: WpSliderPainter(
                   normalizedValue: visualValue,
                   enabled: _enabled,
+                  textDirection: direction,
                   accentColor: widget.accentColor,
                   trackColor: widget.trackColor,
                   thumbColor: widget.thumbColor,
@@ -185,6 +186,7 @@ class WpSliderPainter extends CustomPainter {
   const WpSliderPainter({
     required this.normalizedValue,
     required this.enabled,
+    this.textDirection = TextDirection.ltr,
     required this.accentColor,
     required this.trackColor,
     required this.thumbColor,
@@ -192,6 +194,7 @@ class WpSliderPainter extends CustomPainter {
 
   final double normalizedValue;
   final bool enabled;
+  final TextDirection textDirection;
   final Color accentColor;
   final Color trackColor;
   final Color thumbColor;
@@ -212,10 +215,15 @@ class WpSliderPainter extends CustomPainter {
     final disabled = const Color(0x66ffffff);
     canvas.drawRect(
       track,
-      Paint()..color = enabled ? trackColor : trackColor.withValues(alpha: .1),
+      Paint()..color = enabled ? trackColor : trackColor.withAlpha(26),
     );
     canvas.drawRect(
-      Rect.fromLTRB(left, track.top, thumbCenter, track.bottom),
+      Rect.fromLTRB(
+        textDirection == TextDirection.ltr ? left : thumbCenter,
+        track.top,
+        textDirection == TextDirection.ltr ? thumbCenter : track.right,
+        track.bottom,
+      ),
       Paint()..color = enabled ? accentColor : disabled,
     );
     canvas.drawRect(
@@ -233,6 +241,7 @@ class WpSliderPainter extends CustomPainter {
   bool shouldRepaint(covariant WpSliderPainter oldDelegate) =>
       oldDelegate.normalizedValue != normalizedValue ||
       oldDelegate.enabled != enabled ||
+      oldDelegate.textDirection != textDirection ||
       oldDelegate.accentColor != accentColor ||
       oldDelegate.trackColor != trackColor ||
       oldDelegate.thumbColor != thumbColor;

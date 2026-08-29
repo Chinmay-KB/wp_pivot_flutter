@@ -84,9 +84,20 @@ void main() {
   testWidgets('switching modes starts and stops without stale frames',
       (tester) async {
     await tester.pumpWidget(_host(const WpProgressBar()));
+    final before = tester
+        .widget<CustomPaint>(
+          find.byKey(const ValueKey('wp-progress-indeterminate')),
+        )
+        .painter as WpIndeterminateProgressPainter;
     await tester.pump(const Duration(milliseconds: 200));
     expect(find.byKey(const ValueKey('wp-progress-indeterminate')),
         findsOneWidget);
+    final after = tester
+        .widget<CustomPaint>(
+          find.byKey(const ValueKey('wp-progress-indeterminate')),
+        )
+        .painter as WpIndeterminateProgressPainter;
+    expect(after.phase, greaterThan(before.phase));
     await tester.pumpWidget(_host(const WpProgressBar(value: 1)));
     expect(
         find.byKey(const ValueKey('wp-progress-determinate')), findsOneWidget);

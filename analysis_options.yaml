@@ -11,5 +11,13 @@ analyzer:
     - linux/**
 include: package:flutter_lints/flutter.yaml
 
+# Flutter 3.22's compatible lint bundle enables these style-only rules. Keep
+# the package's established lint policy consistent with the newer toolchain.
+linter:
+  rules:
+    prefer_const_constructors: false
+    prefer_const_declarations: false
+    prefer_const_literals_to_create_immutables: false
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

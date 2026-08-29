@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'dart:ui' show SemanticsAction;
 
 import 'package:flutter/material.dart';
@@ -147,5 +148,34 @@ void main() {
     );
     semantics.properties.onIncrease!();
     expect(requested, 6);
+  });
+
+  test('RTL painter fills from the thumb toward the physical right', () async {
+    const accent = Color(0xff3e65ff);
+    const track = Color(0xff1f1f1f);
+    const painter = WpSliderPainter(
+      normalizedValue: .2,
+      enabled: true,
+      textDirection: TextDirection.rtl,
+      accentColor: accent,
+      trackColor: track,
+      thumbColor: Colors.white,
+    );
+    final recorder = ui.PictureRecorder();
+    painter.paint(Canvas(recorder), const Size(456, 84));
+    final rendered = await recorder.endRecording().toImage(456, 84);
+    final bytes = await rendered.toByteData(format: ui.ImageByteFormat.rawRgba);
+    Color pixel(int x, int y) {
+      final offset = (y * 456 + x) * 4;
+      return Color.fromARGB(
+        bytes!.getUint8(offset + 3),
+        bytes.getUint8(offset),
+        bytes.getUint8(offset + 1),
+        bytes.getUint8(offset + 2),
+      );
+    }
+
+    expect(pixel(400, 28), accent);
+    expect(pixel(30, 28), track);
   });
 }

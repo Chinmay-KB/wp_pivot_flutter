@@ -25,6 +25,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("native_session", type=Path)
     parser.add_argument("candidate_root", type=Path)
+    parser.add_argument(
+        "--candidate-prefix", default="flutter-final-confirmation-02-"
+    )
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     if args.output.exists():
@@ -40,7 +43,7 @@ def main() -> int:
         native, _ = analyze_tilt(verified)
         native_files.extend(path for path in native_trial.rglob("*") if path.is_file())
 
-        candidate_path = args.candidate_root / f"flutter-final-confirmation-02-{trial_name}"
+        candidate_path = args.candidate_root / f"{args.candidate_prefix}{trial_name}"
         candidate = verify_candidate(candidate_path)
         candidate_frames += len(candidate["frames"])
         observations = [tilt_image_geometry(image(frame)) for frame in candidate["frames"]]

@@ -2,6 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// The pose constants/formula are derived from Microsoft Windows Phone Toolkit
+// TiltEffect, distributed under the Microsoft Public License (MS-PL). See
+// licenses/MS-PL.txt in the package source distribution.
+
 /// Source constants from Windows Phone Toolkit `TiltEffect` (MS-PL).
 @visibleForTesting
 abstract final class WpTiltGeometry {
@@ -177,7 +182,7 @@ class _WpTiltEffectState extends State<WpTiltEffect>
     if (_rotationX != 0 || _rotationY != 0 || _depression != 0) {
       transform
         ..setEntry(3, 2, widget.perspective)
-        ..translateByDouble(0, 0, -_depression, 1)
+        ..multiply(Matrix4.translationValues(0, 0, -_depression))
         ..rotateX(_rotationX)
         // PlaneProjection and Matrix4 use opposite visual Y-rotation signs.
         ..rotateY(-_rotationY);

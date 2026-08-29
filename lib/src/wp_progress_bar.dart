@@ -9,7 +9,7 @@ class WpProgressBar extends StatefulWidget {
   const WpProgressBar({
     super.key,
     this.value,
-    this.color = const Color(0xff1ba1e2),
+    this.color = const Color(0xff3e65ff),
     this.backgroundColor = const Color(0x19ffffff),
     this.horizontalPadding = 12,
     this.indeterminateDuration = const Duration(milliseconds: 4500),
