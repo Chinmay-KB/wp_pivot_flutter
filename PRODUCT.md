@@ -70,6 +70,9 @@ Selawik is the OFL-licensed, metric-compatible fallback on systems without Segoe
 - Pivot evidence release: 57 native emulator trials, 3,830 retained PNGs,
   comparisons, manifests, and raw analysis archives.
 - Package v2.1.0 with `WpPivotView`, `PivotMotion`, and bundled OFL Selawik fonts.
+- Unreleased opt-in Application Bar, Panorama, and Toggle Switch implementations,
+  with WP8.1 emulator pilots and source records under `research/components/`.
+  Their motion fidelity and hardware behavior are not verified.
 - Lumia 1020 hardware validation is pending and must not be implied by emulator results.
 - Roadmap doc (docs/ROADMAP.md), milestones/issues in repo.
 - Archived primary sources collected on the Resources page (Codename Metro PDF, WP7 UI Guide v2.0).

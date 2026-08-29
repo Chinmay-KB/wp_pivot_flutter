@@ -6,7 +6,7 @@ body_class: index-page
 
 <header class="page-mast">
   <div class="mast-title"><h1>Research</h1></div>
-  <div class="mast-copy"><p class="page-deck">Published studies pair recorded Windows Phone behavior with Flutter comparisons. Unverified work stays on the roadmap.</p></div>
+  <div class="mast-copy"><p class="page-deck">Published studies and experimental notes connect Windows Phone sources to the Flutter implementation. Their status stays explicit.</p></div>
 </header>
 
 <section class="manual-section" aria-labelledby="published-title">
@@ -20,12 +20,15 @@ body_class: index-page
   </div>
 </section>
 
-<section class="manual-section" aria-labelledby="next-title">
-  <header class="section-label"><h2 id="next-title">Next</h2></header>
+<section class="manual-section" aria-labelledby="working-title">
+  <header class="section-label"><h2 id="working-title">In progress</h2></header>
   <div class="section-body">
-    <p class="empty-statement">The remaining studies are planned, not claimed.</p>
-    <p class="quiet-note">Motion beyond Pivot, color, typography, and scroll physics remain on the working roadmap.</p>
-    <a class="text-action" href="{{ site.github_repo }}/blob/master/docs/ROADMAP.md">Read the roadmap</a>
+    <a class="featured-record" href="{{ '/research/components/' | relative_url }}">
+      <span class="record-name">Experimental components</span>
+      <span class="record-detail">Application Bar, Panorama, and Toggle Switch implementations with their emulator sources and known limits.</span>
+      <span class="status-badge">Research notes</span>
+    </a>
+    <p class="quiet-note">Their geometry is source-backed, but calibrated motion and Lumia validation remain open.</p>
   </div>
 </section>
 

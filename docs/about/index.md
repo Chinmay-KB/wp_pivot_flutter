@@ -11,7 +11,10 @@ body_class: index-page
 
 <section class="manual-section" aria-labelledby="current-title">
   <header class="section-label"><h2 id="current-title">What exists</h2></header>
-  <div class="section-body"><p>Version 2.1.0 includes <code>WpPivotView</code>, configurable motion, gesture handling, and the OFL-licensed Selawik fallback. The first Pivot study compares it with WP8.1 emulator recordings.</p></div>
+  <div class="section-body">
+    <p>Version 2.1.0 includes <code>WpPivotView</code>, configurable motion, gesture handling, and the OFL-licensed Selawik fallback. The first Pivot study compares it with WP8.1 emulator recordings.</p>
+    <p>An unreleased, opt-in library adds experimental Application Bar, Panorama, and Toggle Switch controls. Their current evidence and limits are recorded in the <a href="{{ '/research/components/' | relative_url }}">component study</a>.</p>
+  </div>
 </section>
 
 <section class="manual-section" aria-labelledby="scope-title">
