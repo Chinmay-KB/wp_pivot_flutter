@@ -16,8 +16,10 @@ jobs:
           flutter-version: 3.22.0
           channel: stable
           cache: true
-      - name: Resolve package without the newer example
-        run: flutter pub get --no-example
+      - name: Resolve package at its declared minimum
+        # Flutter 3.22 predates `pub get --no-example` and does not resolve the
+        # example package implicitly, so the plain command is the compatible form.
+        run: flutter pub get
       - name: Analyze package at its declared minimum
         run: flutter analyze --no-pub
       - name: Test package at its declared minimum
