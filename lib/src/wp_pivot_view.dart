@@ -231,6 +231,11 @@ class _WpPivotViewState extends State<WpPivotView>
     _updateDrag();
   }
 
+  bool _isBlockedDrag(double delta) =>
+      !widget.wrap &&
+      ((_selected == 0 && delta > 0) ||
+          (_selected == widget.children.length - 1 && delta < 0));
+
   void _updateDrag() {
     if (!_dragging) return;
     final delta = _current.dx - _bodyOrigin;
@@ -239,9 +244,7 @@ class _WpPivotViewState extends State<WpPivotView>
       _headerDragStarted = true;
     }
     final headerDelta = _current.dx - _headerOrigin;
-    final blocked = !widget.wrap &&
-        ((_selected == 0 && delta > 0) ||
-            (_selected == widget.children.length - 1 && delta < 0));
+    final blocked = _isBlockedDrag(delta);
     _bodyX = delta.clamp(-_width, _width) * (blocked ? .2 : 1);
     _headerX = headerDelta /
         _width *
@@ -250,24 +253,34 @@ class _WpPivotViewState extends State<WpPivotView>
     setState(() {});
   }
 
+  double _releaseVelocity() {
+    final stopped = _stationaryMoveTime != null &&
+        _lastPointerTime - _stationaryMoveTime! >=
+            const Duration(milliseconds: 1);
+    final staleMotion =
+        _lastPointerTime - _lastMotionTime > widget.motion.flingStopTimeout;
+    return stopped || staleMotion ? 0.0 : _segmentVelocity;
+  }
+
+  bool _canCommitDrag(int target, bool isFling) {
+    final crossedThreshold =
+        _bodyX.abs() >= _width * widget.motion.commitFraction;
+    final targetExists =
+        widget.wrap || (target >= 0 && target < widget.children.length);
+    return (crossedThreshold || isFling) && targetExists;
+  }
+
   void _endDrag(DragEndDetails details) {
     if (!_dragging) return;
     // The native stream includes a same-position Move immediately before Up.
     // Ignore that co-timed release sample, but honor a separate stationary Move
     // as a stop (core-01/flick_next_r02 versus reverse_after_release_r03).
-    final stopped = _stationaryMoveTime != null &&
-        _lastPointerTime - _stationaryMoveTime! >=
-            const Duration(milliseconds: 1);
-    final velocity = stopped ||
-            _lastPointerTime - _lastMotionTime > widget.motion.flingStopTimeout
-        ? 0.0
-        : _segmentVelocity;
+    final velocity = _releaseVelocity();
     final isFling = velocity.abs() >= widget.motion.flingVelocity * _scale;
     final sign = isFling ? velocity.sign : _bodyX.sign;
     final direction = sign < 0 ? 1 : -1;
     final target = _selected + direction;
-    if ((_bodyX.abs() >= _width * widget.motion.commitFraction || isFling) &&
-        (widget.wrap || (target >= 0 && target < widget.children.length))) {
+    if (_canCommitDrag(target, isFling)) {
       _select(_wrapped(target), direction: direction);
     } else {
       _cancelDrag();

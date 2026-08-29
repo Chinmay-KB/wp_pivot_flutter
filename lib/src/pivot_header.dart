@@ -30,60 +30,68 @@ class PivotHeader extends StatelessWidget {
   static double span(double width, double scale) =>
       ((width / scale + 22.667).roundToDouble()) * scale;
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _entry(int index, double left) {
+    final isSelected = index == selected;
+    final onTap = onSelected == null ? null : () => onSelected!(index);
+    final color = isSelected ? selectedColor : unselectedColor;
+    return Positioned(
+      left: left,
+      top: 0,
+      width: widths[index] + 12 * scale,
+      height: height - 41 * scale,
+      child: Semantics(
+        button: true,
+        selected: isSelected,
+        label: titles[index],
+        excludeSemantics: true,
+        onTap: onTap,
+        child: TextButton(
+          onPressed: onTap,
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+            alignment: Alignment.topLeft,
+            minimumSize: Size.zero,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            overlayColor: Colors.transparent,
+            foregroundColor: color,
+            disabledForegroundColor: color,
+            shape: const RoundedRectangleBorder(),
+          ).copyWith(
+            side: WidgetStateProperty.resolveWith(
+              (states) => states.contains(WidgetState.focused)
+                  ? BorderSide(color: selectedColor)
+                  : BorderSide.none,
+            ),
+          ),
+          child: Text(
+            titles[index],
+            maxLines: 1,
+            softWrap: false,
+            overflow: TextOverflow.visible,
+            style: headerStyle.copyWith(color: color),
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _entries() {
     final entries = <Widget>[];
     final count = titles.length;
-    if (count > 0 && height > 41 * scale) {
-      final previous = (anchor - 1) % count;
-      var x = 21 * scale + translation - span(widths[previous], scale);
-      for (var order = -1; order < count; order++) {
-        final index = (anchor + order) % count;
-        if (order >= 0 || translation > 0) {
-          entries.add(Positioned(
-            left: x,
-            top: 0,
-            width: widths[index] + 12 * scale,
-            height: height - 41 * scale,
-            child: Semantics(
-              button: true,
-              selected: index == selected,
-              label: titles[index],
-              excludeSemantics: true,
-              onTap: onSelected == null ? null : () => onSelected!(index),
-              child: TextButton(
-                onPressed: onSelected == null ? null : () => onSelected!(index),
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  alignment: Alignment.topLeft,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  overlayColor: Colors.transparent,
-                  foregroundColor:
-                      index == selected ? selectedColor : unselectedColor,
-                  disabledForegroundColor:
-                      index == selected ? selectedColor : unselectedColor,
-                  shape: const RoundedRectangleBorder(),
-                ).copyWith(
-                    side: WidgetStateProperty.resolveWith((states) =>
-                        states.contains(WidgetState.focused)
-                            ? BorderSide(color: selectedColor)
-                            : BorderSide.none)),
-                child: Text(titles[index],
-                    maxLines: 1,
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
-                    style: headerStyle.copyWith(
-                        color: index == selected
-                            ? selectedColor
-                            : unselectedColor)),
-              ),
-            ),
-          ));
-        }
-        x += span(widths[index], scale);
-      }
+    if (count == 0 || height <= 41 * scale) return entries;
+    final previous = (anchor - 1) % count;
+    var x = 21 * scale + translation - span(widths[previous], scale);
+    for (var order = -1; order < count; order++) {
+      final index = (anchor + order) % count;
+      if (order >= 0 || translation > 0) entries.add(_entry(index, x));
+      x += span(widths[index], scale);
     }
+    return entries;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final entries = _entries();
     return SizedBox(
         height: height,
         child: ClipRect(

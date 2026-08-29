@@ -1,0 +1,78 @@
+name: Flutter quality
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  minimum-version:
+    name: Flutter 3.24 compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: 3.24.0
+          cache: true
+      - name: Isolate the publishable root package
+        run: mv example "$RUNNER_TEMP/wp_pivot_flutter_example"
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze at the supported floor
+        run: flutter analyze
+      - name: Test at the supported floor
+        run: flutter test
+
+  example-minimum-version:
+    name: Example on Flutter 3.44
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: 3.44.0
+          cache: true
+      - name: Install example dependencies
+        working-directory: example
+        run: flutter pub get
+      - name: Analyze example at its supported floor
+        working-directory: example
+        run: flutter analyze
+      - name: Test example at its supported floor
+        working-directory: example
+        run: flutter test
+
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get --no-example
+      - name: Install example dependencies
+        working-directory: example
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Analyze example application
+        working-directory: example
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: Test example application
+        working-directory: example
+        run: flutter test
+      - name: Install cyclomatic-complexity checker
+        run: dart pub global activate dartrics 1.4.0
+      - name: Enforce maximum cyclomatic complexity of 10
+        run: |
+          dart pub global run dartrics:dartrics analyze . --config analysis_options.yaml --snapshot none --strict-dismiss --fatal-warnings
+          dart pub global run dartrics:dartrics analyze --root example --config analysis_options.yaml --snapshot none --strict-dismiss --fatal-warnings

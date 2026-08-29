@@ -4,8 +4,8 @@ version: 2.1.0
 homepage: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
-  flutter: ">=3.22.0"
+  sdk: ">=3.5.0 <4.0.0"
+  flutter: ">=3.24.0"
 
 dependencies:
   flutter:
@@ -17,7 +17,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^6.0.0
+  # Keep the lint set resolvable on the package's Flutter 3.24 / Dart 3.5 floor.
+  flutter_lints: ">=5.0.0 <7.0.0"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

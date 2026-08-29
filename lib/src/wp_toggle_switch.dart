@@ -289,6 +289,220 @@ class _WpToggleSwitchState extends State<WpToggleSwitch> {
     );
   }
 
+  Widget _buildSwitchVisual({
+    required double thumbPosition,
+    required Color accentColor,
+    required Duration duration,
+  }) {
+    if (duration == Duration.zero) {
+      return _buildTrack(
+        thumbPosition: thumbPosition,
+        accentColor: accentColor,
+      );
+    }
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(end: widget.value ? 1.0 : 0.0),
+      duration: duration,
+      curve: Curves.easeOutExpo,
+      builder: (context, position, child) => _buildTrack(
+        thumbPosition: position,
+        accentColor: accentColor,
+      ),
+    );
+  }
+
+  Widget _decorateSwitchVisual(Widget switchVisual) => SizedBox(
+        width: WpToggleSwitchGeometry.trackWidth,
+        height: WpToggleSwitchGeometry.trackHeight,
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: <Widget>[
+            switchVisual,
+            if (_showFocusHighlight && _keyboardInteraction)
+              const Positioned.fill(
+                child: IgnorePointer(
+                  child: SizedBox(
+                    key: ValueKey('wp-toggle-focus-ring'),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.fromBorderSide(
+                          BorderSide(color: Colors.white, width: 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      );
+
+  Widget _buildContent({
+    required TextScaler textScaler,
+    required TextStyle? headerStyle,
+    required TextStyle? valueStyle,
+    required String label,
+    required Widget switchVisual,
+  }) =>
+      ConstrainedBox(
+        constraints: BoxConstraints(minHeight: textScaler.scale(76)),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            if (widget.header != null) Text(widget.header!, style: headerStyle),
+            const SizedBox(height: 4),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: valueStyle,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                switchVisual,
+              ],
+            ),
+          ],
+        ),
+      );
+
+  void _handleFocusChange(bool focused) {
+    if (!focused) {
+      if (_showFocusHighlight || _keyboardInteraction) {
+        setState(() {
+          _keyboardInteraction = false;
+          _showFocusHighlight = false;
+        });
+      }
+      return;
+    }
+    if (_suppressKeyboardFocusHighlight) return;
+    if (FocusManager.instance.highlightMode == FocusHighlightMode.traditional) {
+      setState(() {
+        _keyboardInteraction = true;
+        _showFocusHighlight = _focusNode.hasFocus;
+      });
+    }
+  }
+
+  void _handleShowFocusHighlight(bool show) {
+    final visible = show && _keyboardInteraction;
+    if (_showFocusHighlight != visible) {
+      setState(() => _showFocusHighlight = visible);
+    }
+  }
+
+  Object? _invokeActivation(ActivateIntent intent) {
+    if (!_keyboardInteraction) {
+      setState(() {
+        _keyboardInteraction = true;
+        _showFocusHighlight = _focusNode.hasFocus;
+      });
+    }
+    _request(!widget.value);
+    return null;
+  }
+
+  void _handleTap() {
+    if (!_pointerMoved) _request(!widget.value);
+  }
+
+  void _handlePointerDown(PointerDownEvent event) {
+    _suppressKeyboardFocusHighlight = true;
+    _keyboardInteraction = false;
+    if (_showFocusHighlight) {
+      setState(() => _showFocusHighlight = false);
+    }
+    _focusNode.requestFocus();
+    _dragStartX = event.position.dx;
+    _dragLatestX = _dragStartX;
+    _pointerMoved = false;
+    _pointerCancelled = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _suppressKeyboardFocusHighlight = false;
+    });
+  }
+
+  void _handlePointerMove(PointerMoveEvent event) {
+    _dragLatestX = event.position.dx;
+    _pointerMoved =
+        _pointerMoved || (_dragLatestX - _dragStartX).abs() > _tapSlop;
+  }
+
+  GestureTapCallback? get _tapCallback => _enabled ? _handleTap : null;
+
+  GestureTapCallback? get _semanticTapCallback =>
+      _enabled ? () => _request(!widget.value) : null;
+
+  GestureDragStartCallback? _dragStartCallback(TextDirection direction) =>
+      _enabled ? (details) => _dragStart(details, direction) : null;
+
+  GestureDragUpdateCallback? _dragUpdateCallback(TextDirection direction) =>
+      _enabled ? (details) => _dragUpdate(details, direction) : null;
+
+  GestureDragEndCallback? _dragEndCallback(TextDirection direction) =>
+      _enabled ? (_) => _dragEnd(direction) : null;
+
+  GestureDragCancelCallback? _dragCancelCallback(TextDirection direction) =>
+      _enabled ? () => _dragEnd(direction, cancelled: true) : null;
+
+  void Function(PointerDownEvent)? get _pointerDownCallback =>
+      _enabled ? _handlePointerDown : null;
+
+  void Function(PointerCancelEvent)? get _pointerCancelCallback =>
+      _enabled ? (_) => _pointerCancelled = true : null;
+
+  void Function(PointerMoveEvent)? get _pointerMoveCallback =>
+      _enabled ? _handlePointerMove : null;
+
+  Widget _buildInteraction({
+    required TextDirection direction,
+    required String label,
+    required Widget content,
+  }) =>
+      FocusableActionDetector(
+        focusNode: _focusNode,
+        enabled: _enabled,
+        autofocus: widget.autofocus,
+        onFocusChange: _handleFocusChange,
+        onShowFocusHighlight: _handleShowFocusHighlight,
+        shortcuts: const <ShortcutActivator, Intent>{
+          SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
+          SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+        },
+        actions: <Type, Action<Intent>>{
+          ActivateIntent: CallbackAction<ActivateIntent>(
+            onInvoke: _invokeActivation,
+          ),
+        },
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: _tapCallback,
+          onHorizontalDragStart: _dragStartCallback(direction),
+          onHorizontalDragUpdate: _dragUpdateCallback(direction),
+          onHorizontalDragEnd: _dragEndCallback(direction),
+          onHorizontalDragCancel: _dragCancelCallback(direction),
+          child: Listener(
+            onPointerDown: _pointerDownCallback,
+            onPointerCancel: _pointerCancelCallback,
+            onPointerMove: _pointerMoveCallback,
+            child: Semantics(
+              container: true,
+              toggled: widget.value,
+              enabled: _enabled,
+              label: widget.header == null ? label : '${widget.header}, $label',
+              onTap: _semanticTapCallback,
+              child: ExcludeSemantics(child: content),
+            ),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     final direction = Directionality.of(context);
@@ -312,176 +526,26 @@ class _WpToggleSwitchState extends State<WpToggleSwitch> {
           color: _enabled ? const Color(0xfff8f8f8) : const Color(0xff484848),
         );
 
-    Widget switchVisual;
-    if (duration == Duration.zero) {
-      switchVisual = _buildTrack(
+    final switchVisual = _decorateSwitchVisual(
+      _buildSwitchVisual(
         thumbPosition: thumbPosition,
         accentColor: activeColor,
-      );
-    } else {
-      switchVisual = TweenAnimationBuilder<double>(
-        tween: Tween<double>(
-          end: widget.value ? 1.0 : 0.0,
-        ),
         duration: duration,
-        curve: Curves.easeOutExpo,
-        builder: (context, position, child) => _buildTrack(
-          thumbPosition: position,
-          accentColor: activeColor,
-        ),
-      );
-    }
-
-    switchVisual = SizedBox(
-      width: WpToggleSwitchGeometry.trackWidth,
-      height: WpToggleSwitchGeometry.trackHeight,
-      child: Stack(
-        clipBehavior: Clip.hardEdge,
-        children: <Widget>[
-          switchVisual,
-          if (_showFocusHighlight && _keyboardInteraction)
-            const Positioned.fill(
-              child: IgnorePointer(
-                child: SizedBox(
-                  key: ValueKey('wp-toggle-focus-ring'),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      border: Border.fromBorderSide(
-                        BorderSide(color: Colors.white, width: 1),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-        ],
       ),
     );
 
-    final content = ConstrainedBox(
-      constraints: BoxConstraints(minHeight: textScaler.scale(76)),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (widget.header != null) Text(widget.header!, style: headerStyle),
-          const SizedBox(height: 4),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Expanded(
-                child: Text(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: valueStyle,
-                ),
-              ),
-              const SizedBox(width: 16),
-              switchVisual,
-            ],
-          ),
-        ],
-      ),
+    final content = _buildContent(
+      textScaler: textScaler,
+      headerStyle: headerStyle,
+      valueStyle: valueStyle,
+      label: label,
+      switchVisual: switchVisual,
     );
 
-    return FocusableActionDetector(
-      focusNode: _focusNode,
-      enabled: _enabled,
-      autofocus: widget.autofocus,
-      onFocusChange: (focused) {
-        if (!focused) {
-          if (_showFocusHighlight || _keyboardInteraction) {
-            setState(() {
-              _keyboardInteraction = false;
-              _showFocusHighlight = false;
-            });
-          }
-          return;
-        }
-        if (_suppressKeyboardFocusHighlight) return;
-        if (FocusManager.instance.highlightMode ==
-            FocusHighlightMode.traditional) {
-          setState(() {
-            _keyboardInteraction = true;
-            _showFocusHighlight = _focusNode.hasFocus;
-          });
-        }
-      },
-      onShowFocusHighlight: (show) {
-        final visible = show && _keyboardInteraction;
-        if (_showFocusHighlight != visible) {
-          setState(() => _showFocusHighlight = visible);
-        }
-      },
-      shortcuts: const <ShortcutActivator, Intent>{
-        SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
-        SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
-      },
-      actions: <Type, Action<Intent>>{
-        ActivateIntent: CallbackAction<ActivateIntent>(
-          onInvoke: (_) {
-            if (!_keyboardInteraction) {
-              setState(() {
-                _keyboardInteraction = true;
-                _showFocusHighlight = _focusNode.hasFocus;
-              });
-            }
-            _request(!widget.value);
-            return null;
-          },
-        ),
-      },
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: _enabled
-            ? () {
-                if (!_pointerMoved) _request(!widget.value);
-              }
-            : null,
-        onHorizontalDragStart:
-            _enabled ? (details) => _dragStart(details, direction) : null,
-        onHorizontalDragUpdate:
-            _enabled ? (details) => _dragUpdate(details, direction) : null,
-        onHorizontalDragEnd: _enabled ? (_) => _dragEnd(direction) : null,
-        onHorizontalDragCancel:
-            _enabled ? () => _dragEnd(direction, cancelled: true) : null,
-        child: Listener(
-          onPointerDown: _enabled
-              ? (event) {
-                  _suppressKeyboardFocusHighlight = true;
-                  _keyboardInteraction = false;
-                  if (_showFocusHighlight) {
-                    setState(() => _showFocusHighlight = false);
-                  }
-                  _focusNode.requestFocus();
-                  _dragStartX = event.position.dx;
-                  _dragLatestX = _dragStartX;
-                  _pointerMoved = false;
-                  _pointerCancelled = false;
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    _suppressKeyboardFocusHighlight = false;
-                  });
-                }
-              : null,
-          onPointerCancel: _enabled ? (_) => _pointerCancelled = true : null,
-          onPointerMove: _enabled
-              ? (event) {
-                  _dragLatestX = event.position.dx;
-                  _pointerMoved = _pointerMoved ||
-                      (_dragLatestX - _dragStartX).abs() > _tapSlop;
-                }
-              : null,
-          child: Semantics(
-            container: true,
-            toggled: widget.value,
-            enabled: _enabled,
-            label: widget.header == null ? label : '${widget.header}, $label',
-            onTap: _enabled ? () => _request(!widget.value) : null,
-            child: ExcludeSemantics(child: content),
-          ),
-        ),
-      ),
+    return _buildInteraction(
+      direction: direction,
+      label: label,
+      content: content,
     );
   }
 }

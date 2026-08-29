@@ -9,7 +9,28 @@ analyzer:
     - windows/**
     - macos/**
     - linux/**
+    # The example is a separate package with its own SDK floor and analysis.
+    - example/**
 include: package:flutter_lints/flutter.yaml
+
+dartrics:
+  exclude:
+    - artifacts/**
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+    - example/**
+  metrics:
+    # Dartrics reports values at the configured threshold, so 11 enforces a
+    # maximum cyclomatic complexity of 10.
+    cyclomatic-complexity:
+      warning: 11
+    cognitive-complexity: false
+    number-of-parameters: false
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

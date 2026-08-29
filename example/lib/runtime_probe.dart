@@ -57,112 +57,122 @@ class _RuntimeProbeState extends State<RuntimeProbe> {
     }
   }
 
-  Future<void> _run() async {
-    if (_running) return;
-    _running = true;
-    _frames.clear();
-    _trials.clear();
-    final started = DateTime.now().toUtc().toIso8601String();
-    String? failure;
-    SchedulerBinding.instance.addTimingsCallback(_timings);
-    try {
-      final cases =
-          jsonDecode(await rootBundle.loadString('assets/runtime_replays.json'))
-              as List;
-      // One warm-up per scenario, then three measured repetitions. No artificial
-      // frame pumping during each gesture/animation: real browser scheduling.
-      for (var repetition = 0; repetition < 4; repetition++) {
-        for (final scenario in cases) {
-          setState(() {
-            _trialKey = UniqueKey();
-          });
-          await SchedulerBinding.instance.endOfFrame;
-          await Future<void>.delayed(const Duration(milliseconds: 400));
-          _selections = [];
-          final surface =
-              _surface.currentContext!.findRenderObject()! as RenderBox;
-          final viewId = View.of(_surface.currentContext!).viewId;
-          final scale = surface.size.width / 480;
-          final events = scenario['replay']['events'] as List;
-          final firstTime = (events.first['t_ms'] as num).toDouble();
-          final start = _now();
-          final delivered = <Map<String, dynamic>>[];
-          Offset previous = Offset.zero;
-          for (final event in events) {
-            final planned = (event['t_ms'] as num).toDouble() - firstTime;
-            await _until(start + planned);
-            final point = surface.localToGlobal(Offset(
-                (event['x'] as num).toDouble() * scale,
-                (event['y'] as num).toDouble() * scale));
-            final actual = _now();
-            final stamp = Duration(microseconds: (actual * 1000).round());
-            final PointerEvent input;
-            switch (event['event']) {
-              case 'down':
-                _pointer++;
-                input = PointerDownEvent(
-                    viewId: viewId,
-                    pointer: _pointer,
-                    position: point,
-                    timeStamp: stamp);
-              case 'move':
-                input = PointerMoveEvent(
-                    viewId: viewId,
-                    pointer: _pointer,
-                    position: point,
-                    delta: point - previous,
-                    timeStamp: stamp);
-              case 'up':
-                input = PointerUpEvent(
-                    viewId: viewId,
-                    pointer: _pointer,
-                    position: point,
-                    timeStamp: stamp);
-              default:
-                throw StateError('Unknown input phase');
-            }
-            WidgetsBinding.instance.handlePointerEvent(input);
-            previous = point;
-            delivered.add({
-              'event': event['event'],
-              'planned_ms': planned,
-              'actual_ms': actual - start,
-              'absolute_us': (actual * 1000).round(),
-              'x': event['x'],
-              'y': event['y']
-            });
-          }
-          await Future<void>.delayed(const Duration(milliseconds: 1100));
-          _trials.add({
-            'scenario': scenario['id'],
-            'repetition': repetition,
-            'warmup': repetition == 0,
-            'start_us': (start * 1000).round(),
-            'end_us': (_now() * 1000).round(),
-            'inputs': delivered,
-            'selections': _selections,
-            'expected_selections': [
-              for (final e in scenario['replay']['selection_events'] as List)
-                e['index']
-            ],
-            'replay_sha256': scenario['sha256']
-          });
-        }
-      }
-      // Web batches timing reports. Request only post-trial frames to flush them;
-      // these are outside every trial window and excluded from analysis.
-      for (var i = 0; i < 3; i++) {
-        await Future<void>.delayed(const Duration(milliseconds: 150));
-        SchedulerBinding.instance.scheduleFrame();
-        await SchedulerBinding.instance.endOfFrame;
-      }
-    } catch (error, stack) {
-      failure = '$error\n$stack';
-    } finally {
-      SchedulerBinding.instance.removeTimingsCallback(_timings);
-      _running = false;
+  PointerEvent _pointerEvent({
+    required Object? phase,
+    required int viewId,
+    required Offset point,
+    required Offset previous,
+    required Duration stamp,
+  }) {
+    switch (phase) {
+      case 'down':
+        _pointer++;
+        return PointerDownEvent(
+          viewId: viewId,
+          pointer: _pointer,
+          position: point,
+          timeStamp: stamp,
+        );
+      case 'move':
+        return PointerMoveEvent(
+          viewId: viewId,
+          pointer: _pointer,
+          position: point,
+          delta: point - previous,
+          timeStamp: stamp,
+        );
+      case 'up':
+        return PointerUpEvent(
+          viewId: viewId,
+          pointer: _pointer,
+          position: point,
+          timeStamp: stamp,
+        );
+      default:
+        throw StateError('Unknown input phase');
     }
-    if (!mounted) return;
+  }
+
+  Future<void> _replayScenario(dynamic scenario, int repetition) async {
+    setState(() {
+      _trialKey = UniqueKey();
+    });
+    await SchedulerBinding.instance.endOfFrame;
+    await Future<void>.delayed(const Duration(milliseconds: 400));
+    _selections = [];
+    final surface = _surface.currentContext!.findRenderObject()! as RenderBox;
+    final viewId = View.of(_surface.currentContext!).viewId;
+    final scale = surface.size.width / 480;
+    final events = scenario['replay']['events'] as List;
+    final firstTime = (events.first['t_ms'] as num).toDouble();
+    final start = _now();
+    final delivered = <Map<String, dynamic>>[];
+    var previous = Offset.zero;
+    for (final event in events) {
+      final planned = (event['t_ms'] as num).toDouble() - firstTime;
+      await _until(start + planned);
+      final point = surface.localToGlobal(Offset(
+        (event['x'] as num).toDouble() * scale,
+        (event['y'] as num).toDouble() * scale,
+      ));
+      final actual = _now();
+      final stamp = Duration(microseconds: (actual * 1000).round());
+      final input = _pointerEvent(
+        phase: event['event'],
+        viewId: viewId,
+        point: point,
+        previous: previous,
+        stamp: stamp,
+      );
+      WidgetsBinding.instance.handlePointerEvent(input);
+      previous = point;
+      delivered.add({
+        'event': event['event'],
+        'planned_ms': planned,
+        'actual_ms': actual - start,
+        'absolute_us': (actual * 1000).round(),
+        'x': event['x'],
+        'y': event['y'],
+      });
+    }
+    await Future<void>.delayed(const Duration(milliseconds: 1100));
+    _trials.add({
+      'scenario': scenario['id'],
+      'repetition': repetition,
+      'warmup': repetition == 0,
+      'start_us': (start * 1000).round(),
+      'end_us': (_now() * 1000).round(),
+      'inputs': delivered,
+      'selections': _selections,
+      'expected_selections': [
+        for (final event in scenario['replay']['selection_events'] as List)
+          event['index'],
+      ],
+      'replay_sha256': scenario['sha256'],
+    });
+  }
+
+  Future<void> _runTrials(List<dynamic> cases) async {
+    // One warm-up per scenario, then three measured repetitions. No artificial
+    // frame pumping during each gesture/animation: real browser scheduling.
+    for (var repetition = 0; repetition < 4; repetition++) {
+      for (final scenario in cases) {
+        await _replayScenario(scenario, repetition);
+      }
+    }
+  }
+
+  Future<void> _flushTimings() async {
+    // Web batches timing reports. Request only post-trial frames to flush them;
+    // these are outside every trial window and excluded from analysis.
+    for (var i = 0; i < 3; i++) {
+      await Future<void>.delayed(const Duration(milliseconds: 150));
+      SchedulerBinding.instance.scheduleFrame();
+      await SchedulerBinding.instance.endOfFrame;
+    }
+  }
+
+  void _reportResult(String started, String? failure) {
     final view = View.of(context);
     _report(jsonEncode({
       'schema_version': 1,
@@ -179,21 +189,45 @@ class _RuntimeProbeState extends State<RuntimeProbe> {
       'device_pixel_ratio': view.devicePixelRatio,
       'host_view_physical_size': [
         view.physicalSize.width,
-        view.physicalSize.height
+        view.physicalSize.height,
       ],
       'trials': _trials,
       'frames': [
-        for (final f in _frames)
+        for (final frame in _frames)
           {
-            'number': f.frameNumber,
+            'number': frame.frameNumber,
             for (final phase in FramePhase.values)
-              phase.name: f.timestampInMicroseconds(phase),
-            'build_us': f.buildDuration.inMicroseconds,
-            'raster_us': f.rasterDuration.inMicroseconds,
-            'total_us': f.totalSpan.inMicroseconds,
-          }
-      ]
+              phase.name: frame.timestampInMicroseconds(phase),
+            'build_us': frame.buildDuration.inMicroseconds,
+            'raster_us': frame.rasterDuration.inMicroseconds,
+            'total_us': frame.totalSpan.inMicroseconds,
+          },
+      ],
     }).toJS);
+  }
+
+  Future<void> _run() async {
+    if (_running) return;
+    _running = true;
+    _frames.clear();
+    _trials.clear();
+    final started = DateTime.now().toUtc().toIso8601String();
+    String? failure;
+    SchedulerBinding.instance.addTimingsCallback(_timings);
+    try {
+      final cases =
+          jsonDecode(await rootBundle.loadString('assets/runtime_replays.json'))
+              as List<dynamic>;
+      await _runTrials(cases);
+      await _flushTimings();
+    } catch (error, stack) {
+      failure = '$error\n$stack';
+    } finally {
+      SchedulerBinding.instance.removeTimingsCallback(_timings);
+      _running = false;
+    }
+    if (!mounted) return;
+    _reportResult(started, failure);
   }
 
   @override
