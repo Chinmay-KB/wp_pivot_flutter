@@ -12,8 +12,8 @@ body_class: index-page
 <section class="manual-section" aria-labelledby="current-title">
   <header class="section-label"><h2 id="current-title">What exists</h2></header>
   <div class="section-body">
-    <p>Version 2.1.0 includes <code>WpPivotView</code>, configurable motion, gesture handling, and the OFL-licensed Selawik fallback. The first Pivot study compares it with WP8.1 emulator recordings.</p>
-    <p>An unreleased, opt-in library adds experimental Application Bar, Panorama, and Toggle Switch controls. Their current evidence and limits are recorded in the <a href="{{ '/research/components/' | relative_url }}">component study</a>.</p>
+    <p>Version 2.2.0 includes <code>WpPivotView</code>, configurable motion, gesture handling, and the OFL-licensed Selawik fallback. The first Pivot study compares it with WP8.1 emulator recordings.</p>
+    <p>An opt-in library adds six experimental controls. Slider, ProgressBar, and TiltEffect have a <a href="{{ '/research/components/micro-controls/' | relative_url }}">held-out comparison study</a>; the earlier three controls and their limits remain in the <a href="{{ '/research/components/' | relative_url }}">component index</a>.</p>
   </div>
 </section>
 

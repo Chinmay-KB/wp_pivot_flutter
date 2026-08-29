@@ -28,7 +28,8 @@ flutter test --no-pub tools/components/render_test.dart `
   --dart-define=OUTPUT=C:/absolute/new-flutter-replay
 ```
 
-`COMPONENT` accepts `application-bar`, `panorama`, or `toggle-switch`. Replays
+`COMPONENT` accepts `application-bar`, `panorama`, `toggle-switch`, or
+`micro-controls`. Set `DURATION_MS` for pointer-free progress trials. Replays
 export original receipt events, PNG frames, timestamps and selected/clicked
 outcomes. Test-clock rendering is not a real-time performance measurement and
 does not establish native/Flutter clock alignment. Preserve source snapshots

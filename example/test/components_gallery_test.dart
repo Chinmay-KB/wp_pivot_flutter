@@ -21,7 +21,7 @@ void _phoneViewport(WidgetTester tester) {
 
 Duration _homeToAppBarDuration() {
   final timing = WpTurnstileFeatherTiming(
-    outgoingMaxIndex: 5,
+    outgoingMaxIndex: 8,
     incomingMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
   );
   return timing.routeDuration();
@@ -89,7 +89,7 @@ void main() {
     await tester.pumpWidget(_gallery());
     await _tapGalleryEntry(tester, 'application bar');
     await tester.pump();
-    final outPhase = WpTurnstileFeather.forwardOutPhaseMsFor(5);
+    final outPhase = WpTurnstileFeather.forwardOutPhaseMsFor(8);
     await tester.pump(Duration(milliseconds: outPhase + 50));
     final title = tester.widget<Opacity>(find.descendant(
       of: find.byType(ApplicationBarDemo),

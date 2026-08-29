@@ -17,6 +17,11 @@ body_class: index-page
       <span class="record-detail">57 WP8.1 emulator trials, Flutter comparisons, raw evidence, and recorded limits.</span>
       <span class="status-badge status-available">Published</span>
     </a>
+    <a class="featured-record" href="{{ '/research/components/micro-controls/' | relative_url }}">
+      <span class="record-name">Micro controls</span>
+      <span class="record-detail">Slider, ProgressBar, and TiltEffect across 17 WP8.1 emulator trials and retained Flutter input replays.</span>
+      <span class="status-badge status-available">Published</span>
+    </a>
   </div>
 </section>
 
@@ -25,10 +30,10 @@ body_class: index-page
   <div class="section-body">
     <a class="featured-record" href="{{ '/research/components/' | relative_url }}">
       <span class="record-name">Experimental components</span>
-      <span class="record-detail">Application Bar, Panorama, and Toggle Switch implementations with their emulator sources and known limits.</span>
+      <span class="record-detail">Application Bar, Panorama, and Toggle Switch pilots plus links to the calibrated micro-control batch.</span>
       <span class="status-badge">Research notes</span>
     </a>
-    <p class="quiet-note">Their geometry is source-backed, but calibrated motion and Lumia validation remain open.</p>
+    <p class="quiet-note">The earlier batch still needs calibrated motion. Lumia validation remains open for every study.</p>
   </div>
 </section>
 

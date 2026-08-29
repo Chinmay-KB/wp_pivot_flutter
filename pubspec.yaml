@@ -1,6 +1,6 @@
 name: wp_pivot_flutter
 description: Windows Phone style Pivot navigation for Flutter, with cyclic headers, gesture tracking, and configurable page transitions.
-version: 2.1.0
+version: 2.2.0
 homepage: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 environment:

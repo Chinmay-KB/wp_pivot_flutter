@@ -1,6 +1,7 @@
 // Opt-in deterministic rendering of SDK receipt events, not a live benchmark.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -13,10 +14,15 @@ void main() {
   const component = String.fromEnvironment('COMPONENT');
   const eventsPath = String.fromEnvironment('EVENTS');
   const outputPath = String.fromEnvironment('OUTPUT');
+  const minimumDurationMs = int.fromEnvironment('DURATION_MS');
   testWidgets('render experimental component from SDK receipt inputs',
       (tester) async {
-    expect(
-        ['application-bar', 'panorama', 'toggle-switch'], contains(component));
+    expect([
+      'application-bar',
+      'panorama',
+      'toggle-switch',
+      'micro-controls',
+    ], contains(component));
     expect(eventsPath, isNotEmpty);
     expect(outputPath, isNotEmpty);
     final output = Directory(outputPath);
@@ -65,14 +71,19 @@ void main() {
         home: _ReferenceScene(component: component, changes: changes),
       ),
     ));
-    await tester.pumpAndSettle();
+    if (component == 'micro-controls') {
+      // The native scene contains a continuously indeterminate ProgressBar.
+      await tester.pump();
+    } else {
+      await tester.pumpAndSettle();
+    }
     final events = File(eventsPath)
         .readAsLinesSync()
         .where((line) => line.isNotEmpty)
         .map((line) => jsonDecode(line) as Map<String, dynamic>)
         .where((event) => event['event'] == 'pointer')
         .toList();
-    expect(events, isNotEmpty);
+    if (component != 'micro-controls') expect(events, isNotEmpty);
     final steps = <({int us, Map<String, dynamic>? event})>[];
     var previousEventTime = -1;
     var pressed = false;
@@ -96,7 +107,7 @@ void main() {
       steps.add((us: us, event: event));
     }
     expect(pressed, isFalse);
-    final end = previousEventTime + 1000000;
+    final end = math.max(previousEventTime + 1000000, minimumDurationMs * 1000);
     for (var us = 0; us <= end; us += 33333) {
       steps.add((us: us, event: null));
     }
@@ -154,6 +165,7 @@ void main() {
       'selection_or_commands': changes,
       'timing':
           'SDK host receipt intervals replayed in test clock. Not calibrated guest time or live performance.',
+      'minimum_duration_ms': minimumDurationMs,
       'fonts': 'Bundled OFL Selawik; differs from native Segoe WP.',
       'fidelity_verified': false,
       'recoverable_source_files': sources,
@@ -173,9 +185,118 @@ class _ReferenceSceneState extends State<_ReferenceScene> {
   bool wifi = false;
   bool bluetooth = true;
   bool minimized = false;
+  double slider = 35;
 
   @override
   Widget build(BuildContext context) {
+    if (widget.component == 'micro-controls') {
+      const accent = Color(0xff3e65ff);
+      return Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            const Positioned(
+              left: 12,
+              top: 35,
+              child: Text(
+                'MICRO CONTROLS',
+                maxLines: 1,
+                softWrap: false,
+                overflow: TextOverflow.clip,
+                style: TextStyle(fontSize: 64, fontWeight: FontWeight.w300),
+              ),
+            ),
+            const Positioned(
+              left: 24,
+              top: 143,
+              child: Text('SLIDER', style: TextStyle(fontSize: 20)),
+            ),
+            Positioned(
+              left: 12,
+              top: 155,
+              width: 456,
+              height: 84,
+              child: WpSlider(
+                min: 0,
+                max: 100,
+                value: slider,
+                accentColor: accent,
+                onChanged: (value) => setState(() {
+                  slider = value;
+                  widget.changes.add({'slider': value});
+                }),
+              ),
+            ),
+            const Positioned(
+              left: 24,
+              top: 259,
+              child: Text(
+                'DETERMINATE PROGRESS',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            const Positioned(
+              left: 24,
+              top: 286,
+              width: 432,
+              child: WpProgressBar(value: .42, color: accent),
+            ),
+            const Positioned(
+              left: 24,
+              top: 326,
+              child: Text(
+                'INDETERMINATE PROGRESS',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            const Positioned(
+              left: 24,
+              top: 353,
+              width: 432,
+              child: WpProgressBar(color: accent),
+            ),
+            const Positioned(
+              left: 24,
+              top: 393,
+              child: Text('TILT EFFECT', style: TextStyle(fontSize: 20)),
+            ),
+            Positioned(
+              left: 12,
+              top: 412,
+              width: 456,
+              height: 72,
+              child: WpTiltEffect(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.transparent,
+                      side: const BorderSide(color: Colors.white, width: 3),
+                      shape: const RoundedRectangleBorder(),
+                      padding: EdgeInsets.zero,
+                      textStyle: const TextStyle(
+                        fontFamily: wpPivotFontFamily,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ).copyWith(
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                        (states) => states.contains(WidgetState.pressed)
+                            ? accent
+                            : Colors.transparent,
+                      ),
+                    ),
+                    onPressed: () => widget.changes.add('tilt-button'),
+                    child: const Text('press and hold'),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
     if (widget.component == 'panorama') {
       return Scaffold(
           body: WpPanorama(

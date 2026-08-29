@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "product_id": "00a800d5-a4fd-4da5-8ced-48f96b3f2a54",
+  "control": "System.Windows.Controls.Slider + System.Windows.Controls.ProgressBar + Microsoft.Phone.Controls.TiltEffect (WPtoolkit 4.2013.8.16)",
+  "reference_viewport": [480, 800],
+  "pre_roll_seconds": 0.75,
+  "post_roll_seconds": 1.0,
+  "scenarios": [
+    {
+      "id": "slider_tap_high_pilot",
+      "expected_initial_state": "slider=35; determinate=42; indeterminate=true; tilt=rest",
+      "actions": [
+        {"op": "tap", "x": 380, "y": 182},
+        {"op": "wait", "seconds": 0.4}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "slider_drag_full_pilot",
+      "expected_initial_state": "slider=35; determinate=42; indeterminate=true; tilt=rest",
+      "actions": [
+        {"op": "swipe", "x": 174, "y": 182, "x1": 405, "y1": 182, "ms": 1000},
+        {"op": "wait", "seconds": 0.4}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "progress_animation_pilot",
+      "expected_initial_state": "slider=35; determinate=42; indeterminate=true; tilt=rest",
+      "actions": [{"op": "wait", "seconds": 2.0}],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "tilt_center_press_pilot",
+      "expected_initial_state": "slider=35; determinate=42; indeterminate=true; tilt=rest",
+      "actions": [
+        {"op": "swipe", "x": 234, "y": 448, "x1": 246, "y1": 448, "ms": 1200},
+        {"op": "wait", "seconds": 0.5}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    },
+    {
+      "id": "tilt_corner_press_pilot",
+      "expected_initial_state": "slider=35; determinate=42; indeterminate=true; tilt=rest",
+      "actions": [
+        {"op": "swipe", "x": 40, "y": 434, "x1": 52, "y1": 434, "ms": 1200},
+        {"op": "wait", "seconds": 0.5}
+      ],
+      "cleanup_actions": [{"op": "key", "name": "back"}]
+    }
+  ]
+}

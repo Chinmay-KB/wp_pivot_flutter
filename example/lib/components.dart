@@ -82,8 +82,8 @@ class ComponentGallery extends StatelessWidget {
       );
 }
 
-/// Hub list rows use FeatheringIndex 2–5 (intro 2, three entries 3–5).
-const _galleryHomeFeatherMaxIndex = 5;
+/// Hub list rows use FeatheringIndex 2–8 (intro 2, six entries 3–8).
+const _galleryHomeFeatherMaxIndex = 8;
 
 class GalleryHome extends StatelessWidget {
   const GalleryHome({super.key});
@@ -154,6 +154,36 @@ class _GalleryHomeBody extends StatelessWidget {
           onPressed: () => pushWpPhonePage(
             context,
             const ToggleSwitchDemo(),
+            featherMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
+          ),
+        ),
+        WpPhoneListEntry(
+          title: 'slider',
+          subtitle: 'Set a value by tap, drag, or keyboard',
+          featherIndex: 6,
+          onPressed: () => pushWpPhonePage(
+            context,
+            const SliderDemo(),
+            featherMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
+          ),
+        ),
+        WpPhoneListEntry(
+          title: 'progress bar',
+          subtitle: 'Determinate and indeterminate progress',
+          featherIndex: 7,
+          onPressed: () => pushWpPhonePage(
+            context,
+            const ProgressBarDemo(),
+            featherMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
+          ),
+        ),
+        WpPhoneListEntry(
+          title: 'tilt effect',
+          subtitle: 'Touch-position feedback for an action',
+          featherIndex: 8,
+          onPressed: () => pushWpPhonePage(
+            context,
+            const TiltEffectDemo(),
             featherMaxIndex: WpTurnstileFeather.detailPageMaxIndex,
           ),
         ),
@@ -324,6 +354,185 @@ class _ToggleSwitchDemoState extends State<ToggleSwitchDemo> {
               style: TextStyle(
                 color: Colors.white,
                 decoration: TextDecoration.none,
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class SliderDemo extends StatefulWidget {
+  const SliderDemo({super.key});
+
+  @override
+  State<SliderDemo> createState() => _SliderDemoState();
+}
+
+class _SliderDemoState extends State<SliderDemo> {
+  double volume = 35;
+
+  @override
+  Widget build(BuildContext context) => WpPhonePage(
+        applicationTitle: 'components',
+        pageTitle: 'slider',
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+          children: [
+            const Text(
+              'volume',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+              ),
+            ),
+            Semantics(
+              liveRegion: true,
+              label: 'Volume ${volume.round()} percent',
+              excludeSemantics: true,
+              child: Text(
+                '${volume.round()}%',
+                key: const ValueKey('slider-value'),
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white,
+                  decoration: TextDecoration.none,
+                ),
+              ),
+            ),
+            WpSlider(
+              key: const ValueKey('volume-slider'),
+              min: 0,
+              max: 100,
+              divisions: 20,
+              value: volume,
+              semanticLabel: 'Volume',
+              onChanged: (value) => setState(() => volume = value),
+            ),
+            const SizedBox(height: 28),
+            const Text(
+              'The demo owns the current value. Pointer, keyboard, and '
+              'accessibility actions all request the same controlled update.',
+              style: TextStyle(
+                color: Color(0x99ffffff),
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class ProgressBarDemo extends StatelessWidget {
+  const ProgressBarDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) => WpPhonePage(
+        applicationTitle: 'components',
+        pageTitle: 'progress',
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+          children: const [
+            Text(
+              'determinate',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              '42%',
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0x99ffffff),
+                decoration: TextDecoration.none,
+              ),
+            ),
+            SizedBox(height: 12),
+            WpProgressBar(
+              key: ValueKey('determinate-progress'),
+              value: .42,
+              semanticLabel: 'Download',
+            ),
+            SizedBox(height: 48),
+            Text(
+              'indeterminate',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'working',
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0x99ffffff),
+                decoration: TextDecoration.none,
+              ),
+            ),
+            SizedBox(height: 12),
+            WpProgressBar(
+              key: ValueKey('indeterminate-progress'),
+              semanticLabel: 'Background task',
+            ),
+          ],
+        ),
+      );
+}
+
+class TiltEffectDemo extends StatefulWidget {
+  const TiltEffectDemo({super.key});
+
+  @override
+  State<TiltEffectDemo> createState() => _TiltEffectDemoState();
+}
+
+class _TiltEffectDemoState extends State<TiltEffectDemo> {
+  int activations = 0;
+
+  @override
+  Widget build(BuildContext context) => WpPhonePage(
+        applicationTitle: 'components',
+        pageTitle: 'tilt',
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+          children: [
+            const Text(
+              'Press different parts of the action to change the tilt origin. '
+              'The action still receives taps.',
+              style: TextStyle(
+                color: Color(0x99ffffff),
+                decoration: TextDecoration.none,
+              ),
+            ),
+            const SizedBox(height: 24),
+            WpTiltEffect(
+              key: const ValueKey('tilt-effect'),
+              child: WpPhoneListEntry(
+                key: const ValueKey('tilt-action'),
+                title: 'tap me',
+                subtitle: 'Toolkit press tilt',
+                onPressed: () => setState(() => activations++),
+              ),
+            ),
+            const SizedBox(height: 28),
+            Semantics(
+              liveRegion: true,
+              label: '$activations activations',
+              excludeSemantics: true,
+              child: Text(
+                'activations $activations',
+                key: const ValueKey('tilt-activation-count'),
+                style: const TextStyle(
+                  fontSize: 28,
+                  color: Colors.white,
+                  decoration: TextDecoration.none,
+                ),
               ),
             ),
           ],

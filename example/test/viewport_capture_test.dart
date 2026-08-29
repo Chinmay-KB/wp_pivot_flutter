@@ -27,6 +27,9 @@ const _states = <String>[
   'panorama-rest',
   'panorama-swiped',
   'toggle-switch-activated',
+  'slider-adjusted',
+  'progress-bars-reduced-motion',
+  'tilt-effect-held',
 ];
 
 String _repoPath(String relative) {
@@ -79,7 +82,7 @@ void main() {
       );
 
       for (final state in _states) {
-        await _pumpGalleryScene(
+        final cleanup = await _pumpGalleryScene(
           tester,
           boundary: boundary,
           state: state,
@@ -89,6 +92,7 @@ void main() {
         final fileName = '$state.png';
         final pngPath = '${viewportDir.path}/$fileName';
         await _writePng(tester, boundary, pngPath);
+        if (cleanup != null) await cleanup();
         final overflow = tester.takeException();
         captures.add({
           'viewport_name': viewport.name,
@@ -132,7 +136,7 @@ void main() {
           await _tapGalleryEntry(tester, 'application bar');
           await tester.pump();
           await tester.pump(
-            Duration(milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5)),
+            Duration(milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(8)),
           );
           _assertGalleryHomeVisible(tester);
           break;
@@ -141,7 +145,7 @@ void main() {
           await tester.pump();
           await tester.pump(
             Duration(
-              milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5) + 50,
+              milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(8) + 50,
             ),
           );
           expect(find.byType(ApplicationBarDemo), findsOneWidget);
@@ -414,7 +418,7 @@ Future<void> _setLogicalViewport(
   tester.view.devicePixelRatio = 1;
 }
 
-Widget _galleryShell(Widget demo) {
+Widget _galleryShell(Widget demo, {bool disableAnimations = false}) {
   return MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
@@ -424,14 +428,21 @@ Widget _galleryShell(Widget demo) {
       colorScheme: const ColorScheme.dark(primary: Color(0xff1ba1e2)),
       pageTransitionsTheme: const PageTransitionsTheme(builders: {}),
     ),
-    home: DefaultTextStyle(
-      style: wpPhoneDefaultTextStyle,
-      child: demo,
+    home: Builder(
+      builder: (context) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          disableAnimations: disableAnimations,
+        ),
+        child: DefaultTextStyle(
+          style: wpPhoneDefaultTextStyle,
+          child: demo,
+        ),
+      ),
     ),
   );
 }
 
-Future<void> _pumpGalleryScene(
+Future<Future<void> Function()?> _pumpGalleryScene(
   WidgetTester tester, {
   required GlobalKey boundary,
   required String state,
@@ -451,6 +462,15 @@ Future<void> _pumpGalleryScene(
     case 'toggle-switch-activated':
       demo = const ToggleSwitchDemo();
       break;
+    case 'slider-adjusted':
+      demo = const SliderDemo();
+      break;
+    case 'progress-bars-reduced-motion':
+      demo = const ProgressBarDemo();
+      break;
+    case 'tilt-effect-held':
+      demo = const TiltEffectDemo();
+      break;
     default:
       throw ArgumentError('Unknown state: $state');
   }
@@ -458,7 +478,10 @@ Future<void> _pumpGalleryScene(
   await tester.pumpWidget(
     RepaintBoundary(
       key: boundary,
-      child: _galleryShell(demo),
+      child: _galleryShell(
+        demo,
+        disableAnimations: state == 'progress-bars-reduced-motion',
+      ),
     ),
   );
   await tester.pumpAndSettle();
@@ -478,9 +501,60 @@ Future<void> _pumpGalleryScene(
       await tester.tap(find.bySemanticsLabel('Wi-Fi, Off'));
       await tester.pumpAndSettle();
       break;
+    case 'slider-adjusted':
+      final slider = find.byKey(const ValueKey('volume-slider'));
+      final rect = tester.getRect(slider);
+      final firstThumbCenter =
+          WpSliderGeometry.horizontalMargin + WpSliderGeometry.thumbWidth / 2;
+      final thumbTravel = rect.width -
+          WpSliderGeometry.horizontalMargin * 2 -
+          WpSliderGeometry.thumbWidth;
+      await tester.tapAt(Offset(
+        rect.left + firstThumbCenter + thumbTravel * .75,
+        rect.center.dy,
+      ));
+      await tester.pump();
+      expect(find.text('75%'), findsOneWidget);
+      break;
+    case 'progress-bars-reduced-motion':
+      expect(
+        find.byKey(const ValueKey('wp-progress-determinate')),
+        findsOneWidget,
+      );
+      expect(
+        find.byKey(const ValueKey('wp-progress-indeterminate')),
+        findsOneWidget,
+      );
+      final painter = tester
+          .widget<CustomPaint>(
+            find.byKey(const ValueKey('wp-progress-indeterminate')),
+          )
+          .painter as WpIndeterminateProgressPainter;
+      expect(painter.reducedMotion, isTrue);
+      break;
+    case 'tilt-effect-held':
+      await tester.tap(find.byKey(const ValueKey('tilt-action')));
+      await tester.pumpAndSettle();
+      expect(find.text('activations 1'), findsOneWidget);
+      final tiltRect =
+          tester.getRect(find.byKey(const ValueKey('tilt-effect')));
+      final gesture = await tester.startGesture(
+        tiltRect.topLeft + const Offset(8, 8),
+      );
+      await tester.pump();
+      final transform = tester.widget<Transform>(
+        find.byKey(const ValueKey('wp-tilt-transform')),
+      );
+      expect(
+        transform.transform.storage[2].abs() +
+            transform.transform.storage[6].abs(),
+        greaterThan(.01),
+      );
+      return gesture.up;
     default:
       break;
   }
+  return null;
 }
 
 Future<void> _writePng(

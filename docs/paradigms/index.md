@@ -14,13 +14,14 @@ body_class: index-page
   <div class="section-body">
     <a class="featured-record" href="{{ '/research/pivot/' | relative_url }}">
       <span class="record-name">Pivot</span>
-      <span class="record-detail"><code>WpPivotView</code> ships in package v2.1.0. Emulator evidence is published; Lumia validation is pending.</span>
+      <span class="record-detail"><code>WpPivotView</code> ships in package v2.2.0. Emulator evidence is published; Lumia validation is pending.</span>
       <span class="status-badge status-available">Published</span>
     </a>
     <ul class="record-list">
       <li class="record-row"><a href="{{ '/research/components/' | relative_url }}">Panorama</a><span class="record-meta">Opt-in layout and directional navigation</span><span class="status-badge">Experimental</span></li>
       <li class="record-row"><a href="{{ '/research/components/' | relative_url }}">Application Bar</a><span class="record-meta">Opt-in commands, menu, and minimized mode</span><span class="status-badge">Experimental</span></li>
       <li class="record-row"><a href="{{ '/research/components/' | relative_url }}">Toggle Switch</a><span class="record-meta">Opt-in controlled switch using Toolkit geometry</span><span class="status-badge">Experimental</span></li>
+      <li class="record-row"><a href="{{ '/research/components/micro-controls/' | relative_url }}">Slider, ProgressBar, TiltEffect</a><span class="record-meta">Opt-in controls with held-out emulator comparisons</span><span class="status-badge status-available">Compared</span></li>
     </ul>
   </div>
 </section>
