@@ -153,7 +153,10 @@ class _WpApplicationBarState extends State<WpApplicationBar>
 
     return PopScope(
       canPop: !_menuOpen,
-      onPopInvokedWithResult: (didPop, result) {
+      // Keep the package compatible with Flutter 3.22. The result-aware
+      // callback was added later, but this bar only needs the pop outcome.
+      // ignore: deprecated_member_use
+      onPopInvoked: (didPop) {
         if (!didPop && _menuOpen) _setMenuOpen(false);
       },
       child: Material(
