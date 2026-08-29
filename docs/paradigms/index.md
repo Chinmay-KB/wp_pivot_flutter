@@ -1,46 +1,34 @@
 ---
 layout: default
 title: Paradigms
+body_class: index-page
 ---
 
-<h1>The Paradigm Encyclopedia</h1>
+<header class="page-mast">
+  <div class="mast-title"><h1>Paradigms</h1></div>
+  <div class="mast-copy"><p class="page-deck">An inventory of Windows Phone interaction patterns. Evidence, Flutter implementation, and hardware validation are tracked separately.</p></div>
+</header>
 
-<p>One page per Windows Phone UI paradigm. Each entry gets: reference footage from
-real hardware, the measured motion tokens (curves, durations, stagger), color and
-type specs where they matter, and where the Flutter implementation stands. No
-guessing, no "approximately like the original". Measurements or it didn't happen.</p>
+<section class="manual-section" aria-labelledby="available-title">
+  <header class="section-label"><h2 id="available-title">Available</h2></header>
+  <div class="section-body">
+    <a class="featured-record" href="{{ '/research/pivot/' | relative_url }}">
+      <span class="record-name">Pivot</span>
+      <span class="record-detail"><code>WpPivotView</code> ships in package v2.1.0. Emulator evidence is published; Lumia validation is pending.</span>
+      <span class="status-badge status-available">Published</span>
+    </a>
+  </div>
+</section>
 
-<h2>Navigation structures</h2>
-<table>
-  <thead><tr><th>Paradigm</th><th>Status</th><th>Entry</th></tr></thead>
-  <tbody>
-    <tr><td>Pivot</td><td><span class="status-badge status-spec">spec'd</span></td><td><em>first entry, in progress</em></td></tr>
-    <tr><td>Panorama</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>LongListSelector + semantic zoom</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>App bar &amp; menus</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-  </tbody>
-</table>
-
-<h2>Motion &amp; transitions</h2>
-<table>
-  <thead><tr><th>Paradigm</th><th>Status</th><th>Entry</th></tr></thead>
-  <tbody>
-    <tr><td>Turnstile transition</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>Slide / rotate / flip / roll</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>Continuum (image continuity)</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>List item entrance stagger</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>Tilt effect</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-    <tr><td>ToggleSwitch / press states</td><td><span class="status-badge status-spec">spec'd</span></td><td>—</td></tr>
-  </tbody>
-</table>
-
-<p>Status key: <span class="status-badge status-spec">spec'd</span> measured &amp;
-specified · <span class="status-badge status-building">building</span> Flutter port
-underway · <span class="status-badge status-shipped">shipped</span> in package ·
-<span class="status-badge status-verified">verified</span> passed the hardware diff
-harness.</p>
-
-<p>Entries are added by ordinary PRs: markdown plus media, per the
-<a href="{{ site.github_repo }}/blob/master/docs/MEDIA_POLICY.md">media policy</a>.
-The paradigm inventory comes from real capture sessions; see
-<a href="{{ '/captures/' | relative_url }}">Captures</a>.</p>
+<section class="manual-section" aria-labelledby="backlog-title">
+  <header class="section-label"><h2 id="backlog-title">Backlog</h2></header>
+  <div class="section-body">
+    <ul class="record-list">
+      <li class="record-row"><span class="record-name">Panorama</span><span class="record-meta">Layout and navigation</span><span class="status-badge status-planned">Planned</span></li>
+      <li class="record-row"><span class="record-name">Long lists</span><span class="record-meta">LongListSelector and semantic zoom</span><span class="status-badge status-planned">Planned</span></li>
+      <li class="record-row"><span class="record-name">Application bar</span><span class="record-meta">Commands and menus</span><span class="status-badge status-planned">Planned</span></li>
+      <li class="record-row"><span class="record-name">Transitions</span><span class="record-meta">Pages and list entrances</span><span class="status-badge status-planned">Planned</span></li>
+      <li class="record-row"><span class="record-name">Press states</span><span class="record-meta">Tilt, press, and toggle response</span><span class="status-badge status-planned">Planned</span></li>
+    </ul>
+  </div>
+</section>
