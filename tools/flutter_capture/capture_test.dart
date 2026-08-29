@@ -65,76 +65,14 @@ void main() {
       ),
     ));
     await tester.pumpAndSettle();
-    final events = (replay['events'] as List).cast<Map<String, dynamic>>();
-    final steps = <({int us, Map<String, dynamic>? event, bool capture})>[];
-    for (final event in events) {
-      steps.add((
-        us: ((event['t_ms'] as num) * 1000).round(),
-        event: event,
-        capture: false
-      ));
-    }
-    final end = ((replay['end_ms'] as num) * 1000).round();
-    for (var frame = 0; (frame * 1000000 / 60).round() <= end; frame++) {
-      steps.add(
-          (us: (frame * 1000000 / 60).round(), event: null, capture: true));
-    }
-    steps.sort((a, b) {
-      final time = a.us.compareTo(b.us);
-      return time != 0 ? time : (a.capture ? 1 : -1);
-    });
-    var previous = 0;
-    var number = 0;
-    TestGesture? gesture;
-    final frames = StringBuffer('frame,t_ms\n');
-    final positions = StringBuffer('t_ms,item,x,y\n');
-    for (final step in steps) {
-      await tester.pump(Duration(microseconds: step.us - previous));
-      previous = step.us;
-      final event = step.event;
-      if (event != null) {
-        final point = Offset(
-            (event['x'] as num).toDouble(), (event['y'] as num).toDouble());
-        final time = Duration(microseconds: step.us);
-        switch (event['event']) {
-          case 'down':
-            gesture = await tester.createGesture();
-            await gesture.down(point, timeStamp: time);
-          case 'move':
-            await gesture!.moveTo(point, timeStamp: time);
-          case 'up':
-            await gesture!.up(timeStamp: time);
-            gesture = null;
-          default:
-            throw StateError('Unsupported pointer event ${event['event']}');
-        }
-      }
-      if (step.capture) {
-        final t = step.us / 1000 - 500;
-        frames.writeln('$number,$t');
-        for (var i = 0; i < 4; i++) {
-          final marker = find.byKey(ValueKey('marker-$i'));
-          if (marker.evaluate().isNotEmpty) {
-            final point = tester.getTopLeft(marker);
-            positions.writeln('$t,$i,${point.dx},${point.dy}');
-          }
-        }
-        await tester.runAsync(() async {
-          final render = boundary.currentContext!.findRenderObject()!
-              as RenderRepaintBoundary;
-          final image = await render.toImage();
-          final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-          File('$outputPath/frames/${number.toString().padLeft(6, '0')}.png')
-              .writeAsBytesSync(bytes!.buffer.asUint8List());
-          image.dispose();
-        });
-        number++;
-      }
-      expect(tester.takeException(), isNull);
-    }
-    expect(gesture, isNull);
-    File('$outputPath/frames.csv').writeAsStringSync(frames.toString());
-    File('$outputPath/positions.csv').writeAsStringSync(positions.toString());
+    final result = await _replaySteps(
+      tester,
+      steps: _buildReplaySteps(replay),
+      boundary: boundary,
+      outputPath: outputPath,
+    );
+    File('$outputPath/frames.csv').writeAsStringSync(result.frames);
+    File('$outputPath/positions.csv').writeAsStringSync(result.positions);
     File('$outputPath/replay.json').writeAsStringSync(jsonEncode(replay));
     File('$outputPath/manifest.json')
         .writeAsStringSync(const JsonEncoder.withIndent('  ').convert({
@@ -146,7 +84,7 @@ void main() {
       'viewport': [480, 800],
       'device_pixel_ratio': 1,
       'platform': 'windows',
-      'frame_count': number,
+      'frame_count': result.frameCount,
       'sample_fps': 60,
       'clock': 'deterministic tester pump; not wall-clock performance',
       'input': 'guest touch events replayed at their recorded relative times',
@@ -162,4 +100,127 @@ void main() {
     }));
     await tester.pumpWidget(const SizedBox());
   });
+}
+
+List<({int us, Map<String, dynamic>? event, bool capture})> _buildReplaySteps(
+  Map<String, dynamic> replay,
+) {
+  final steps = <({int us, Map<String, dynamic>? event, bool capture})>[];
+  final events = (replay['events'] as List).cast<Map<String, dynamic>>();
+  for (final event in events) {
+    steps.add((
+      us: ((event['t_ms'] as num) * 1000).round(),
+      event: event,
+      capture: false,
+    ));
+  }
+  final end = ((replay['end_ms'] as num) * 1000).round();
+  for (var frame = 0; (frame * 1000000 / 60).round() <= end; frame++) {
+    steps.add((
+      us: (frame * 1000000 / 60).round(),
+      event: null,
+      capture: true,
+    ));
+  }
+  steps.sort((a, b) {
+    final time = a.us.compareTo(b.us);
+    return time != 0 ? time : (a.capture ? 1 : -1);
+  });
+  return steps;
+}
+
+Future<TestGesture?> _dispatchPointerEvent(
+  WidgetTester tester,
+  Map<String, dynamic> event,
+  int microseconds,
+  TestGesture? gesture,
+) async {
+  final point = Offset(
+    (event['x'] as num).toDouble(),
+    (event['y'] as num).toDouble(),
+  );
+  final time = Duration(microseconds: microseconds);
+  switch (event['event']) {
+    case 'down':
+      final nextGesture = await tester.createGesture();
+      await nextGesture.down(point, timeStamp: time);
+      return nextGesture;
+    case 'move':
+      await gesture!.moveTo(point, timeStamp: time);
+      return gesture;
+    case 'up':
+      await gesture!.up(timeStamp: time);
+      return null;
+    default:
+      throw StateError('Unsupported pointer event ${event['event']}');
+  }
+}
+
+Future<void> _captureFrame(
+  WidgetTester tester, {
+  required GlobalKey boundary,
+  required String outputPath,
+  required int frameNumber,
+  required int microseconds,
+  required StringBuffer frames,
+  required StringBuffer positions,
+}) async {
+  final time = microseconds / 1000 - 500;
+  frames.writeln('$frameNumber,$time');
+  for (var index = 0; index < 4; index++) {
+    final marker = find.byKey(ValueKey('marker-$index'));
+    if (marker.evaluate().isNotEmpty) {
+      final point = tester.getTopLeft(marker);
+      positions.writeln('$time,$index,${point.dx},${point.dy}');
+    }
+  }
+  await tester.runAsync(() async {
+    final render =
+        boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+    final image = await render.toImage();
+    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+    File('$outputPath/frames/${frameNumber.toString().padLeft(6, '0')}.png')
+        .writeAsBytesSync(bytes!.buffer.asUint8List());
+    image.dispose();
+  });
+}
+
+Future<({int frameCount, String frames, String positions})> _replaySteps(
+  WidgetTester tester, {
+  required List<({int us, Map<String, dynamic>? event, bool capture})> steps,
+  required GlobalKey boundary,
+  required String outputPath,
+}) async {
+  var previous = 0;
+  var frameNumber = 0;
+  TestGesture? gesture;
+  final frames = StringBuffer('frame,t_ms\n');
+  final positions = StringBuffer('t_ms,item,x,y\n');
+  for (final step in steps) {
+    await tester.pump(Duration(microseconds: step.us - previous));
+    previous = step.us;
+    final event = step.event;
+    if (event != null) {
+      gesture = await _dispatchPointerEvent(tester, event, step.us, gesture);
+    }
+    if (step.capture) {
+      await _captureFrame(
+        tester,
+        boundary: boundary,
+        outputPath: outputPath,
+        frameNumber: frameNumber,
+        microseconds: step.us,
+        frames: frames,
+        positions: positions,
+      );
+      frameNumber++;
+    }
+    expect(tester.takeException(), isNull);
+  }
+  expect(gesture, isNull);
+  return (
+    frameCount: frameNumber,
+    frames: frames.toString(),
+    positions: positions.toString(),
+  );
 }

@@ -173,145 +173,152 @@ class WpPhonePage extends StatelessWidget {
   /// When false, [body] supplies its own per-index feather layers (gallery hub).
   final bool featherBodyAsLayer;
 
-  bool _incomingShellVisible(
-    ModalRoute<dynamic>? route,
-    WpTurnstileFeatherTiming? timing,
-    bool reduced,
-  ) {
-    if (reduced || route == null || timing == null) return true;
-    final animation = route.animation;
-    if (animation == null) return false;
-    if (animation.status == AnimationStatus.forward) {
-      final ms = animation.value * timing.routeDurationMs();
-      return ms >= timing.forwardOutPhaseMs();
-    }
-    if (animation.status == AnimationStatus.reverse) {
-      final ms = (1 - animation.value) * timing.reverseRouteDurationMs();
-      return ms < timing.backwardOutPhaseMs();
-    }
-    return true;
+  WpTurnstileFeatherTiming _timingFor(ModalRoute<dynamic>? route) {
+    if (route is WpPhonePageRoute<void>) return route.timing;
+    return WpActiveTransition.current ??
+        WpTurnstileFeatherTiming(
+          outgoingMaxIndex: featherMaxIndex,
+          incomingMaxIndex: featherMaxIndex,
+        );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final route = ModalRoute.of(context);
-    final showPreviewBack = route != null && !route.isFirst;
-    final reduced = MediaQuery.disableAnimationsOf(context);
-    final timing = route is WpPhonePageRoute<void>
-        ? route.timing
-        : WpActiveTransition.current ??
-            WpTurnstileFeatherTiming(
-              outgoingMaxIndex: featherMaxIndex,
-              incomingMaxIndex: featherMaxIndex,
-            );
+  Widget _buildLayer({
+    required ModalRoute<dynamic>? route,
+    required WpTurnstileFeatherTiming timing,
+    required bool reduced,
+    required Key key,
+    required int index,
+    required Widget child,
+  }) {
+    if (reduced || route == null) {
+      return Opacity(key: key, opacity: 1, child: child);
+    }
+    return _TurnstileFeatherLayer(
+      layerKey: key,
+      index: index,
+      timing: timing,
+      route: route,
+      animation: route.animation ?? const AlwaysStoppedAnimation(1),
+      secondary: route.secondaryAnimation ?? const AlwaysStoppedAnimation(0),
+      child: child,
+    );
+  }
 
-    Widget layer({
+  Widget _buildTitlePanel(
+    Widget Function({
       required Key key,
       required int index,
       required Widget child,
-    }) {
-      if (reduced || route == null) {
-        return Opacity(key: key, opacity: 1, child: child);
-      }
-      return _TurnstileFeatherLayer(
-        layerKey: key,
-        index: index,
-        timing: timing,
-        route: route,
-        animation: route.animation ?? const AlwaysStoppedAnimation(1),
-        secondary: route.secondaryAnimation ?? const AlwaysStoppedAnimation(0),
-        child: child,
-      );
-    }
-
-    final titlePanel = showTitlePanel
-        ? Padding(
-            padding: const EdgeInsets.fromLTRB(12, 17, 0, 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                layer(
-                  key: const ValueKey('wp-phone-header'),
-                  index: 0,
-                  child: Text(
-                    applicationTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: wpPivotFontFamily,
-                      fontSize: 20,
-                      height: 1.2,
-                      color: Color(0x99ffffff),
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
+    }) layer,
+  ) =>
+      Padding(
+        padding: const EdgeInsets.fromLTRB(12, 17, 0, 28),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            layer(
+              key: const ValueKey('wp-phone-header'),
+              index: 0,
+              child: Text(
+                applicationTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontFamily: wpPivotFontFamily,
+                  fontSize: 20,
+                  height: 1.2,
+                  color: Color(0x99ffffff),
+                  decoration: TextDecoration.none,
                 ),
-                layer(
-                  key: const ValueKey('wp-phone-title'),
-                  index: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 9, top: 0),
-                    child: Text(
-                      pageTitle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontFamily: wpPivotFontFamily,
-                        fontSize: 72,
-                        height: 1.1,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          )
-        : const SizedBox.shrink();
-
-    final pageColumn = Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (showTitlePanel) titlePanel,
-        Expanded(
-          child: featherBodyAsLayer
-              ? layer(
-                  key: const ValueKey('wp-phone-content'),
-                  index: showTitlePanel ? 2 : 0,
-                  child: body,
-                )
-              : body,
+            layer(
+              key: const ValueKey('wp-phone-title'),
+              index: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 9, top: 0),
+                child: Text(
+                  pageTitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: wpPivotFontFamily,
+                    fontSize: 72,
+                    height: 1.1,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-        if (applicationBar != null)
-          ListenableBuilder(
-            listenable: route?.animation ?? const AlwaysStoppedAnimation(1),
-            builder: (context, _) {
-              final chromeVisible =
-                  reduced || _incomingShellVisible(route, timing, reduced);
-              if (!chromeVisible) return const SizedBox.shrink();
-              return applicationBar!;
-            },
-          ),
-        if (showPreviewBack)
-          ListenableBuilder(
-            listenable: route.animation ?? const AlwaysStoppedAnimation(1),
-            builder: (context, _) {
-              final chromeVisible =
-                  reduced || _incomingShellVisible(route, timing, reduced);
-              if (!chromeVisible) return const SizedBox.shrink();
-              return const WpPreviewHardwareBack();
-            },
-          ),
-      ],
-    );
+      );
 
-    return WpPhoneFeatherScope(
-      maxIndex: featherMaxIndex,
-      timing: route is WpPhonePageRoute<void> ? timing : null,
-      featherLayer: layer,
-      child: _WpPhoneDeferredFocus(
+  Widget _animatedChrome({
+    required ModalRoute<dynamic>? route,
+    required WpTurnstileFeatherTiming timing,
+    required bool reduced,
+    required Widget child,
+  }) =>
+      ListenableBuilder(
+        listenable: route?.animation ?? const AlwaysStoppedAnimation(1),
+        builder: (context, _) {
+          final visible =
+              reduced || _incomingShellVisible(route, timing, reduced);
+          return visible ? child : const SizedBox.shrink();
+        },
+      );
+
+  Widget _buildPageColumn({
+    required ModalRoute<dynamic>? route,
+    required WpTurnstileFeatherTiming timing,
+    required bool reduced,
+    required Widget Function({
+      required Key key,
+      required int index,
+      required Widget child,
+    }) layer,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (showTitlePanel) _buildTitlePanel(layer),
+          Expanded(
+            child: featherBodyAsLayer
+                ? layer(
+                    key: const ValueKey('wp-phone-content'),
+                    index: showTitlePanel ? 2 : 0,
+                    child: body,
+                  )
+                : body,
+          ),
+          if (applicationBar != null)
+            _animatedChrome(
+              route: route,
+              timing: timing,
+              reduced: reduced,
+              child: applicationBar!,
+            ),
+          if (route != null && !route.isFirst)
+            _animatedChrome(
+              route: route,
+              timing: timing,
+              reduced: reduced,
+              child: const WpPreviewHardwareBack(),
+            ),
+        ],
+      );
+
+  Widget _buildShell({
+    required BuildContext context,
+    required ModalRoute<dynamic>? route,
+    required WpTurnstileFeatherTiming timing,
+    required bool reduced,
+    required Widget child,
+  }) =>
+      _WpPhoneDeferredFocus(
         child: Shortcuts(
           shortcuts: const <ShortcutActivator, Intent>{
             SingleActivator(LogicalKeyboardKey.escape): DismissIntent(),
@@ -338,7 +345,7 @@ class WpPhonePage extends StatelessWidget {
                     child: ColoredBox(
                       color:
                           shellPainted ? Colors.black : const Color(0x00000000),
-                      child: pageColumn,
+                      child: child,
                     ),
                   ),
                 );
@@ -346,6 +353,63 @@ class WpPhonePage extends StatelessWidget {
             ),
           ),
         ),
+      );
+
+  bool _incomingShellVisible(
+    ModalRoute<dynamic>? route,
+    WpTurnstileFeatherTiming? timing,
+    bool reduced,
+  ) {
+    if (reduced || route == null || timing == null) return true;
+    final animation = route.animation;
+    if (animation == null) return false;
+    if (animation.status == AnimationStatus.forward) {
+      final ms = animation.value * timing.routeDurationMs();
+      return ms >= timing.forwardOutPhaseMs();
+    }
+    if (animation.status == AnimationStatus.reverse) {
+      final ms = (1 - animation.value) * timing.reverseRouteDurationMs();
+      return ms < timing.backwardOutPhaseMs();
+    }
+    return true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final route = ModalRoute.of(context);
+    final reduced = MediaQuery.disableAnimationsOf(context);
+    final timing = _timingFor(route);
+
+    Widget layer({
+      required Key key,
+      required int index,
+      required Widget child,
+    }) =>
+        _buildLayer(
+          route: route,
+          timing: timing,
+          reduced: reduced,
+          key: key,
+          index: index,
+          child: child,
+        );
+    final pageColumn = _buildPageColumn(
+      route: route,
+      timing: timing,
+      reduced: reduced,
+      layer: layer,
+    );
+
+    return WpPhoneFeatherScope(
+      maxIndex: featherMaxIndex,
+      timing: route is WpPhonePageRoute<void> ? timing : null,
+      featherLayer: layer,
+      child: _buildShell(
+        context: context,
+        route: route,
+        timing: timing,
+        reduced: reduced,
+        child: pageColumn,
       ),
     );
   }
@@ -454,13 +518,56 @@ class _TurnstileFeatherLayer extends StatelessWidget {
   static const _easeOut = WpToolkitExponentialEase(easeOut: true);
   static const _easeIn = WpToolkitExponentialEase(easeOut: false);
 
+  int _totalDuration(AnimationStatus status, bool revealing) =>
+      status == AnimationStatus.reverse || revealing
+          ? timing.reverseRouteDurationMs()
+          : timing.routeDurationMs();
+
+  _FeatherPose _primaryForward(double milliseconds, int outPhase) {
+    if (milliseconds < outPhase) {
+      return const _FeatherPose(
+          opacity: 0, rotationY: WpTurnstileFeather.forwardInAngle);
+    }
+    return _forwardIn(milliseconds - outPhase);
+  }
+
+  _FeatherPose _secondaryForward(
+    double milliseconds,
+    bool revealing,
+    int outPhase,
+    int backOutPhase,
+  ) {
+    if (revealing) {
+      if (milliseconds < backOutPhase) {
+        return const _FeatherPose(
+            opacity: 0, rotationY: WpTurnstileFeather.backwardInAngle);
+      }
+      return _backwardIn(milliseconds - backOutPhase);
+    }
+    if (milliseconds < outPhase) return _forwardOut(milliseconds);
+    return const _FeatherPose(
+        opacity: 0, rotationY: WpTurnstileFeather.forwardOutAngle);
+  }
+
+  _FeatherPose _primaryReverse(double milliseconds, int backOutPhase) {
+    if (milliseconds < backOutPhase) return _backwardOut(milliseconds);
+    return const _FeatherPose(
+        opacity: 0, rotationY: WpTurnstileFeather.backwardOutAngle);
+  }
+
+  _FeatherPose _secondaryReverse(double milliseconds, int backOutPhase) {
+    if (milliseconds < backOutPhase) {
+      return const _FeatherPose(
+          opacity: 0, rotationY: WpTurnstileFeather.backwardInAngle);
+    }
+    return _backwardIn(milliseconds - backOutPhase);
+  }
+
   _FeatherPose _pose() {
     final aStatus = animation.status;
     final sStatus = secondary.status;
     final revealing = WpRevealTracker.isReveal(route);
-    final total = (aStatus == AnimationStatus.reverse || revealing)
-        ? timing.reverseRouteDurationMs()
-        : timing.routeDurationMs();
+    final total = _totalDuration(aStatus, revealing);
     final a = animation.value;
     final s = secondary.value;
     final outPhase = timing.forwardOutPhaseMs();
@@ -472,46 +579,19 @@ class _TurnstileFeatherLayer extends StatelessWidget {
     }
 
     if (aStatus == AnimationStatus.forward) {
-      final ms = a * total;
-      if (ms < outPhase) {
-        return const _FeatherPose(
-            opacity: 0, rotationY: WpTurnstileFeather.forwardInAngle);
-      }
-      return _forwardIn(ms - outPhase);
+      return _primaryForward(a * total, outPhase);
     }
 
     if (sStatus == AnimationStatus.forward) {
-      final ms = s * total;
-      if (revealing) {
-        if (ms < backOutPhase) {
-          return const _FeatherPose(
-              opacity: 0, rotationY: WpTurnstileFeather.backwardInAngle);
-        }
-        return _backwardIn(ms - backOutPhase);
-      }
-      if (ms < outPhase) {
-        return _forwardOut(ms);
-      }
-      return const _FeatherPose(
-          opacity: 0, rotationY: WpTurnstileFeather.forwardOutAngle);
+      return _secondaryForward(s * total, revealing, outPhase, backOutPhase);
     }
 
     if (aStatus == AnimationStatus.reverse) {
-      final ms = (1 - a) * total;
-      if (ms < backOutPhase) {
-        return _backwardOut(ms);
-      }
-      return const _FeatherPose(
-          opacity: 0, rotationY: WpTurnstileFeather.backwardOutAngle);
+      return _primaryReverse((1 - a) * total, backOutPhase);
     }
 
     if (sStatus == AnimationStatus.reverse) {
-      final ms = (1 - s) * total;
-      if (ms < backOutPhase) {
-        return const _FeatherPose(
-            opacity: 0, rotationY: WpTurnstileFeather.backwardInAngle);
-      }
-      return _backwardIn(ms - backOutPhase);
+      return _secondaryReverse((1 - s) * total, backOutPhase);
     }
 
     return const _FeatherPose(opacity: 1, rotationY: 0);
@@ -740,7 +820,9 @@ class WpPhonePageRoute<T> extends PageRoute<T> {
   set offstage(bool value) {}
 
   @override
-  TickerFuture didPush() { // ignore: must_call_super
+  // This route deliberately bypasses Route.didPush; see the explanation below.
+  // ignore: must_call_super
+  TickerFuture didPush() {
     assert(controller != null);
     assert(!debugTransitionCompleted());
     // Skip ModalRoute/Route.didPush: Navigator.requestFocus setFirstFocus
@@ -749,7 +831,9 @@ class WpPhonePageRoute<T> extends PageRoute<T> {
   }
 
   @override
-  void didAdd() { // ignore: must_call_super
+  // This route deliberately bypasses Route.didAdd for the same focus behavior.
+  // ignore: must_call_super
+  void didAdd() {
     assert(controller != null);
     assert(!debugTransitionCompleted());
     controller!.value = controller!.upperBound;

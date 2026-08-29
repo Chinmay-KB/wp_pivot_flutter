@@ -73,83 +73,22 @@ void main() {
         .where((event) => event['event'] == 'pointer')
         .toList();
     expect(events, isNotEmpty);
-    final steps = <({int us, Map<String, dynamic>? event})>[];
-    var previousEventTime = -1;
-    var pressed = false;
-    for (final event in events) {
-      final us = ((event['host_received_ms'] as num) * 1000).round();
-      expect(us, inInclusiveRange(0, 119000000));
-      expect(us, greaterThanOrEqualTo(previousEventTime));
-      previousEventTime = us;
-      switch (event['phase']) {
-        case 'down':
-          expect(pressed, isFalse);
-          pressed = true;
-        case 'move':
-          expect(pressed, isTrue);
-        case 'up':
-          expect(pressed, isTrue);
-          pressed = false;
-        default:
-          fail('Unsupported pointer phase');
-      }
-      steps.add((us: us, event: event));
-    }
-    expect(pressed, isFalse);
-    final end = previousEventTime + 1000000;
-    for (var us = 0; us <= end; us += 33333) {
-      steps.add((us: us, event: null));
-    }
-    steps.sort((a, b) => a.us != b.us
-        ? a.us.compareTo(b.us)
-        : a.event == null
-            ? 1
-            : -1);
-    var previous = 0;
-    var frame = 0;
-    TestGesture? gesture;
-    final frameRows = StringBuffer('frame,t_ms\n');
-    for (final step in steps) {
-      await tester.pump(Duration(microseconds: step.us - previous));
-      previous = step.us;
-      final event = step.event;
-      if (event != null) {
-        final point = Offset(
-            (event['x'] as num).toDouble(), (event['y'] as num).toDouble());
-        final timestamp = Duration(microseconds: step.us);
-        switch (event['phase']) {
-          case 'down':
-            gesture = await tester.createGesture();
-            await gesture.down(point, timeStamp: timestamp);
-          case 'move':
-            await gesture!.moveTo(point, timeStamp: timestamp);
-          case 'up':
-            await gesture!.up(timeStamp: timestamp);
-            gesture = null;
-        }
-      } else {
-        final render = boundary.currentContext!.findRenderObject()!
-            as RenderRepaintBoundary;
-        await tester.runAsync(() async {
-          final image = await render.toImage(pixelRatio: 1);
-          final data = await image.toByteData(format: ui.ImageByteFormat.png);
-          File('$outputPath/frames/${frame.toString().padLeft(6, '0')}.png')
-              .writeAsBytesSync(data!.buffer.asUint8List());
-          image.dispose();
-        });
-        frameRows.writeln('$frame,${step.us / 1000}');
-        frame++;
-      }
-    }
+    final steps = _buildReplaySteps(events);
+    final replay = await _replaySteps(
+      tester,
+      steps: steps,
+      boundary: boundary,
+      outputPath: outputPath,
+    );
     expect(tester.takeException(), isNull);
-    File('$outputPath/frames.csv').writeAsStringSync(frameRows.toString());
+    File('$outputPath/frames.csv').writeAsStringSync(replay.frameRows);
     File('$outputPath/manifest.json')
         .writeAsStringSync(const JsonEncoder.withIndent('  ').convert({
       'component': component,
       'source': 'deterministic Flutter widget replay',
       'input_events_path': eventsPath,
       'input_events': events,
-      'frame_count': frame,
+      'frame_count': replay.frameCount,
       'resolution': [480, 800],
       'selection_or_commands': changes,
       'timing':
@@ -159,6 +98,91 @@ void main() {
       'recoverable_source_files': sources,
     }));
   });
+}
+
+List<({int us, Map<String, dynamic>? event})> _buildReplaySteps(
+  List<Map<String, dynamic>> events,
+) {
+  final steps = <({int us, Map<String, dynamic>? event})>[];
+  var previousEventTime = -1;
+  var pressed = false;
+  for (final event in events) {
+    final us = ((event['host_received_ms'] as num) * 1000).round();
+    expect(us, inInclusiveRange(0, 119000000));
+    expect(us, greaterThanOrEqualTo(previousEventTime));
+    previousEventTime = us;
+    switch (event['phase']) {
+      case 'down':
+        expect(pressed, isFalse);
+        pressed = true;
+      case 'move':
+        expect(pressed, isTrue);
+      case 'up':
+        expect(pressed, isTrue);
+        pressed = false;
+      default:
+        fail('Unsupported pointer phase');
+    }
+    steps.add((us: us, event: event));
+  }
+  expect(pressed, isFalse);
+  final end = previousEventTime + 1000000;
+  for (var us = 0; us <= end; us += 33333) {
+    steps.add((us: us, event: null));
+  }
+  steps.sort((a, b) => a.us != b.us
+      ? a.us.compareTo(b.us)
+      : a.event == null
+          ? 1
+          : -1);
+  return steps;
+}
+
+Future<({int frameCount, String frameRows})> _replaySteps(
+  WidgetTester tester, {
+  required List<({int us, Map<String, dynamic>? event})> steps,
+  required GlobalKey boundary,
+  required String outputPath,
+}) async {
+  var previous = 0;
+  var frame = 0;
+  TestGesture? gesture;
+  final frameRows = StringBuffer('frame,t_ms\n');
+  for (final step in steps) {
+    await tester.pump(Duration(microseconds: step.us - previous));
+    previous = step.us;
+    final event = step.event;
+    if (event != null) {
+      final point = Offset(
+        (event['x'] as num).toDouble(),
+        (event['y'] as num).toDouble(),
+      );
+      final timestamp = Duration(microseconds: step.us);
+      switch (event['phase']) {
+        case 'down':
+          gesture = await tester.createGesture();
+          await gesture.down(point, timeStamp: timestamp);
+        case 'move':
+          await gesture!.moveTo(point, timeStamp: timestamp);
+        case 'up':
+          await gesture!.up(timeStamp: timestamp);
+          gesture = null;
+      }
+      continue;
+    }
+    final render =
+        boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+    await tester.runAsync(() async {
+      final image = await render.toImage(pixelRatio: 1);
+      final data = await image.toByteData(format: ui.ImageByteFormat.png);
+      File('$outputPath/frames/${frame.toString().padLeft(6, '0')}.png')
+          .writeAsBytesSync(data!.buffer.asUint8List());
+      image.dispose();
+    });
+    frameRows.writeln('$frame,${step.us / 1000}');
+    frame++;
+  }
+  return (frameCount: frame, frameRows: frameRows.toString());
 }
 
 class _ReferenceScene extends StatefulWidget {

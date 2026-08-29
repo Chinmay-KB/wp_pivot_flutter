@@ -119,83 +119,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      switch (phase) {
-        case 'forward-out-mid':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pump();
-          await tester.pump(const Duration(milliseconds: 300));
-          expect(
-              find.byKey(const ValueKey('wp-phone-entry-3')), findsOneWidget);
-          expect(find.text('windows phone'), findsOneWidget);
-          break;
-        case 'forward-wait-boundary':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pump();
-          await tester.pump(
-            Duration(milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5)),
-          );
-          _assertGalleryHomeVisible(tester);
-          break;
-        case 'forward-in-stagger':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pump();
-          await tester.pump(
-            Duration(
-              milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5) + 50,
-            ),
-          );
-          expect(find.byType(ApplicationBarDemo), findsOneWidget);
-          break;
-        case 'forward-settled':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pumpAndSettle();
-          _assertApplicationBarDemoSettled(tester);
-          break;
-        case 'back-out-mid':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pumpAndSettle();
-          _assertApplicationBarDemoSettled(tester);
-          await _tapHardwareBack(tester, ApplicationBarDemo);
-          await tester.pump();
-          await tester.pump(const Duration(milliseconds: 165));
-          expect(find.byType(ApplicationBarDemo), findsOneWidget);
-          break;
-        case 'back-wait-boundary':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pumpAndSettle();
-          _assertApplicationBarDemoSettled(tester);
-          await _tapHardwareBack(tester, ApplicationBarDemo);
-          await tester.pump();
-          await tester.pump(
-            Duration(
-              milliseconds: WpTurnstileFeather.backwardOutPhaseMsFor(2),
-            ),
-          );
-          expect(find.byType(ApplicationBarDemo), findsOneWidget);
-          break;
-        case 'back-in-stagger':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pumpAndSettle();
-          _assertApplicationBarDemoSettled(tester);
-          await _tapHardwareBack(tester, ApplicationBarDemo);
-          await tester.pump();
-          await tester.pump(
-            Duration(
-              milliseconds: WpTurnstileFeather.backwardOutPhaseMsFor(2) + 100,
-            ),
-          );
-          _assertGalleryHomePainted(tester);
-          expect(find.byType(WpApplicationBar), findsNothing);
-          break;
-        case 'back-settled':
-          await _tapGalleryEntry(tester, 'application bar');
-          await tester.pumpAndSettle();
-          _assertApplicationBarDemoSettled(tester);
-          await _tapHardwareBack(tester, ApplicationBarDemo);
-          await tester.pumpAndSettle();
-          _assertGalleryHomeVisible(tester);
-          break;
-      }
+      await _exerciseNavigationPhase(tester, phase);
 
       final pngPath = '${navDir.path}/$phase.png';
       await _writePng(tester, boundary, pngPath);
@@ -252,6 +176,88 @@ const _navigationPhases = <String>[
   'back-in-stagger',
   'back-settled',
 ];
+
+Future<void> _exerciseNavigationPhase(
+  WidgetTester tester,
+  String phase,
+) async {
+  switch (phase) {
+    case 'forward-out-mid':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.byKey(const ValueKey('wp-phone-entry-3')), findsOneWidget);
+      expect(find.text('windows phone'), findsOneWidget);
+      break;
+    case 'forward-wait-boundary':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pump();
+      await tester.pump(
+        Duration(milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5)),
+      );
+      _assertGalleryHomeVisible(tester);
+      break;
+    case 'forward-in-stagger':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pump();
+      await tester.pump(
+        Duration(
+          milliseconds: WpTurnstileFeather.forwardOutPhaseMsFor(5) + 50,
+        ),
+      );
+      expect(find.byType(ApplicationBarDemo), findsOneWidget);
+      break;
+    case 'forward-settled':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pumpAndSettle();
+      _assertApplicationBarDemoSettled(tester);
+      break;
+    case 'back-out-mid':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pumpAndSettle();
+      _assertApplicationBarDemoSettled(tester);
+      await _tapHardwareBack(tester, ApplicationBarDemo);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 165));
+      expect(find.byType(ApplicationBarDemo), findsOneWidget);
+      break;
+    case 'back-wait-boundary':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pumpAndSettle();
+      _assertApplicationBarDemoSettled(tester);
+      await _tapHardwareBack(tester, ApplicationBarDemo);
+      await tester.pump();
+      await tester.pump(
+        Duration(
+          milliseconds: WpTurnstileFeather.backwardOutPhaseMsFor(2),
+        ),
+      );
+      expect(find.byType(ApplicationBarDemo), findsOneWidget);
+      break;
+    case 'back-in-stagger':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pumpAndSettle();
+      _assertApplicationBarDemoSettled(tester);
+      await _tapHardwareBack(tester, ApplicationBarDemo);
+      await tester.pump();
+      await tester.pump(
+        Duration(
+          milliseconds: WpTurnstileFeather.backwardOutPhaseMsFor(2) + 100,
+        ),
+      );
+      _assertGalleryHomePainted(tester);
+      expect(find.byType(WpApplicationBar), findsNothing);
+      break;
+    case 'back-settled':
+      await _tapGalleryEntry(tester, 'application bar');
+      await tester.pumpAndSettle();
+      _assertApplicationBarDemoSettled(tester);
+      await _tapHardwareBack(tester, ApplicationBarDemo);
+      await tester.pumpAndSettle();
+      _assertGalleryHomeVisible(tester);
+      break;
+  }
+}
 
 class _SnapshotEntry {
   const _SnapshotEntry({required this.sourcePath, required this.snapshotPath});

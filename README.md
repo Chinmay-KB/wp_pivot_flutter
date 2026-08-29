@@ -20,9 +20,10 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 
 ## Requirements
 
-Version **2.1.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
+Version **2.1.0** requires Flutter **3.24.0+** and Dart **3.5.0+**. See the
 [changelog](CHANGELOG.md) for release details and [pub.dev](https://pub.dev/packages/wp_pivot_flutter)
-for registry availability. A merged version is not automatically published.
+for registry availability. The standalone example gallery requires Flutter
+**3.44.0+** and Dart **3.12.0+**. A merged version is not automatically published.
 
 ## Full Pivot: native layout and motion
 

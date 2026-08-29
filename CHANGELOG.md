@@ -8,6 +8,7 @@
 * Refresh the example Android toolchain to AGP 9.1.0, Gradle 9.3.1, Kotlin 2.4.0
   and Java 17 so the gallery builds on current Flutter stable. This is not a
   package release.
+* Declare Flutter 3.44 / Dart 3.12 as the example gallery's supported SDK floor.
 
 ## [2.1.0] 28 August 2026.
 
@@ -24,7 +25,7 @@
   comparisons. Measurements use the WP8.1 emulator; Lumia hardware validation
   remains pending, and Selawik is not identical to Segoe WP.
 * Preserve the existing header-only `WpPivot` and controller API.
-* Declare Flutter 3.22 / Dart 3.4 as the minimum supported SDKs for the new APIs.
+* Declare Flutter 3.24 / Dart 3.5 as the minimum supported SDKs for the new APIs.
 * Refresh package documentation and exclude repository research, media and capture
   tooling from the package archive while retaining the library, fonts and example.
 

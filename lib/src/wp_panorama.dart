@@ -323,6 +323,139 @@ class _WpPanoramaState extends State<WpPanorama>
     );
   }
 
+  double _panelLeft({
+    required int itemIndex,
+    required int incoming,
+    required int direction,
+    required double distance,
+    required double canvasDrag,
+  }) {
+    if (itemIndex == _displayed) return canvasDrag;
+    if (itemIndex != incoming) return 0;
+    return direction > 0 ? distance + canvasDrag : -distance + canvasDrag;
+  }
+
+  Widget _buildContentStack({
+    required double width,
+    required double height,
+    required double itemTop,
+    required double itemLeft,
+    required double panelWidth,
+    required double distance,
+    required double canvasDrag,
+    required double backgroundTravel,
+    required double titleTravel,
+    required double itemHeaderFontSize,
+    required double contentGap,
+    required int direction,
+    required int incoming,
+    required TextStyle titleStyle,
+  }) =>
+      Stack(
+        fit: StackFit.expand,
+        children: [
+          if (widget.background != null)
+            Transform.translate(
+              offset: Offset(backgroundTravel, 0),
+              child: OverflowBox(
+                alignment: Alignment.topLeft,
+                minWidth: width * 1.35,
+                maxWidth: width * 1.35,
+                child: widget.background!,
+              ),
+            ),
+          Positioned.fill(child: ColoredBox(color: Colors.black.withAlpha(46))),
+          ClipRect(
+            child: Transform.translate(
+              offset: Offset(titleTravel, 0),
+              child: OverflowBox(
+                alignment: Alignment.topLeft,
+                maxWidth: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12, top: 8),
+                  child: ExcludeSemantics(
+                    child: Text(
+                      widget.title,
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.visible,
+                      style: titleStyle,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: itemTop,
+            left: itemLeft,
+            right: 0,
+            bottom: 0,
+            child: ClipRect(
+              child: Stack(
+                children: [
+                  if (_length == 0)
+                    const SizedBox.expand()
+                  else
+                    for (var itemIndex = 0; itemIndex < _length; itemIndex++)
+                      _item(
+                        index: itemIndex,
+                        left: _panelLeft(
+                          itemIndex: itemIndex,
+                          incoming: incoming,
+                          direction: direction,
+                          distance: distance,
+                          canvasDrag: canvasDrag,
+                        ),
+                        width: panelWidth,
+                        height: height - itemTop,
+                        titleSize: itemHeaderFontSize,
+                        contentGap: contentGap,
+                        active:
+                            itemIndex == _displayed || itemIndex == incoming,
+                        onTap: itemIndex == incoming
+                            ? () => _navigate(direction, distance)
+                            : null,
+                      ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+
+  Widget _buildInteractionLayer(Widget layers, double distance) {
+    final semanticLabel = _length == 0
+        ? '${widget.title}, empty panorama'
+        : '${widget.title}, item ${_index + 1} of $_length';
+    final interactive = Semantics(
+      container: true,
+      label: semanticLabel,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onHorizontalDragStart: _onStart,
+        onHorizontalDragUpdate: (details) => _onUpdate(details, distance),
+        onHorizontalDragEnd: (details) => _onEnd(details, distance),
+        onHorizontalDragCancel: () => _settle(target: null, end: 0),
+        child: Listener(
+          behavior: HitTestBehavior.opaque,
+          onPointerDown: (_) => _pointerCancelled = false,
+          onPointerCancel: (_) => _pointerCancelled = true,
+          child: layers,
+        ),
+      ),
+    );
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.arrowRight): () =>
+            _navigate(1, distance),
+        const SingleActivator(LogicalKeyboardKey.arrowLeft): () =>
+            _navigate(-1, distance),
+      },
+      child: Focus(autofocus: true, child: interactive),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     assert(widget.initialIndex >= 0, 'initialIndex must not be negative.');
@@ -408,102 +541,23 @@ class _WpPanoramaState extends State<WpPanorama>
           _target != null ? _travelDirection : (_drag == 0 ? 1 : dragDirection);
       final incoming = _target ?? _wrap(_displayed + direction);
 
-      Widget layers = Stack(fit: StackFit.expand, children: [
-        if (widget.background != null)
-          Transform.translate(
-            offset: Offset(backgroundTravel, 0),
-            child: OverflowBox(
-              alignment: Alignment.topLeft,
-              minWidth: width * 1.35,
-              maxWidth: width * 1.35,
-              child: widget.background!,
-            ),
-          ),
-        Positioned.fill(child: ColoredBox(color: Colors.black.withAlpha(46))),
-        ClipRect(
-          child: Transform.translate(
-            offset: Offset(titleTravel, 0),
-            child: OverflowBox(
-              alignment: Alignment.topLeft,
-              maxWidth: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12, top: 8),
-                child: ExcludeSemantics(
-                  child: Text(
-                    widget.title,
-                    maxLines: 1,
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
-                    style: titleStyle,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          top: itemTop,
-          left: itemLeft,
-          right: 0,
-          bottom: 0,
-          child: ClipRect(
-            child: Stack(children: [
-              if (_length == 0)
-                const SizedBox.expand()
-              else ...[
-                for (var itemIndex = 0; itemIndex < _length; itemIndex++)
-                  _item(
-                    index: itemIndex,
-                    left: itemIndex == _displayed
-                        ? canvasDrag
-                        : itemIndex == incoming
-                            ? (direction > 0
-                                ? distance + canvasDrag
-                                : -distance + canvasDrag)
-                            : 0,
-                    width: panelWidth,
-                    height: height - itemTop,
-                    titleSize: itemHeaderFontSize,
-                    contentGap: contentGap,
-                    active: itemIndex == _displayed || itemIndex == incoming,
-                    onTap: itemIndex == incoming
-                        ? () => _navigate(direction, distance)
-                        : null,
-                  ),
-              ],
-            ]),
-          ),
-        ),
-      ]);
-
-      layers = Semantics(
-        container: true,
-        label: _length == 0
-            ? '${widget.title}, empty panorama'
-            : '${widget.title}, item ${_index + 1} of $_length',
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onHorizontalDragStart: _onStart,
-          onHorizontalDragUpdate: (details) => _onUpdate(details, distance),
-          onHorizontalDragEnd: (details) => _onEnd(details, distance),
-          onHorizontalDragCancel: () => _settle(target: null, end: 0),
-          child: Listener(
-            behavior: HitTestBehavior.opaque,
-            onPointerDown: (_) => _pointerCancelled = false,
-            onPointerCancel: (_) => _pointerCancelled = true,
-            child: layers,
-          ),
-        ),
+      final layers = _buildContentStack(
+        width: width,
+        height: height,
+        itemTop: itemTop,
+        itemLeft: itemLeft,
+        panelWidth: panelWidth,
+        distance: distance,
+        canvasDrag: canvasDrag,
+        backgroundTravel: backgroundTravel,
+        titleTravel: titleTravel,
+        itemHeaderFontSize: itemHeaderFontSize,
+        contentGap: contentGap,
+        direction: direction,
+        incoming: incoming,
+        titleStyle: titleStyle,
       );
-      return CallbackShortcuts(
-        bindings: {
-          const SingleActivator(LogicalKeyboardKey.arrowRight): () =>
-              _navigate(1, distance),
-          const SingleActivator(LogicalKeyboardKey.arrowLeft): () =>
-              _navigate(-1, distance),
-        },
-        child: Focus(autofocus: true, child: layers),
-      );
+      return _buildInteractionLayer(layers, distance);
     });
   }
 }
