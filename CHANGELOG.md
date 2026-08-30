@@ -1,4 +1,16 @@
-## Unreleased
+## [2.3.0] 30 August 2026.
+
+* Add opt-in reusable Start tiles, explicit tile grid, app-list rows and surface,
+  alphabet jump grid, two-surface lateral navigation, and staggered 3-D scene
+  transition through `wp_components.dart`.
+* Keep Android home-role integration, installed-app discovery, intents, ordering,
+  persistence, and live-data scheduling outside the package API.
+* Add keyboard/semantic behavior, controlled tile edit callbacks, proportional
+  WVGA geometry, and reduced-motion handling.
+* Add a runnable launcher-component composition example and deterministic native
+  emulator comparison tooling. Held-out static geometry has zero measured edge
+  error; four held-out lateral commit/cancel directions pass the capture-bounded
+  trajectory and exact outcome/separation gates.
 
 ## [2.2.0] 29 August 2026.
 

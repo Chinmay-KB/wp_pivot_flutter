@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "study": "launcher-primitives-01",
+  "viewport": [480, 800],
+  "static_geometry": {
+    "tile_surfaces": {"items": 11, "native_max_edge_error_px": 0, "flutter_max_edge_error_px": 0, "passed": true},
+    "app_list_slots": {"items": 10, "native_max_edge_error_px": 0, "flutter_max_edge_error_px": 0, "passed": true},
+    "alphabet_cells": {"items": 28, "native_max_edge_error_px": 0, "flutter_max_edge_error_px": 0, "passed": true}
+  },
+  "lateral_held_out": {
+    "tolerance_p95_px": 36,
+    "tolerance_basis": "one approximately 90ms native host-capture interval at approximately 400px/s delivered drag speed",
+    "trials": [
+      {"trial": "app_list_to_start_cancel_r03", "registered_lag_ms": 132.0, "registered_tracking_p95_px": 3.4000000000000057, "direct_tracking_p95_px": 26.0, "final_error_px": 0.0, "surface_separation_error_px": 0.0, "passed": true},
+      {"trial": "app_list_to_start_drag_commit_r03", "registered_lag_ms": 85.0, "registered_tracking_p95_px": 14.726837463250694, "direct_tracking_p95_px": 37.0, "final_error_px": 0.0, "surface_separation_error_px": 0.0, "passed": true},
+      {"trial": "start_to_app_list_cancel_r03", "registered_lag_ms": 314.0, "registered_tracking_p95_px": 12.717253854922896, "direct_tracking_p95_px": 79.85, "final_error_px": 0.0, "surface_separation_error_px": 0.0, "passed": true},
+      {"trial": "start_to_app_list_drag_commit_r03", "registered_lag_ms": 193.0, "registered_tracking_p95_px": 22.49999999999999, "direct_tracking_p95_px": 96.0, "final_error_px": 0.0, "surface_separation_error_px": 0.0, "passed": true}
+    ],
+    "passed": true
+  },
+  "staggered_scene": {
+    "status": "qualitative-inspection-evidence",
+    "observed_correspondence": ["right-edge Y-axis perspective pose", "rightmost items lead exit", "lower items lag exit and settle earlier on entry"],
+    "not_qualified": ["exact progress-to-native-time mapping", "exact curve or duration", "pixel-level transformed polygon equivalence"]
+  },
+  "source_report_sha256": {
+    "tile_rest": "3c3919b51a82c8738d3347a456b175085a1ffacb647bfbe0c00b93dbca43188c",
+    "app_list_rest": "01c2dd23d66888a2b9c3cc398934de8f9b70394a2e84967e5c19b5b2c4ed6e9d",
+    "alphabet_rest": "a69344a6e4f90022f4d2df34fb2b2159cea92da64535c1401738de7ec444f25b",
+    "lateral_held_out": "2794eb006cf32bf3a76d3a476b61e156e0614eaa4599716ad8e91e1296c9ea53",
+    "stagger_pose": "4a5a6a00994019516ea8cee7919cc966c9c74abe2e25703e7c1e98be95425333"
+  }
+}

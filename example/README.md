@@ -13,6 +13,17 @@ flutter run -d chrome
 Use `flutter build web --release` for a release web build. The normal entrypoint is
 `lib/main.dart`; no measurement hooks run in the normal demo.
 
+Two additional interactive entrypoints are available:
+
+```sh
+flutter run -d chrome -t lib/components.dart
+flutter run -d chrome -t lib/launcher_components.dart
+```
+
+The launcher-component example composes the reusable Start grid, app list,
+alphabet grid, edit affordances, lateral surface, and staggered scene transition
+with placeholder data. It deliberately contains no Android launcher integration.
+
 ## Optional runtime probe
 
 `lib/runtime_probe.dart` is a separate web-only entrypoint that replays recorded
