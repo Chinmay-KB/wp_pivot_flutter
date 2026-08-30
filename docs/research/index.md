@@ -12,6 +12,11 @@ body_class: index-page
 <section class="manual-section" aria-labelledby="published-title">
   <header class="section-label"><h2 id="published-title">Published</h2></header>
   <div class="section-body">
+    <a class="featured-record" href="{{ '/research/start-screen/' | relative_url }}">
+      <span class="record-name">Start screen and app list primitives</span>
+      <span class="record-detail">WP8.1 emulator · 23 scenario IDs · 20 source-mapped clips · research/tooling only; launcher implementation deferred.</span>
+      <span class="status-badge status-available">Published evidence</span>
+    </a>
     <a class="featured-record" href="{{ '/research/pivot/' | relative_url }}">
       <span class="record-name">Pivot motion</span>
       <span class="record-detail">57 WP8.1 emulator trials, Flutter comparisons, raw evidence, and recorded limits.</span>

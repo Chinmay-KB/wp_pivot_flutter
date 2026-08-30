@@ -1,0 +1,1166 @@
+{
+  "schema_version": 1,
+  "canonical_required": [
+    "alphabet-cancel",
+    "alphabet-open",
+    "alphabet-select",
+    "app-list-launch",
+    "app-list-overscroll",
+    "app-list-scroll-flick",
+    "app-list-scroll-slow",
+    "app-list-to-start-cancel",
+    "app-list-to-start-drag",
+    "inverse-flick-snap-back",
+    "live-tile-flip",
+    "start-entry",
+    "start-exit-calendar",
+    "start-overscroll",
+    "start-scroll-flick",
+    "start-scroll-slow",
+    "start-to-app-list-cancel",
+    "start-to-app-list-drag",
+    "start-to-app-list-flick",
+    "tile-edit"
+  ],
+  "items": [
+    {
+      "slug": "alphabet-cancel",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "alphabet_grid_cancel_r03",
+      "encoded_frames": 60,
+      "encoded_fps": 30,
+      "bytes": 40420,
+      "sha256": "5608090c3ce8477a13a19a1ffb7c64c9eca6524e1d80df459a14cd37aad0d2ec",
+      "poster_source": {
+        "source_session": "alphabet-cancel-corrected-01",
+        "source_trial_path": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03",
+        "frame": 18,
+        "source_sha256": "698cc398ba0c1c5b99f1f52aa4a055654555bdb7d689dccad434611a334d18b7",
+        "selection_rationale": "alphabet grid folding away over the returning app list"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000000.png",
+          "source_sha256": "4a60df8706418e5233d8d928d65cf315598ccdcf8f8e340dae60e52bcae9fe47",
+          "expected_state": "alphabet grid visible before Back",
+          "observed_state": "alphabet grid visible before Back",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 18,
+          "raw_relative_path": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000018.png",
+          "source_sha256": "698cc398ba0c1c5b99f1f52aa4a055654555bdb7d689dccad434611a334d18b7",
+          "expected_state": "alphabet grid folding away over the returning app list",
+          "observed_state": "alphabet grid folding away over the returning app list",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 54,
+          "raw_relative_path": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000054.png",
+          "source_sha256": "eb997104058f79b742ba15b7bda310e39315064069bb98f0da6d4b0315141ac8",
+          "expected_state": "app-list A-through-D rows restored after Back",
+          "observed_state": "app-list A-through-D rows restored after Back",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 60,
+        "mapped_frames": 60,
+        "size_bytes": 40420,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "alphabet-open",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "alphabet_grid_open_r01",
+      "encoded_frames": 65,
+      "encoded_fps": 30,
+      "bytes": 44078,
+      "sha256": "2eb47a5006711f76411017012ce0e4bba11c84d7c3fa6e7f872f375a41ac83fd",
+      "poster_source": {
+        "source_session": "app-list-confirmation-01",
+        "source_trial_path": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01",
+        "frame": 27,
+        "source_sha256": "5a0c3468263a6ed40a3697cac5198eec3e310ad1177a6ace533dc86e86048420",
+        "selection_rationale": "alphabet grid overlay with blue enabled and dark disabled cells"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/frames/000000.png",
+          "source_sha256": "5e6197c9bc79d9757ea2947cbfc1729d2ba5430c8e1f4fcf17f598b2796a1c27",
+          "expected_state": "app-list A-through-D rows before alphabet header activation",
+          "observed_state": "app-list A-through-D rows before alphabet header activation",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 27,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/frames/000027.png",
+          "source_sha256": "5a0c3468263a6ed40a3697cac5198eec3e310ad1177a6ace533dc86e86048420",
+          "expected_state": "alphabet grid overlay with blue enabled and dark disabled cells",
+          "observed_state": "alphabet grid overlay with blue enabled and dark disabled cells",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 52,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/frames/000052.png",
+          "source_sha256": "4a60df8706418e5233d8d928d65cf315598ccdcf8f8e340dae60e52bcae9fe47",
+          "expected_state": "app-list A-through-D rows visible after the recorded sequence",
+          "observed_state": "app-list A-through-D rows visible after the recorded sequence",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 65,
+        "mapped_frames": 65,
+        "size_bytes": 44078,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "alphabet-select",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "alphabet_grid_select_r03",
+      "encoded_frames": 65,
+      "encoded_fps": 30,
+      "bytes": 41725,
+      "sha256": "2dafe855ffb0294dba181797bdcde93cceee58c0cfd6329691dcb0b202423324",
+      "poster_source": {
+        "source_session": "alphabet-select-corrected-01",
+        "source_trial_path": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03",
+        "frame": 11,
+        "source_sha256": "0d7606284f94db369fb980f87cadae3de7dbff3c0d353e01aebc90730d89c64b",
+        "selection_rationale": "b-cell selection contracts the alphabet grid over the app list"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000000.png",
+          "source_sha256": "4a60df8706418e5233d8d928d65cf315598ccdcf8f8e340dae60e52bcae9fe47",
+          "expected_state": "settled alphabet grid before enabled b-cell selection",
+          "observed_state": "four-column alphabet grid is settled; the enabled b cell occupies inclusive bounds [246,19,344,117]",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 11,
+          "raw_relative_path": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000011.png",
+          "source_sha256": "0d7606284f94db369fb980f87cadae3de7dbff3c0d353e01aebc90730d89c64b",
+          "expected_state": "b-cell selection contracts the alphabet grid over the app list",
+          "observed_state": "the b-cell/grid plane is visibly contracting while the B section replaces the overlay",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 27,
+          "raw_relative_path": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000027.png",
+          "source_sha256": "b62e66755baa3dc29ccd39b18158a2e904efb9acb10966974cd0dab347bf99c6",
+          "expected_state": "distinct B app-list section after enabled b-cell selection",
+          "observed_state": "B section visibly lists Battery Saver, Calculator, Calendar, Camera, and Cortana",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 65,
+        "mapped_frames": 65,
+        "size_bytes": 41725,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-launch",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_item_launch_r01",
+      "encoded_frames": 64,
+      "encoded_fps": 30,
+      "bytes": 45668,
+      "sha256": "db700e679ce2e65594ef024281dbba2ccb2eb403e5235278edf01c6dfd4576b1",
+      "poster_source": {
+        "source_session": "app-list-confirmation-01",
+        "source_trial_path": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01",
+        "frame": 27,
+        "source_sha256": "1462d6435b956abc9620e4414ba9719e957e470cdbdb6743922bcafedfcb5a5a",
+        "selection_rationale": "Calculator launch splash with blue icon and Calculator label"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/frames/000000.png",
+          "source_sha256": "5e6197c9bc79d9757ea2947cbfc1729d2ba5430c8e1f4fcf17f598b2796a1c27",
+          "expected_state": "app-list A-through-D rows with Calculator row visible",
+          "observed_state": "app-list A-through-D rows with Calculator row visible",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 27,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/frames/000027.png",
+          "source_sha256": "1462d6435b956abc9620e4414ba9719e957e470cdbdb6743922bcafedfcb5a5a",
+          "expected_state": "Calculator launch splash with blue icon and Calculator label",
+          "observed_state": "Calculator launch splash with blue icon and Calculator label",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 49,
+          "raw_relative_path": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/frames/000049.png",
+          "source_sha256": "5f5345195f46f6f5f962436b214a85402b841b2335d90e3495f139d22f6f9f21",
+          "expected_state": "Calculator keypad surface",
+          "observed_state": "Calculator keypad surface",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 64,
+        "mapped_frames": 64,
+        "size_bytes": 45668,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-overscroll",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_overscroll_r03",
+      "encoded_frames": 91,
+      "encoded_fps": 30,
+      "bytes": 60721,
+      "sha256": "47610f8077f87bd537ab7ba04be255fa30eb0ce2c988156a9bfca59bc7a7b6b4",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03",
+        "frame": 35,
+        "source_sha256": "e6e35921c10911a49d80bfec39f9561565928f959843d082be17d367e7becd33",
+        "selection_rationale": "app-list content pulled down with enlarged blank space above A"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/frames/000000.png",
+          "source_sha256": "fc990c3c61e31d01af4df871056f630089920c5d33e0360847c8c346bf7c6325",
+          "expected_state": "app-list top with A-through-D rows",
+          "observed_state": "app-list top with A-through-D rows",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 35,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/frames/000035.png",
+          "source_sha256": "e6e35921c10911a49d80bfec39f9561565928f959843d082be17d367e7becd33",
+          "expected_state": "app-list content pulled down with enlarged blank space above A",
+          "observed_state": "app-list content pulled down with enlarged blank space above A",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 67,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/frames/000067.png",
+          "source_sha256": "fc990c3c61e31d01af4df871056f630089920c5d33e0360847c8c346bf7c6325",
+          "expected_state": "app-list top restored with A-through-D rows",
+          "observed_state": "app-list top restored with A-through-D rows",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 91,
+        "mapped_frames": 91,
+        "size_bytes": 60721,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-scroll-flick",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_scroll_flick_r03",
+      "encoded_frames": 71,
+      "encoded_fps": 30,
+      "bytes": 48538,
+      "sha256": "9432ad72c64f8c6044d6c399b6f012d3f78cd4c4ae3386b5f70dc554995fdf12",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03",
+        "frame": 23,
+        "source_sha256": "ce9fa6502f4d0a80f4aeecbb2ed4500b2e7a86494dab73073ad613db3ffb01b6",
+        "selection_rationale": "app-list moved to Calendar-through-Food & Drink rows"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/frames/000000.png",
+          "source_sha256": "fc990c3c61e31d01af4df871056f630089920c5d33e0360847c8c346bf7c6325",
+          "expected_state": "app-list top with A-through-D rows",
+          "observed_state": "app-list top with A-through-D rows",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 23,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/frames/000023.png",
+          "source_sha256": "ce9fa6502f4d0a80f4aeecbb2ed4500b2e7a86494dab73073ad613db3ffb01b6",
+          "expected_state": "app-list moved to Calendar-through-Food & Drink rows",
+          "observed_state": "app-list moved to Calendar-through-Food & Drink rows",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 56,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/frames/000056.png",
+          "source_sha256": "43eea226d3b7d547bfafe87f86875f7ea080f3974f09283de277fa178b75024e",
+          "expected_state": "app-list remains at the lower Calendar-through-Food & Drink position",
+          "observed_state": "app-list remains at the lower Calendar-through-Food & Drink position",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 71,
+        "mapped_frames": 71,
+        "size_bytes": 48538,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-scroll-slow",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_scroll_slow_r03",
+      "encoded_frames": 100,
+      "encoded_fps": 30,
+      "bytes": 113671,
+      "sha256": "56a8ac171e0b43a8ddc26ae904a1cdc68799789523a6091c041336c863ed4e35",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03",
+        "frame": 39,
+        "source_sha256": "b6abd18b277a60ddb4a64e5fb72c6197ba4e4f64d24734d2614686d7b7ec5569",
+        "selection_rationale": "app-list moved to Calendar-through-Food & Drink rows"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000000.png",
+          "source_sha256": "fc990c3c61e31d01af4df871056f630089920c5d33e0360847c8c346bf7c6325",
+          "expected_state": "app-list top with A-through-D rows",
+          "observed_state": "app-list top with A-through-D rows",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 39,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000039.png",
+          "source_sha256": "b6abd18b277a60ddb4a64e5fb72c6197ba4e4f64d24734d2614686d7b7ec5569",
+          "expected_state": "app-list moved to Calendar-through-Food & Drink rows",
+          "observed_state": "app-list moved to Calendar-through-Food & Drink rows",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 80,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000080.png",
+          "source_sha256": "574e1fd5d1236c27c2e3e04f0871b82e792d3c2bf636220a51213074f2e795fc",
+          "expected_state": "app-list remains at the lower Calendar-through-Food & Drink position",
+          "observed_state": "app-list remains at the lower Calendar-through-Food & Drink position",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 100,
+        "mapped_frames": 100,
+        "size_bytes": 113671,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-to-start-cancel",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_to_start_cancel_r03",
+      "encoded_frames": 82,
+      "encoded_fps": 30,
+      "bytes": 49779,
+      "sha256": "30e774a81601be8003fff892e8747b2a29f2c3d36c82d4d01460bb82fe823d11",
+      "poster_source": {
+        "source_session": "single-drag-cancel-confirmation-01",
+        "source_trial_path": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03",
+        "frame": 25,
+        "source_sha256": "f4178add21d7c589898b6c505cef0edaad99767ca5b8b2164c51dc6492cdf245",
+        "selection_rationale": "Start tile strip visible left of the right-shifted app list"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000000.png",
+          "source_sha256": "4a976011212db2d29e2e58f2eeebef62136f95eaae29482e36ecd72ba31fef4d",
+          "expected_state": "app-list A-through-D rows before the short drag",
+          "observed_state": "app-list A-through-D rows before the short drag",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 25,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000025.png",
+          "source_sha256": "f4178add21d7c589898b6c505cef0edaad99767ca5b8b2164c51dc6492cdf245",
+          "expected_state": "Start tile strip visible left of the right-shifted app list",
+          "observed_state": "Start tile strip visible left of the right-shifted app list",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 52,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000052.png",
+          "source_sha256": "4a976011212db2d29e2e58f2eeebef62136f95eaae29482e36ecd72ba31fef4d",
+          "expected_state": "app-list A-through-D rows restored after snap-back",
+          "observed_state": "app-list A-through-D rows restored after snap-back",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 82,
+        "mapped_frames": 82,
+        "size_bytes": 49779,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-list-to-start-drag",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_to_start_drag_commit_r03",
+      "encoded_frames": 90,
+      "encoded_fps": 30,
+      "bytes": 78841,
+      "sha256": "ea533477882ee51bedf55cbde51b03e8fa3ce556b8a90212b3b7954cf5bb828f",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03",
+        "frame": 35,
+        "source_sha256": "627f2acb62aa1b61d78c913a1eb5c54a0c6f11d8550c704a50afae8e71519658",
+        "selection_rationale": "split Start tiles at left and app-list rows at right"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000000.png",
+          "source_sha256": "adc42d841d4e2ebb7c8b2426081d17dc94272a26765483996c57a26e0ca6e1a4",
+          "expected_state": "near-black acquired pre-transition frame with two small white pixels",
+          "observed_state": "near-black acquired pre-transition frame with two small white pixels",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 35,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000035.png",
+          "source_sha256": "627f2acb62aa1b61d78c913a1eb5c54a0c6f11d8550c704a50afae8e71519658",
+          "expected_state": "split Start tiles at left and app-list rows at right",
+          "observed_state": "split Start tiles at left and app-list rows at right",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 57,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000057.png",
+          "source_sha256": "6d58338ce282b63312fefd504299a403bdb7e318385432282679a31cee2cd7c0",
+          "expected_state": "settled Start tile grid",
+          "observed_state": "settled Start tile grid",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 90,
+        "mapped_frames": 90,
+        "size_bytes": 78841,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "app-to-start",
+      "kind": "supplemental",
+      "replacement": "start-entry",
+      "supplemental_reason": "invalid-precondition historical app-list-started Home recording",
+      "source_trial": "app_to_start_home_r01",
+      "encoded_frames": 60,
+      "encoded_fps": 30,
+      "bytes": 81720,
+      "sha256": "2e0d063e1e56d173bfa162486fb30b82206414999838378d0bd1501f26c9ac9f",
+      "poster_source": {
+        "source_session": "app-list-cancel-home-confirmation-01",
+        "source_trial_path": "runs/capture/app-list-cancel-home-confirmation-01/app_to_start_home_r01",
+        "frame": 23,
+        "source_sha256": "d217b5644d928aa9f9ba48b44a390d8f5574563cf2b82e76072e202fa43f5970",
+        "selection_rationale": "mapped representative middle frame"
+      },
+      "visual_check": null,
+      "verification": {
+        "ok": true,
+        "decoded_frames": 60,
+        "mapped_frames": 60,
+        "size_bytes": 81720,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "inverse-flick-snap-back",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_list_to_start_flick_r03",
+      "encoded_frames": 70,
+      "encoded_fps": 30,
+      "bytes": 80241,
+      "sha256": "39865754bb128fa8764cec34a47c5eae99c888fd8884dc7d5ad5abe28e831ae6",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03",
+        "frame": 27,
+        "source_sha256": "75ec66430df6f604e2d95531997eee7bc7e9251acac4b2bac565cbaff2b3d0a1",
+        "selection_rationale": "partially right-shifted app-list rows during rejected inverse flick"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/frames/000000.png",
+          "source_sha256": "adc42d841d4e2ebb7c8b2426081d17dc94272a26765483996c57a26e0ca6e1a4",
+          "expected_state": "app-list A-through-D rows before inverse flick",
+          "observed_state": "app-list A-through-D rows before inverse flick",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 27,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/frames/000027.png",
+          "source_sha256": "75ec66430df6f604e2d95531997eee7bc7e9251acac4b2bac565cbaff2b3d0a1",
+          "expected_state": "partially right-shifted app-list rows during rejected inverse flick",
+          "observed_state": "partially right-shifted app-list rows during rejected inverse flick",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 51,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/frames/000051.png",
+          "source_sha256": "adc42d841d4e2ebb7c8b2426081d17dc94272a26765483996c57a26e0ca6e1a4",
+          "expected_state": "app-list A-through-D rows after snap-back",
+          "observed_state": "app-list A-through-D rows after snap-back",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 70,
+        "mapped_frames": 70,
+        "size_bytes": 80241,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "live-tile-flip",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "live_tile_passive_flip_r01",
+      "encoded_frames": 301,
+      "encoded_fps": 30,
+      "bytes": 130324,
+      "sha256": "366082b8de18e783bc3714b156309236f6a447c27f4b43a825034ef3680058ee",
+      "poster_source": {
+        "source_session": "shell-observatory-01",
+        "source_trial_path": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01",
+        "frame": 66,
+        "source_sha256": "eabe2e8de99433bd00f7df62df2d18d51fb3aea3102c439b5181854490cde6eb",
+        "selection_rationale": "People live-tile content plane visibly split during flip"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000000.png",
+          "source_sha256": "ebcf66f062db0208f5e7a8ed48e0b81b3691a1d4b71d28abdfb865bbbe6704cf",
+          "expected_state": "Start grid with initial People live-tile content plane",
+          "observed_state": "Start grid with initial People live-tile content plane",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 66,
+          "raw_relative_path": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000066.png",
+          "source_sha256": "eabe2e8de99433bd00f7df62df2d18d51fb3aea3102c439b5181854490cde6eb",
+          "expected_state": "People live-tile content plane visibly split during flip",
+          "observed_state": "People live-tile content plane visibly split during flip",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 139,
+          "raw_relative_path": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000139.png",
+          "source_sha256": "779c0a64893bf3a08593a6b2deb347878a879c87885b76c9965870031631cdad",
+          "expected_state": "Start grid with People live-tile updated patterned blue plane",
+          "observed_state": "Start grid with People live-tile updated patterned blue plane",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 301,
+        "mapped_frames": 301,
+        "size_bytes": 130324,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-entry",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "app_to_start_home_r03",
+      "encoded_frames": 61,
+      "encoded_fps": 30,
+      "bytes": 73710,
+      "sha256": "542b85822e3b79a51d45e971fc214b9db304f101a5d63fe8095fcaac42a2a164",
+      "poster_source": {
+        "source_session": "calculator-home-confirmation-01",
+        "source_trial_path": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03",
+        "frame": 25,
+        "source_sha256": "0ba03aabc34156621e622c66c83e77478d201e93044d8a56a4c69650be292ebb",
+        "selection_rationale": "Start tiles entering in staggered 3D"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000000.png",
+          "source_sha256": "90eb52cd11dc3d753b1cb1ca8c0d5ee335a83c166c5a7ba80b5ed7db3cbde5bd",
+          "expected_state": "Calculator keypad surface",
+          "observed_state": "Calculator keypad surface",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 25,
+          "raw_relative_path": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000025.png",
+          "source_sha256": "0ba03aabc34156621e622c66c83e77478d201e93044d8a56a4c69650be292ebb",
+          "expected_state": "Start tiles entering in staggered 3D",
+          "observed_state": "Start tiles entering in staggered 3D",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 49,
+          "raw_relative_path": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000049.png",
+          "source_sha256": "fca21b31f712f4c90c5edd764fa1d01595c8eb1169da5e0e1b024f6bd1b8dc4f",
+          "expected_state": "settled Start tile grid",
+          "observed_state": "settled Start tile grid",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 61,
+        "mapped_frames": 61,
+        "size_bytes": 73710,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-exit-calendar",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "tile_tap_launch_r03",
+      "encoded_frames": 67,
+      "encoded_fps": 30,
+      "bytes": 93921,
+      "sha256": "f45b92c8eb0a3d623ca00e270db2ad798dd4cb36368f714bbbbfda55e0b19270",
+      "poster_source": {
+        "source_session": "calendar-confirmation-01",
+        "source_trial_path": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03",
+        "frame": 13,
+        "source_sha256": "b43c5df7f8df4e7eee6ecf995f2f3e29653eaee881a5a7fcd64dc1c43cd864fc",
+        "selection_rationale": "Start tiles flying away in staggered 3D toward Calendar launch"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/frames/000000.png",
+          "source_sha256": "4ccdd8a4258b9b93fdb9efb03cd878776326e5992cc7ee8efe22a4681d8b80dd",
+          "expected_state": "Start tile grid before Calendar tap",
+          "observed_state": "Start tile grid before Calendar tap",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 13,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/frames/000013.png",
+          "source_sha256": "b43c5df7f8df4e7eee6ecf995f2f3e29653eaee881a5a7fcd64dc1c43cd864fc",
+          "expected_state": "Start tiles flying away in staggered 3D toward Calendar launch",
+          "observed_state": "Start tiles flying away in staggered 3D toward Calendar launch",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 31,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/frames/000031.png",
+          "source_sha256": "0c62c7f4a4271cb0b470d40e209ab2fd67c9b9c126a91a659f55ed62a929ac43",
+          "expected_state": "Calendar location-permission prompt visible at recorded end",
+          "observed_state": "Calendar location-permission prompt visible at recorded end",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 67,
+        "mapped_frames": 67,
+        "size_bytes": 93921,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-overscroll",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_overscroll_r03",
+      "encoded_frames": 91,
+      "encoded_fps": 30,
+      "bytes": 88534,
+      "sha256": "0f90af99c162eadc345fe7d4104f5f363d83d0928f18effd4e92385ad761a245",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03",
+        "frame": 28,
+        "source_sha256": "3ea49f4ae80a99a70997d16517b17a4e85cc6abf399f5563015ce9bd9f237938",
+        "selection_rationale": "Start tiles pulled down with blank space growing above them"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000000.png",
+          "source_sha256": "b6043063dc09b725f01533acb575720757fe30798785691099b85c677c175fc3",
+          "expected_state": "Start tile grid at its top boundary",
+          "observed_state": "Start tile grid at its top boundary",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 28,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000028.png",
+          "source_sha256": "3ea49f4ae80a99a70997d16517b17a4e85cc6abf399f5563015ce9bd9f237938",
+          "expected_state": "Start tiles pulled down with blank space growing above them",
+          "observed_state": "Start tiles pulled down with blank space growing above them",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 50,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000050.png",
+          "source_sha256": "67092e5f03795a4e5588435674b5e08001e86a6e62b79f5ae28b5c9239903bf7",
+          "expected_state": "Start tile grid restored to its top boundary",
+          "observed_state": "Start tile grid restored to its top boundary",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 91,
+        "mapped_frames": 91,
+        "size_bytes": 88534,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-scroll-flick",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_scroll_flick_r03",
+      "encoded_frames": 71,
+      "encoded_fps": 30,
+      "bytes": 77326,
+      "sha256": "d4833e962dc44b4ed6732474a0c66d73e8853907a297a44c4dcaaaa4ad92aabb",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03",
+        "frame": 16,
+        "source_sha256": "716dd400a82b9a5717b9091a6efe426d27ba2352ae97b5ac1a24cea98727fd37",
+        "selection_rationale": "Start tiles vertically displaced with lower Photos content exposed"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/frames/000000.png",
+          "source_sha256": "96b3dcbd417dd4a0a6802592a23cac6fb3eb9beba857930a12f3833dcda27b49",
+          "expected_state": "Start tile grid at top position",
+          "observed_state": "Start tile grid at top position",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 16,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/frames/000016.png",
+          "source_sha256": "716dd400a82b9a5717b9091a6efe426d27ba2352ae97b5ac1a24cea98727fd37",
+          "expected_state": "Start tiles vertically displaced with lower Photos content exposed",
+          "observed_state": "Start tiles vertically displaced with lower Photos content exposed",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 33,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/frames/000033.png",
+          "source_sha256": "816579d2899e70781032ddd32e520b5fd65ff2d3685488f669bc9673a19f9196",
+          "expected_state": "Start grid remains at the lower scroll position",
+          "observed_state": "Start grid remains at the lower scroll position",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 71,
+        "mapped_frames": 71,
+        "size_bytes": 77326,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-scroll-slow",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_scroll_slow_r03",
+      "encoded_frames": 103,
+      "encoded_fps": 30,
+      "bytes": 195743,
+      "sha256": "1f12b8df6823f3ba5f693bcdeb39af4acd07a062ac187afbd0679f66c7009591",
+      "poster_source": {
+        "source_session": "scroll-inverse-confirmation-01",
+        "source_trial_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03",
+        "frame": 22,
+        "source_sha256": "c8dccc3950a81769802462cfe5492d159a22144c9fe57a1deec238ce34b234f6",
+        "selection_rationale": "Start tiles vertically displaced with lower Photos content exposed"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000000.png",
+          "source_sha256": "ef18c3449974d2c884312b83d3b05c93ed75c574f633bb52b1cf5e4be288b232",
+          "expected_state": "Start tile grid at top position",
+          "observed_state": "Start tile grid at top position",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 22,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000022.png",
+          "source_sha256": "c8dccc3950a81769802462cfe5492d159a22144c9fe57a1deec238ce34b234f6",
+          "expected_state": "Start tiles vertically displaced with lower Photos content exposed",
+          "observed_state": "Start tiles vertically displaced with lower Photos content exposed",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 44,
+          "raw_relative_path": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000044.png",
+          "source_sha256": "cd8d3c2de78b9aef25e58bdeec29bbced37591e02f2e3937e4f7d3ef265ee0fa",
+          "expected_state": "Start grid remains at the lower scroll position",
+          "observed_state": "Start grid remains at the lower scroll position",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 103,
+        "mapped_frames": 103,
+        "size_bytes": 195743,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-to-app-list",
+      "kind": "supplemental",
+      "replacement": "start-to-app-list-drag",
+      "supplemental_reason": null,
+      "source_trial": "start_to_app_list_drag_commit_r01",
+      "encoded_frames": 96,
+      "encoded_fps": 30,
+      "bytes": 88891,
+      "sha256": "134b09810731921bd5653a1548f5c0b4517bcacaf4689a0ea33e9cf11015e682",
+      "poster_source": {
+        "source_session": "start-app-list-confirmation-01",
+        "source_trial_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r01",
+        "frame": 22,
+        "source_sha256": "4c55968ec10b646e692a237be96872ee1c12284061a36e6cbf527f94a4534069",
+        "selection_rationale": "mapped representative middle frame"
+      },
+      "visual_check": null,
+      "verification": {
+        "ok": true,
+        "decoded_frames": 96,
+        "mapped_frames": 96,
+        "size_bytes": 88891,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-to-app-list-cancel",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_to_app_list_cancel_r03",
+      "encoded_frames": 80,
+      "encoded_fps": 30,
+      "bytes": 77308,
+      "sha256": "4c39cb9199f889a8c74bc1fb02aa09f2b1f81af456b04bfa3119d7240830105a",
+      "poster_source": {
+        "source_session": "single-drag-cancel-confirmation-01",
+        "source_trial_path": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03",
+        "frame": 27,
+        "source_sha256": "c9898ea91783a456d5fe795623026b00cc9983745eda66176478712a122247b5",
+        "selection_rationale": "app-list edge visible beside the partially left-shifted Start grid"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000000.png",
+          "source_sha256": "5e673bf9f3176e0d38eb1d194695972e9bdead92b943a2afd60e394a17465568",
+          "expected_state": "Start tile grid before the short drag",
+          "observed_state": "Start tile grid before the short drag",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 27,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000027.png",
+          "source_sha256": "c9898ea91783a456d5fe795623026b00cc9983745eda66176478712a122247b5",
+          "expected_state": "app-list edge visible beside the partially left-shifted Start grid",
+          "observed_state": "app-list edge visible beside the partially left-shifted Start grid",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 45,
+          "raw_relative_path": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000045.png",
+          "source_sha256": "088130d792fd79d2ece965920c6daa42dbae0b383aaae894d4a9c656197c72d0",
+          "expected_state": "Start tile grid restored after snap-back",
+          "observed_state": "Start tile grid restored after snap-back",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 80,
+        "mapped_frames": 80,
+        "size_bytes": 77308,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-to-app-list-drag",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_to_app_list_drag_commit_r03",
+      "encoded_frames": 95,
+      "encoded_fps": 30,
+      "bytes": 73462,
+      "sha256": "fee02368f4adda32d7f086c2996afe9b351f9dbd4934705a4d3cbb304015091c",
+      "poster_source": {
+        "source_session": "start-app-list-confirmation-01",
+        "source_trial_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03",
+        "frame": 22,
+        "source_sha256": "cd390fe60bf36ce3e183f5e37adfc4f96a3460f315575c56f3aeaa1a679d9e4a",
+        "selection_rationale": "split Start tiles at left and app-list rows at right"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000000.png",
+          "source_sha256": "8bfba9a60d840d30f6871952bfe6f20e4bd8803a7ac156cab4bdd0498ad64e07",
+          "expected_state": "Start tile grid before drag",
+          "observed_state": "Start tile grid before drag",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 22,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000022.png",
+          "source_sha256": "cd390fe60bf36ce3e183f5e37adfc4f96a3460f315575c56f3aeaa1a679d9e4a",
+          "expected_state": "split Start tiles at left and app-list rows at right",
+          "observed_state": "split Start tiles at left and app-list rows at right",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 53,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000053.png",
+          "source_sha256": "e688d8a764d54b4dedefbc8c511964dadf2511d5b430e867fb2eacec88fec89e",
+          "expected_state": "settled app-list A-through-D rows",
+          "observed_state": "settled app-list A-through-D rows",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 95,
+        "mapped_frames": 95,
+        "size_bytes": 73462,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "start-to-app-list-flick",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "start_to_app_list_flick_r03",
+      "encoded_frames": 71,
+      "encoded_fps": 30,
+      "bytes": 69217,
+      "sha256": "0dab12052f759c1bb2c234d7315690a1937a2ca104250dad0e0423f086a0a99a",
+      "poster_source": {
+        "source_session": "start-app-list-confirmation-01",
+        "source_trial_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03",
+        "frame": 14,
+        "source_sha256": "d3eb2a1aa221c9bf2066c5a751cc49239bf5a5447d582518dea499b9ecf990f9",
+        "selection_rationale": "split Start tiles at left and app-list rows at right"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/frames/000000.png",
+          "source_sha256": "068dc0093d9601f6d1f5669b492184773abfd77e30b3293422462b42d4c69819",
+          "expected_state": "Start tile grid before flick",
+          "observed_state": "Start tile grid before flick",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 14,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/frames/000014.png",
+          "source_sha256": "d3eb2a1aa221c9bf2066c5a751cc49239bf5a5447d582518dea499b9ecf990f9",
+          "expected_state": "split Start tiles at left and app-list rows at right",
+          "observed_state": "split Start tiles at left and app-list rows at right",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 36,
+          "raw_relative_path": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/frames/000036.png",
+          "source_sha256": "e688d8a764d54b4dedefbc8c511964dadf2511d5b430e867fb2eacec88fec89e",
+          "expected_state": "settled app-list A-through-D rows",
+          "observed_state": "settled app-list A-through-D rows",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 71,
+        "mapped_frames": 71,
+        "size_bytes": 69217,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    },
+    {
+      "slug": "tile-edit",
+      "kind": "canonical",
+      "replacement": null,
+      "supplemental_reason": null,
+      "source_trial": "tile_hold_edit_r03",
+      "encoded_frames": 96,
+      "encoded_fps": 30,
+      "bytes": 115542,
+      "sha256": "04fb6bad73b5142e7e87a7ca925cd2135f3adcc7d5aa8b64ae31cdf18e8d72d7",
+      "poster_source": {
+        "source_session": "calendar-confirmation-01",
+        "source_trial_path": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03",
+        "frame": 22,
+        "source_sha256": "5309361524940710d58b2c998f5581c9dbfc2a74c7a9d91ee095a5fa678f7de2",
+        "selection_rationale": "Calendar tile lifted with circular unpin and resize affordances"
+      },
+      "visual_check": {
+        "first": {
+          "raw_source_frame": 0,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/frames/000000.png",
+          "source_sha256": "3788850962512bebb8dbc8f6ad33872865c7748ef0ea8a4465d1cd4d147f24c7",
+          "expected_state": "unchanged Start tile grid before hold",
+          "observed_state": "unchanged Start tile grid before hold",
+          "passed": true
+        },
+        "middle": {
+          "raw_source_frame": 22,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/frames/000022.png",
+          "source_sha256": "5309361524940710d58b2c998f5581c9dbfc2a74c7a9d91ee095a5fa678f7de2",
+          "expected_state": "Calendar tile lifted with circular unpin and resize affordances",
+          "observed_state": "Calendar tile lifted with circular unpin and resize affordances",
+          "passed": true
+        },
+        "last": {
+          "raw_source_frame": 45,
+          "raw_relative_path": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/frames/000045.png",
+          "source_sha256": "d089f135db3b4ae1e3dc3030d0f1dd39212f111e659f4c43ad338b6cd6c57ea1",
+          "expected_state": "unchanged Start tile grid after edit-mode exit",
+          "observed_state": "unchanged Start tile grid after edit-mode exit",
+          "passed": true
+        }
+      },
+      "verification": {
+        "ok": true,
+        "decoded_frames": 96,
+        "mapped_frames": 96,
+        "size_bytes": 115542,
+        "dimensions": [
+          480,
+          800
+        ]
+      }
+    }
+  ],
+  "note": "30 fps is a presentation schedule; frames are held native observations."
+}

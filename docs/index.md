@@ -19,8 +19,9 @@ title: Home
   <h2 id="index-title">Research index</h2>
   <div class="index-grid">
     <a class="index-link" href="{{ site.github_repo }}"><strong>Package</strong><span>WpPivotView and six opt-in controls, v2.2.0.</span></a>
-    <a class="index-link" href="{{ '/captures/' | relative_url }}"><strong>Captures</strong><span>Pivot plus 17 micro-control emulator trials.</span></a>
-    <a class="index-link" href="{{ '/research/components/micro-controls/' | relative_url }}"><strong>New study</strong><span>Slider, ProgressBar, and TiltEffect measurements.</span></a>
+    <a class="index-link" href="{{ '/captures/' | relative_url }}"><strong>Captures</strong><span>Pivot, Start screen (23 IDs / 20 clips), and 17 micro-control emulator trials.</span></a>
+    <a class="index-link" href="{{ '/research/start-screen/' | relative_url }}"><strong>Newest study</strong><span>Start-screen and app-list primitive evidence from the WP8.1 emulator.</span></a>
+    <a class="index-link" href="{{ '/research/components/micro-controls/' | relative_url }}"><strong>Micro controls</strong><span>Slider, ProgressBar, and TiltEffect measurements.</span></a>
     <a class="index-link" href="{{ '/resources/' | relative_url }}"><strong>Sources</strong><span>Archived Microsoft documents and references.</span></a>
   </div>
 </section>

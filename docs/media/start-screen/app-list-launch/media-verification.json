@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "decoded_frames": 64,
+  "mapped_frames": 64,
+  "size_bytes": 45668,
+  "dimensions": [
+    480,
+    800
+  ]
+}
