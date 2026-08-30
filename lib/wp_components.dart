@@ -5,8 +5,15 @@
 library;
 
 export 'src/wp_application_bar.dart';
+export 'src/wp_alphabet_grid.dart';
+export 'src/wp_app_list.dart';
 export 'src/wp_panorama.dart';
+export 'src/wp_phone_theme.dart';
 export 'src/wp_progress_bar.dart';
 export 'src/wp_slider.dart';
+export 'src/wp_split_surface_view.dart';
+export 'src/wp_staggered_scene_transition.dart';
+export 'src/wp_tile.dart';
+export 'src/wp_tile_grid.dart';
 export 'src/wp_tilt_effect.dart';
 export 'src/wp_toggle_switch.dart';

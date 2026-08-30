@@ -20,7 +20,7 @@ A Flutter package inspired from Windows Phone Style Pivot Tabs
 
 ## Requirements
 
-Version **2.2.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
+Version **2.3.0** requires Flutter **3.22.0+** and Dart **3.4.0+**. See the
 [changelog](CHANGELOG.md) for release details and [pub.dev](https://pub.dev/packages/wp_pivot_flutter)
 for registry availability. A merged version is not automatically published.
 The repository's example app uses Flutter 3.44+ for its current Android
@@ -79,6 +79,50 @@ share the content gesture surface. A separate release-web runtime probe measures
 real engine frame timing, not physical display latency or Lumia performance.
 Independent hardware validation and broader gesture sampling remain separate work.
 
+## Launcher UI primitives
+
+The experimental `wp_components.dart` entrypoint now contains the reusable UI
+layer needed to compose a Windows Phone-style launcher without putting launcher
+policy into this package:
+
+- `WpPhoneTheme`, `WpTile`, and `WpTileGrid` provide the palette, touch tilt,
+  controlled edit affordances, and explicit four-column layout.
+- `WpAppListView`, `WpAppListHeader`, `WpAppListRow`, and `WpAlphabetGrid`
+  reproduce the measured list and jump-grid geometry while leaving app data,
+  sorting, and selection destinations with the caller.
+- `WpSplitSurfaceView` provides the two-surface commit/cancel drag between Start
+  and the app list.
+- `WpStaggeredSceneTransition` applies caller-driven, per-item right-edge 3-D
+  entry/exit. The caller still decides when navigation happens.
+
+```dart
+import 'package:wp_pivot_flutter/wp_components.dart';
+
+WpPhoneTheme(
+  data: const WpPhoneThemeData.dark(),
+  child: WpSplitSurfaceView(
+    first: WpTileGrid(placements: tilePlacements),
+    second: WpAppListView(children: appListSlots),
+  ),
+)
+```
+
+Run `flutter run -t lib/launcher_components.dart` from `example/` for a complete
+composition using placeholder content. The package deliberately does not request
+the Android home role, enumerate installed packages, launch intents, persist pins,
+order apps, or schedule live data.
+
+At the 480 x 800 evidence viewport, held-out comparisons found zero edge error
+for 11 tile surfaces, 10 app-list slots, and 28 alphabet cells. Four held-out
+lateral commit/cancel replays in both directions ended on the correct page with
+zero final/separation error; presentation-registered tracking p95 ranged from
+3.4 to 22.5 px within the 36 px host-capture uncertainty bound. Raw host timing
+error is retained separately because emulator timestamps do not identify guest
+presentation. The staggered scene pose is evidence-informed and visually
+inspected, but exact native timing and transformed polygons are not claimed.
+See [the component contract](research/start-screen/COMPONENT-CONTRACT.md) and
+[runtime report](research/start-screen/runtime-01/README.md).
+
 ## Legacy header-only example
 
 Selection state is managed by a `PivotController` - pass your own to drive the
@@ -136,7 +180,7 @@ Widget build(BuildContext context) {
 
 ## Experimental component gallery
 
-Application Bar, Panorama, ToggleSwitch, Slider, ProgressBar, and TiltEffect are available through the separate
+Application Bar, Panorama, ToggleSwitch, Slider, ProgressBar, TiltEffect, and the launcher UI primitives are available through the separate
 `package:wp_pivot_flutter/wp_components.dart` import. From `example/`, run
 `flutter run -d chrome -t lib/components.dart` to try them together.
 They are experimental. The three micro controls have repeated WP8.1 emulator

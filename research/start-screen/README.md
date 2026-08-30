@@ -3,10 +3,13 @@
 Release: `start-screen-evidence-2026-08-30`
 Archive: `wp81-start-screen-evidence-2026-08-30.zip`
 
-This is an emulator-only study of the actual Microsoft Windows Phone 8.1 WVGA
-(480 x 800) Start screen and app list. It contributes research, capture tooling,
-measurements, and attributed media only: no launcher, Android integration,
-package API, or component decision.
+This began as an emulator-only study of the actual Microsoft Windows Phone 8.1
+WVGA (480 x 800) Start screen and app list. Its immutable capture and publication
+artifacts remain research evidence. A later package phase used that evidence to
+define reusable UI-only components; it still adds no Android launcher integration.
+The package boundary and selected APIs are recorded in
+[`COMPONENT-CONTRACT.md`](COMPONENT-CONTRACT.md), and post-freeze comparisons are
+summarized in [`runtime-01/README.md`](runtime-01/README.md).
 
 `measurements.json` schema v4 is the canonical registry; `docs/media/start-screen/media-index.json`
 is canonical media provenance. Raw PNGs are immutable observations. H.264 clips
@@ -92,9 +95,11 @@ app-list surfaces, release commit/cancel/snap-back, alphabet expansion/dismissal
 selection, Calculator launch, People content-plane flip, vertical boundary motion,
 and edit affordances. Exact curves and duration remain unknown.
 
-Candidates for later evaluation are a tile surface/content plane, semantic
-alphabet grid, app-list row, scroll/overscroll behavior, and transition
-orchestration. API and component selection are deliberately deferred.
+The implemented package layer includes tile/theme/grid primitives, semantic
+app-list and alphabet surfaces, a generic two-surface lateral view, controlled
+edit affordances, and a caller-driven staggered scene transition. Android home
+role, installed-app discovery, intents, persistence, ordering, and live-data
+scheduling remain explicitly outside the package.
 
 No claim is made about Lumia hardware, Android launcher behavior, physical
 latency, exact font family/point size, exact easing, or an overall fidelity score.
