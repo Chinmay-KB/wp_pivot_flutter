@@ -32,6 +32,11 @@
     a { color: var(--blue-dark); text-underline-offset: .2em; text-decoration-thickness: 1px; }
     a:hover { color: var(--blue); }
     img, video { display: block; max-width: 100%; }
+    button, input { font: inherit; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
     .skip-link {
       position: fixed; z-index: 20; left: 16px; top: 12px; padding: 8px 12px;
       background: var(--ink); color: var(--white); transform: translateY(-160%);
@@ -140,10 +145,78 @@
     .study-fact { padding: 14px 18px 0 0; }
     .study-fact dt { color: var(--muted); font-size: .74rem; font-weight: 650; letter-spacing: .065em; text-transform: uppercase; }
     .study-fact dd { margin: 5px 0 0; font-weight: 550; }
-    .media-evidence { margin: 0 0 42px; }
-    .media-evidence video, .media-evidence img { width: 100%; height: auto; background: var(--ink); }
-    .media-evidence figcaption { display: flex; justify-content: space-between; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--rule-light); color: var(--muted); font-size: .82rem; }
-    .media-evidence figcaption strong { color: var(--ink); }
+    .media-evidence, .comparison-evidence { margin: 0 0 42px; }
+    .media-evidence video, .media-evidence img,
+    .comparison-evidence video, .comparison-evidence img { width: 100%; height: auto; background: var(--ink); }
+    .media-evidence figcaption, .comparison-evidence figcaption {
+      display: flex; justify-content: space-between; gap: 24px; padding: 12px 0;
+      border-bottom: 1px solid var(--rule-light); color: var(--muted); font-size: .82rem;
+    }
+    .media-evidence figcaption strong, .comparison-evidence figcaption strong { color: var(--ink); }
+
+    .image-compare { --compare-position: 50%; }
+    .image-compare__stage {
+      position: relative; display: grid; overflow: hidden; background: var(--ink);
+      border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    }
+    .image-compare__after { grid-area: 1 / 1; }
+    .image-compare__before {
+      position: absolute; inset: 0; overflow: hidden;
+      clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
+    }
+    .image-compare__before img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+    .image-compare__divider {
+      position: absolute; z-index: 2; top: 0; bottom: 0; left: var(--compare-position);
+      width: 1px; background: var(--white); transform: translateX(-.5px); pointer-events: none;
+    }
+    .image-compare__divider::after {
+      content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 48px;
+      border: 1px solid var(--white); background: var(--ink); transform: translate(-50%, -50%);
+    }
+    .image-compare__label, .compare-pane__label, .composite-compare__legend span {
+      color: var(--white); background: var(--ink); font-size: .78rem; font-weight: 650;
+      letter-spacing: .065em; line-height: 1.4; text-transform: uppercase;
+    }
+    .image-compare__label {
+      position: absolute; z-index: 3; top: 12px; padding: 6px 8px; pointer-events: none;
+    }
+    .image-compare__label--before { left: 12px; }
+    .image-compare__label--after { right: 12px; }
+    .image-compare__control {
+      display: grid; grid-template-columns: auto minmax(120px, 1fr) auto; align-items: center;
+      gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--rule-light);
+    }
+    .image-compare__control span { color: var(--muted); font-size: .78rem; font-weight: 650; letter-spacing: .055em; text-transform: uppercase; }
+    .image-compare__control input { width: 100%; min-height: 44px; margin: 0; accent-color: var(--blue); cursor: ew-resize; }
+
+    .video-compare__grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
+      background: var(--rule); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    }
+    .video-compare__pane { min-width: 0; background: var(--paper); }
+    .compare-pane__label { display: block; padding: 7px 10px; }
+    .compare-pane__note {
+      min-height: 52px; margin: 0; padding: 9px 10px 10px;
+      color: var(--muted); font-size: .78rem; line-height: 1.4;
+    }
+    .compare-toolbar {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0 18px;
+      padding: 10px 0; border-bottom: 1px solid var(--rule-light);
+    }
+    .compare-toolbar button {
+      min-height: 44px; padding: 0; border: 0; border-bottom: 1px solid var(--ink);
+      background: transparent; color: var(--blue-dark); cursor: pointer;
+      font-size: .82rem; font-weight: 650; letter-spacing: .055em; text-transform: uppercase;
+    }
+    .compare-toolbar button:hover { color: var(--blue); border-bottom-color: var(--blue); }
+    .compare-toolbar button:active { transform: translateY(1px); }
+    .compare-status { margin-left: auto; color: var(--muted); font-size: .78rem; }
+    .composite-compare__legend {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule);
+      border-top: 1px solid var(--ink);
+    }
+    .composite-compare__legend span { padding: 7px 10px; }
+    .composite-compare__legend span:last-child { text-align: right; }
     .study-page .section-body h3 { margin-top: 42px; font-size: 1.25rem; }
     .study-page .section-body table { margin-top: 26px; }
     .study-page .section-body li { max-width: 68ch; }
@@ -221,7 +294,10 @@
       .record-row { padding: 16px 0; }
       .study-facts { grid-template-columns: 1fr 1fr; }
       .study-fact { padding-block: 12px; border-bottom: 1px solid var(--rule-light); }
-      .media-evidence figcaption { flex-direction: column; gap: 4px; }
+      .media-evidence figcaption, .comparison-evidence figcaption { flex-direction: column; gap: 4px; }
+      .compare-pane__note { min-height: 68px; font-size: .78rem; }
+      .compare-toolbar { gap: 0 14px; }
+      .compare-status { flex-basis: 100%; margin: 6px 0 0; }
       table { display: block; overflow-x: auto; }
       .site-footer .shell { flex-direction: column; }
     }
@@ -232,8 +308,10 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .primary-link span { transition: none; }
+      .compare-toolbar button:active { transform: none; }
     }
   </style>
+  <script defer src="{{ '/assets/comparisons.js' | relative_url }}"></script>
 </head>
 <body class="{% if page.url == '/' or page.url == '/index.html' %}home{% else %}inner{% endif %}{% if page.body_class %} {{ page.body_class }}{% endif %}">
   <!-- THESIS: A contemporary service manual for evidence-led Metro restoration. OWN-WORLD: warm paper, black ink, Lumia blue, measured rules, Segoe UI, no decorative cards. STORY: literal project purpose -> published Pivot study -> research index. FIRST VIEWPORT: plain project title beside one source-backed study; no campaign slogan, process checklist, or decorative device. FORM: distilled editorial split derived from Bench Specimen; seed key 5b7aad82. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance -->

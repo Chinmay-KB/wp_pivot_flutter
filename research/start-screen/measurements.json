@@ -1,0 +1,1895 @@
+{
+  "schema_version": 4,
+  "path_semantics": "all frame paths are relative to artifacts/launcher-primitives-01",
+  "bbox_convention": "inclusive pixel bounds; manual raster landmarks \u00b12px",
+  "source": {
+    "adapter": "start-screen-wp81-wvga",
+    "viewport": [
+      480,
+      800
+    ]
+  },
+  "scenario_registry": [
+    {
+      "id": "start_rest",
+      "requested_intent": "start_rest",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "start_rest_r01",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/start_rest_r01/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/start_rest_r01/frames/000014.png",
+          "final_frame": "runs/capture/shell-observatory-01/start_rest_r01/frames/000027.png",
+          "manifest_sha256": "c3dc5d865aabeca670a68d98e284f6ca3d53339aba315c7b657882419db09e45",
+          "frame_count": 28,
+          "changed_valid_observations": 20,
+          "max_gap_ms": 91.17139999999995,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_rest_r02",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/start_rest_r02/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/start_rest_r02/frames/000014.png",
+          "final_frame": "runs/capture/shell-observatory-01/start_rest_r02/frames/000027.png",
+          "manifest_sha256": "c4658be29d224b21e5125757aa9680a036cc454677bc0300451ab04d27488663",
+          "frame_count": 28,
+          "changed_valid_observations": 27,
+          "max_gap_ms": 83.09130000000005,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_rest_r03",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/start_rest_r03/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/start_rest_r03/frames/000017.png",
+          "final_frame": "runs/capture/shell-observatory-01/start_rest_r03/frames/000034.png",
+          "manifest_sha256": "f93850568924101fd1e432fbc119cd8d5966f8dc09741b10b9871e20892e5f06",
+          "frame_count": 35,
+          "changed_valid_observations": 19,
+          "max_gap_ms": 78.83049999999997,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "live_tile_passive_flip",
+      "requested_intent": "live_tile_passive_flip",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "live_tile_passive_flip_r01",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000070.png",
+          "final_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000139.png",
+          "manifest_sha256": "4623d7336f1e3d3f8dcabce5b6fc01a140f2a226034d29cb9c1818255bc6df55",
+          "frame_count": 140,
+          "changed_valid_observations": 127,
+          "max_gap_ms": 92.39210000000094,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "live_tile_passive_flip_r02",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r02/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r02/frames/000070.png",
+          "final_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r02/frames/000140.png",
+          "manifest_sha256": "438d659b84061e47f4593065be27a89f49dfad57b83fd172b9b94ee1d1e236f2",
+          "frame_count": 141,
+          "changed_valid_observations": 99,
+          "max_gap_ms": 111.79949999999985,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "live_tile_passive_flip_r03",
+          "session": "shell-observatory-01",
+          "reset_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r03/reset.png",
+          "mid_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r03/frames/000069.png",
+          "final_frame": "runs/capture/shell-observatory-01/live_tile_passive_flip_r03/frames/000138.png",
+          "manifest_sha256": "3eeb53f9f272267519d39a224e8c051919aca9e8fe8e0458ec7f5086316f7ec3",
+          "frame_count": 139,
+          "changed_valid_observations": 114,
+          "max_gap_ms": 127.1298999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_scroll_slow",
+      "requested_intent": "start_scroll_slow",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "start_scroll_slow_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r01/frames/000025.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r01/frames/000049.png",
+          "manifest_sha256": "f905ba2524d386597d967c7d5f723b8629a780ee1d6f8054fe71147ca5e778f4",
+          "frame_count": 50,
+          "changed_valid_observations": 42,
+          "max_gap_ms": 149.61230000000023,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        },
+        {
+          "trial": "start_scroll_slow_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r02/frames/000022.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r02/frames/000043.png",
+          "manifest_sha256": "39dede3779d8663de04c35c9035a8c08b613e4667a7d3c06ade0cb0c751f10cc",
+          "frame_count": 44,
+          "changed_valid_observations": 43,
+          "max_gap_ms": 104.67720000000008,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_scroll_slow_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000023.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000045.png",
+          "manifest_sha256": "ac4dde3f4688198c419ff53c4e3c5b79f32d122de5d8baec08bcc64ff78ecae4",
+          "frame_count": 46,
+          "changed_valid_observations": 45,
+          "max_gap_ms": 96.74649999999997,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_scroll_flick",
+      "requested_intent": "start_scroll_flick",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "start_scroll_flick_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r01/frames/000015.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r01/frames/000030.png",
+          "manifest_sha256": "b551d5f4082bc70ec7d4e20e4677730e5454386067d049c43bfd009464d3eaea",
+          "frame_count": 31,
+          "changed_valid_observations": 26,
+          "max_gap_ms": 106.46419999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_scroll_flick_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r02/frames/000016.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r02/frames/000032.png",
+          "manifest_sha256": "e100996c8cf74a6ed45638faeadbf8c0b718ca7aa4636bc6551b6498f96b9636",
+          "frame_count": 33,
+          "changed_valid_observations": 32,
+          "max_gap_ms": 94.41370000000006,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_scroll_flick_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/frames/000017.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_scroll_flick_r03/frames/000033.png",
+          "manifest_sha256": "a8d1483ba308d4b6a7341e53bd470ef4d94bd9070c342bffc49c262d5ba9cfbb",
+          "frame_count": 34,
+          "changed_valid_observations": 31,
+          "max_gap_ms": 88.92950000000019,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_overscroll",
+      "requested_intent": "start_overscroll",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "start_overscroll_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r01/frames/000021.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r01/frames/000042.png",
+          "manifest_sha256": "6db0858df842981f02736a63116bd421c327b6372496094ba86bc16bd275e8d2",
+          "frame_count": 43,
+          "changed_valid_observations": 40,
+          "max_gap_ms": 96.32680000000005,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_overscroll_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r02/frames/000022.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r02/frames/000044.png",
+          "manifest_sha256": "8cad907e9c8e77cbe9f619d0cd01f532555f928634abba51fc9227aaffc69402",
+          "frame_count": 45,
+          "changed_valid_observations": 35,
+          "max_gap_ms": 180.77829999999994,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        },
+        {
+          "trial": "start_overscroll_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000026.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000051.png",
+          "manifest_sha256": "265d81cb4e8ec49417eab35249ceacba96c0ad28cacda5c432dc7ff06945b46f",
+          "frame_count": 52,
+          "changed_valid_observations": 39,
+          "max_gap_ms": 89.93949999999995,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "tile_hold_edit",
+      "requested_intent": "tile_hold_edit",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "edit-entered/exited unchanged",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "tile_hold_edit_r01",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r01/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r01/frames/000023.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r01/frames/000046.png",
+          "manifest_sha256": "7edd75af1e3de771c4ebdd54392916ffda66390b149241a8dda596833073572b",
+          "frame_count": 47,
+          "changed_valid_observations": 46,
+          "max_gap_ms": 88.50299999999993,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "tile_hold_edit_r02",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r02/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r02/frames/000022.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r02/frames/000043.png",
+          "manifest_sha256": "6ff4fe82abc335fbe493612c6d97758823d16bad248fbf44a28ae03c8b691873",
+          "frame_count": 44,
+          "changed_valid_observations": 43,
+          "max_gap_ms": 95.0474999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "tile_hold_edit_r03",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/frames/000023.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_hold_edit_r03/frames/000045.png",
+          "manifest_sha256": "b69c83ba69831ab02340662300d2fd4a53d29f2d3e48b4821bc24b085cc17137",
+          "frame_count": 46,
+          "changed_valid_observations": 45,
+          "max_gap_ms": 96.4978000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "tile_tap_launch",
+      "requested_intent": "tile_tap_launch",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "Calendar launched; Home recovered",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "tile_tap_launch_r01",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r01/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r01/frames/000018.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r01/frames/000036.png",
+          "manifest_sha256": "f6f77140aeb964d53c596ef5758daa90a5af6ff47df762749b0e2b1cbbe8e34f",
+          "frame_count": 37,
+          "changed_valid_observations": 25,
+          "max_gap_ms": 86.86889999999998,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "tile_tap_launch_r02",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r02/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r02/frames/000017.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r02/frames/000033.png",
+          "manifest_sha256": "9f219aabdb4de9b153db6ca99f918ee26ac598be48a5aa73c0e8a010bfb06b1d",
+          "frame_count": 34,
+          "changed_valid_observations": 25,
+          "max_gap_ms": 91.18900000000008,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "tile_tap_launch_r03",
+          "session": "calendar-confirmation-01",
+          "reset_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/reset.png",
+          "mid_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/frames/000016.png",
+          "final_frame": "runs/capture/calendar-confirmation-01/tile_tap_launch_r03/frames/000032.png",
+          "manifest_sha256": "fec53f172b14c307f34e6576b4f6f74997a779e920c450bc7b52f87002022748",
+          "frame_count": 33,
+          "changed_valid_observations": 23,
+          "max_gap_ms": 127.96339999999998,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_to_start_home",
+      "requested_intent": "app_to_start_home",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "Home entry to Start",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_to_start_home_r01",
+          "session": "calculator-home-confirmation-01",
+          "reset_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r01/reset.png",
+          "mid_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r01/frames/000024.png",
+          "final_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r01/frames/000048.png",
+          "manifest_sha256": "9d6c680c2345707c547e78c24f3f4848f753f29d57578d06c454481c1f3fe4e2",
+          "frame_count": 49,
+          "changed_valid_observations": 18,
+          "max_gap_ms": 75.31529999999998,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_to_start_home_r02",
+          "session": "calculator-home-confirmation-01",
+          "reset_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r02/reset.png",
+          "mid_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r02/frames/000022.png",
+          "final_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r02/frames/000043.png",
+          "manifest_sha256": "c91080068f96aadccbd84fcb2cb416a1c0a280510ec0eac3bcbbade8ae047887",
+          "frame_count": 44,
+          "changed_valid_observations": 19,
+          "max_gap_ms": 84.61130000000003,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_to_start_home_r03",
+          "session": "calculator-home-confirmation-01",
+          "reset_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/reset.png",
+          "mid_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000025.png",
+          "final_frame": "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000049.png",
+          "manifest_sha256": "799938ccebbd507ea12f73e938f01219339ae7deb79e8f429540df358e7a5c1c",
+          "frame_count": 50,
+          "changed_valid_observations": 11,
+          "max_gap_ms": 101.4176,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate",
+        {
+          "session": "app-list-cancel-home-confirmation-01",
+          "trials": [
+            "app_to_start_home_r01",
+            "app_to_start_home_r02",
+            "app_to_start_home_r03"
+          ],
+          "class": "rejected",
+          "reason": "invalid-precondition-app-list",
+          "requested_outcome_achieved": false,
+          "observed_outcome": "initial retained frame is app list; this is lateral app-list behavior, not Calculator-to-Start Home entry"
+        }
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_to_app_list_drag_commit",
+      "requested_intent": "start_to_app_list_drag_commit",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "commit to app list",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "start_to_app_list_drag_commit_r01",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r01/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r01/frames/000027.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r01/frames/000054.png",
+          "manifest_sha256": "f5adac55035ad5d56806cb98576b3bd248b4b24f6ad0cbf6da5523847482a04e",
+          "frame_count": 55,
+          "changed_valid_observations": 36,
+          "max_gap_ms": 100.25849999999991,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_drag_commit_r02",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r02/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r02/frames/000026.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r02/frames/000052.png",
+          "manifest_sha256": "2d457abd5d56e28a29e3a7471baed1602c6efef6410d6d2c8faa2985798fda21",
+          "frame_count": 53,
+          "changed_valid_observations": 33,
+          "max_gap_ms": 92.28800000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_drag_commit_r03",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000027.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000053.png",
+          "manifest_sha256": "a9e29808db1321061aad6aea3a12de2ce998e01358aa0d299fb4c850ab9f6ced",
+          "frame_count": 54,
+          "changed_valid_observations": 36,
+          "max_gap_ms": 90.96589999999992,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_to_app_list_flick",
+      "requested_intent": "start_to_app_list_flick",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "commit to app list",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "start_to_app_list_flick_r01",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r01/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r01/frames/000022.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r01/frames/000043.png",
+          "manifest_sha256": "bc0eca8d13af17afab2bae5e8cd7ff59e001984bac69deee39762bbdce213ccb",
+          "frame_count": 44,
+          "changed_valid_observations": 23,
+          "max_gap_ms": 105.47550000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_flick_r02",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r02/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r02/frames/000022.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r02/frames/000044.png",
+          "manifest_sha256": "8ddc38551ff4fc01c27f2f110abaf215beaac0597f20d1adc4f95d63dc21fd77",
+          "frame_count": 45,
+          "changed_valid_observations": 25,
+          "max_gap_ms": 95.63470000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_flick_r03",
+          "session": "start-app-list-confirmation-01",
+          "reset_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/reset.png",
+          "mid_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/frames/000019.png",
+          "final_frame": "runs/capture/start-app-list-confirmation-01/start_to_app_list_flick_r03/frames/000037.png",
+          "manifest_sha256": "7db9e192af9978d7a12e8bf72d4b0119a00b1ce0bb6bc4ad1f52c231778cef06",
+          "frame_count": 38,
+          "changed_valid_observations": 22,
+          "max_gap_ms": 112.08189999999996,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "start_to_app_list_cancel",
+      "requested_intent": "start_to_app_list_cancel",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "partial displacement then Start snap-back",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "start_to_app_list_cancel_r01",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r01/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r01/frames/000019.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r01/frames/000037.png",
+          "manifest_sha256": "e58c6d4702da883f80cdb25be4d92227872c2c6f7078d0b8930465c3d5ff63cd",
+          "frame_count": 38,
+          "changed_valid_observations": 37,
+          "max_gap_ms": 111.43679999999995,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_cancel_r02",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r02/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r02/frames/000023.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r02/frames/000045.png",
+          "manifest_sha256": "89dc91e76e9367e59d1059f9d029a0ef3fe40fe3e7840fb428c40a1deb1e4874",
+          "frame_count": 46,
+          "changed_valid_observations": 33,
+          "max_gap_ms": 92.6534,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "start_to_app_list_cancel_r03",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000023.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000046.png",
+          "manifest_sha256": "84da6fea7a1000631b55ccf1546e4b5c27b55744956407c8362b55d05763ed07",
+          "frame_count": 47,
+          "changed_valid_observations": 30,
+          "max_gap_ms": 94.18799999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_rest",
+      "requested_intent": "app_list_rest",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "app_list_rest_r01",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r01/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r01/frames/000032.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r01/frames/000063.png",
+          "manifest_sha256": "9377e82772bb1abc9fa92650dda1fa91da014b510cf654e8af72ed2c9e148b8a",
+          "frame_count": 64,
+          "changed_valid_observations": 0,
+          "max_gap_ms": 66.93489999999997,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_rest_r02",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r02/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r02/frames/000024.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r02/frames/000047.png",
+          "manifest_sha256": "13e1594a5d0a8977467ba0a71f017606f2c8747ff4181948b9779a6eba16191e",
+          "frame_count": 48,
+          "changed_valid_observations": 0,
+          "max_gap_ms": 72.81379999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_rest_r03",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r03/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r03/frames/000033.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_rest_r03/frames/000066.png",
+          "manifest_sha256": "669f1a82e81bd0956a4b4110f29205f89ecb29254a6c9557a7a0745a3e57e22e",
+          "frame_count": 67,
+          "changed_valid_observations": 0,
+          "max_gap_ms": 36.851200000000006,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_scroll_slow",
+      "requested_intent": "app_list_scroll_slow",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_scroll_slow_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r01/frames/000036.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r01/frames/000072.png",
+          "manifest_sha256": "f695f584126c474f9e0807836a63394e612b608720897f189ee0b15c3c4491ce",
+          "frame_count": 73,
+          "changed_valid_observations": 27,
+          "max_gap_ms": 80.34179999999992,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_scroll_slow_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r02/frames/000039.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r02/frames/000078.png",
+          "manifest_sha256": "a37b926f9efa7064a3a12086590c65e3d82819400c32f2d245bc7a0124cd8057",
+          "frame_count": 79,
+          "changed_valid_observations": 32,
+          "max_gap_ms": 83.82010000000037,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_scroll_slow_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000040.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000080.png",
+          "manifest_sha256": "87c657104161e06b063c32b5a4923d0c8070df3900fb7a57a8da2123d4e38106",
+          "frame_count": 81,
+          "changed_valid_observations": 31,
+          "max_gap_ms": 80.54650000000004,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_scroll_flick",
+      "requested_intent": "app_list_scroll_flick",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_scroll_flick_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r01/frames/000025.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r01/frames/000050.png",
+          "manifest_sha256": "7d9e21eb1e14d94abe0f10eefaff668d189b41166919f57e0d630a0c6dd2b046",
+          "frame_count": 51,
+          "changed_valid_observations": 12,
+          "max_gap_ms": 85.37109999999996,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_scroll_flick_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r02/frames/000031.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r02/frames/000062.png",
+          "manifest_sha256": "a9ccdf4ae1c2b5366b7c724ba5dc5dc3c8be713eab49237e000696c3df4873f1",
+          "frame_count": 63,
+          "changed_valid_observations": 13,
+          "max_gap_ms": 88.53980000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_scroll_flick_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/frames/000029.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_flick_r03/frames/000057.png",
+          "manifest_sha256": "947921ab02fdc1ea2b9deb102bd9d8f242705742e4ea1854be56b456d6503746",
+          "frame_count": 58,
+          "changed_valid_observations": 12,
+          "max_gap_ms": 88.88649999999996,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_overscroll",
+      "requested_intent": "app_list_overscroll",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "captured observed state",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_overscroll_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r01/frames/000030.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r01/frames/000060.png",
+          "manifest_sha256": "6761ab75dad3f4dd9d7b3e6ef49df828fa5182a87f880534603e17675ffca4da",
+          "frame_count": 61,
+          "changed_valid_observations": 17,
+          "max_gap_ms": 88.0902000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_overscroll_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r02/frames/000034.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r02/frames/000067.png",
+          "manifest_sha256": "ae0fcb166f89e563c65788e44b7be15160b81cec26383e795468cdd1c5b1b3f3",
+          "frame_count": 68,
+          "changed_valid_observations": 20,
+          "max_gap_ms": 94.72919999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_overscroll_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/frames/000034.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_overscroll_r03/frames/000067.png",
+          "manifest_sha256": "856b6915143264d9ebe1e079853abd09e19e5175c701e6db6291399a8fefe67e",
+          "frame_count": 68,
+          "changed_valid_observations": 20,
+          "max_gap_ms": 92.66059999999993,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_to_start_drag_commit",
+      "requested_intent": "app_list_to_start_drag_commit",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "commit to Start",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_to_start_drag_commit_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r01/frames/000028.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r01/frames/000056.png",
+          "manifest_sha256": "c0c22afc8719719dc170001884142f918d7d37b4cb7153e7f55d2a0c2b99d696",
+          "frame_count": 57,
+          "changed_valid_observations": 34,
+          "max_gap_ms": 92.58940000000007,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_drag_commit_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r02/frames/000024.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r02/frames/000048.png",
+          "manifest_sha256": "7112bf79e5c7c7602b32dd7effb520fd030ac5cb9a2b5b3694607e176b1e510a",
+          "frame_count": 49,
+          "changed_valid_observations": 32,
+          "max_gap_ms": 92.65719999999988,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_drag_commit_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000029.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000058.png",
+          "manifest_sha256": "4123a46c9b017cc3db911d421466be29c98c6bd3deffb3e017ecaa5ff998614f",
+          "frame_count": 59,
+          "changed_valid_observations": 34,
+          "max_gap_ms": 93.28510000000006,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_to_start_flick",
+      "requested_intent": "app_list_to_start_flick",
+      "requested_outcome_achieved": false,
+      "observed_outcome": "snap-back/rejected commit",
+      "class": "rejected",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_to_start_flick_r01",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r01/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r01/frames/000021.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r01/frames/000042.png",
+          "manifest_sha256": "b0751e9ad2bac336214a08367e292fd9e5c07827f9feafc5d8637fd60ef28774",
+          "frame_count": 43,
+          "changed_valid_observations": 17,
+          "max_gap_ms": 82.61639999999989,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_flick_r02",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r02/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r02/frames/000027.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r02/frames/000053.png",
+          "manifest_sha256": "0c7ac8c0d5a8947c72fe367c6c2a40b1ebc10ee328a9bb0965f91df63a0af66c",
+          "frame_count": 54,
+          "changed_valid_observations": 14,
+          "max_gap_ms": 83.1105,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_flick_r03",
+          "session": "scroll-inverse-confirmation-01",
+          "reset_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/reset.png",
+          "mid_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/frames/000026.png",
+          "final_frame": "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_flick_r03/frames/000051.png",
+          "manifest_sha256": "b1353868c6e817eb223d8aca97833e26e6d5d687e09400e808d669f97822b829",
+          "frame_count": 52,
+          "changed_valid_observations": 16,
+          "max_gap_ms": 98.01440000000002,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_to_start_flick_commit_strong",
+      "requested_intent": "app_list_to_start_flick_commit_strong",
+      "requested_outcome_achieved": false,
+      "observed_outcome": "snap-back/rejected commit",
+      "class": "rejected",
+      "repeats": 1,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "app_list_to_start_flick_commit_strong_r01",
+          "session": "strong-inverse-flick-pilot-01",
+          "reset_frame": "runs/capture/strong-inverse-flick-pilot-01/app_list_to_start_flick_commit_strong_r01/reset.png",
+          "mid_frame": "runs/capture/strong-inverse-flick-pilot-01/app_list_to_start_flick_commit_strong_r01/frames/000028.png",
+          "final_frame": "runs/capture/strong-inverse-flick-pilot-01/app_list_to_start_flick_commit_strong_r01/frames/000056.png",
+          "manifest_sha256": "ce679cea57942165ae72e88457b9f5aab47f599deb54b4943cc7c8804590c6be",
+          "frame_count": 57,
+          "changed_valid_observations": 17,
+          "max_gap_ms": 66.81910000000005,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_to_start_cancel",
+      "requested_intent": "app_list_to_start_cancel",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "partial displacement then app-list snap-back",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_to_start_cancel_r01",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r01/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r01/frames/000030.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r01/frames/000060.png",
+          "manifest_sha256": "8915ad897372e2054af1682714ac90936a9a00d4af9419dc5110aa7e3ea25434",
+          "frame_count": 61,
+          "changed_valid_observations": 22,
+          "max_gap_ms": 80.05250000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_cancel_r02",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r02/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r02/frames/000031.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r02/frames/000061.png",
+          "manifest_sha256": "063ca6d18ed5af58fe7c31c5274e51ee8a5a745a26aea918413b137c0b83f4b6",
+          "frame_count": 62,
+          "changed_valid_observations": 23,
+          "max_gap_ms": 83.03179999999998,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_to_start_cancel_r03",
+          "session": "single-drag-cancel-confirmation-01",
+          "reset_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/reset.png",
+          "mid_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000027.png",
+          "final_frame": "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000053.png",
+          "manifest_sha256": "732c2f1ecac4ab5796bc8612c7d903c8f6cdcadff0f2491ee0d7cd9b978c51d9",
+          "frame_count": 54,
+          "changed_valid_observations": 19,
+          "max_gap_ms": 96.38490000000002,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "alphabet_grid_open",
+      "requested_intent": "alphabet_grid_open",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "grid opened",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "alphabet_grid_open_r01",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/frames/000027.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r01/frames/000053.png",
+          "manifest_sha256": "2a3b24daf1e168e4309f0a125a6541ba232347cb34629b3b1e9f4ab10529f789",
+          "frame_count": 54,
+          "changed_valid_observations": 13,
+          "max_gap_ms": 92.25600000000009,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_open_r02",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r02/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r02/frames/000022.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r02/frames/000043.png",
+          "manifest_sha256": "b8dbd89fa16d63ac79a343c82b3056cd548c9390ecfa73c362c83b754d1963c9",
+          "frame_count": 44,
+          "changed_valid_observations": 11,
+          "max_gap_ms": 84.00250000000005,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_open_r03",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/frames/000027.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/frames/000054.png",
+          "manifest_sha256": "ffa649bae3f7251ae0a2993df5674e500612abf5bec839e422794a88c3b385c3",
+          "frame_count": 55,
+          "changed_valid_observations": 12,
+          "max_gap_ms": 90.81990000000019,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "alphabet_grid_select",
+      "requested_intent": "alphabet_grid_select",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "settled alphabet grid b cell selected; B section with Battery Saver, Calculator, Calendar, Camera, and Cortana visible",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": false,
+      "scenario_gate_reason": "not all three trials pass gate",
+      "trials": [
+        {
+          "trial": "alphabet_grid_select_r01",
+          "session": "alphabet-select-corrected-01",
+          "reset_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r01/reset.png",
+          "mid_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r01/frames/000017.png",
+          "final_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r01/frames/000034.png",
+          "manifest_sha256": "83fced4c63ae70b778e2cf14933d4f5c092416451d788c81039707a2f9c7a7ea",
+          "frame_count": 35,
+          "changed_valid_observations": 12,
+          "max_gap_ms": 98.16720000000001,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_select_r02",
+          "session": "alphabet-select-corrected-01",
+          "reset_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r02/reset.png",
+          "mid_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r02/frames/000017.png",
+          "final_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r02/frames/000034.png",
+          "manifest_sha256": "2d801eb4bb2dd64aaaf38239cca5cb15ccd63efaddddd4b9e9d8515bc794ff6a",
+          "frame_count": 35,
+          "changed_valid_observations": 11,
+          "max_gap_ms": 107.55010000000004,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_select_r03",
+          "session": "alphabet-select-corrected-01",
+          "reset_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/reset.png",
+          "mid_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000014.png",
+          "final_frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000028.png",
+          "manifest_sha256": "51075455c14a49ca143ac63ce435c74c99dc6f03f6c9cdbe7496550fccd2bf87",
+          "frame_count": 29,
+          "changed_valid_observations": 11,
+          "max_gap_ms": 141.19179999999983,
+          "delivered_events_complete": true,
+          "trial_gate_passed": false,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate",
+        {
+          "session": "app-list-confirmation-01",
+          "trials": [
+            "alphabet_grid_select_r01",
+            "alphabet_grid_select_r02",
+            "alphabet_grid_select_r03"
+          ],
+          "class": "rejected",
+          "reason": "invalid-precondition-and-invalid-terminal",
+          "requested_outcome_achieved": false,
+          "observed_outcome": "the header tap was not protected by a settle wait and the x=179 tap was mislabeled as b although it lies in the declared a cell; retained terminal frames do not prove the intended enabled-letter selection"
+        }
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "alphabet_grid_cancel",
+      "requested_intent": "alphabet_grid_cancel",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "grid canceled",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "alphabet_grid_cancel_r01",
+          "session": "alphabet-cancel-corrected-01",
+          "reset_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r01/reset.png",
+          "mid_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r01/frames/000025.png",
+          "final_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r01/frames/000049.png",
+          "manifest_sha256": "416fd3c7190017b4ad66bae42dedddf461fe35da781c6f8a2672aab30083c065",
+          "frame_count": 50,
+          "changed_valid_observations": 11,
+          "max_gap_ms": 101.37030000000004,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_cancel_r02",
+          "session": "alphabet-cancel-corrected-01",
+          "reset_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r02/reset.png",
+          "mid_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r02/frames/000024.png",
+          "final_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r02/frames/000047.png",
+          "manifest_sha256": "917fffff4084194e38723d660c6d2bfe697302c545bd9a088c7392360a6f2dc4",
+          "frame_count": 48,
+          "changed_valid_observations": 10,
+          "max_gap_ms": 97.8119999999999,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "alphabet_grid_cancel_r03",
+          "session": "alphabet-cancel-corrected-01",
+          "reset_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/reset.png",
+          "mid_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000028.png",
+          "final_frame": "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000055.png",
+          "manifest_sha256": "49c41350719a1467876ec6aacebb49365bc6c1271f5e8ae7d857053431df8ce0",
+          "frame_count": 56,
+          "changed_valid_observations": 13,
+          "max_gap_ms": 64.91200000000003,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate",
+        {
+          "session": "app-list-cancel-home-confirmation-01",
+          "trials": [
+            "alphabet_grid_cancel_r01",
+            "alphabet_grid_cancel_r02",
+            "alphabet_grid_cancel_r03"
+          ],
+          "class": "rejected",
+          "reason": "invalid-precondition-unsettled-app-list",
+          "requested_outcome_achieved": false,
+          "observed_outcome": "header tap arrived before Start-to-app-list settled; each old trial visibly launched Calculator instead of opening and dismissing the alphabet grid"
+        }
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    },
+    {
+      "id": "app_list_item_launch",
+      "requested_intent": "app_list_item_launch",
+      "requested_outcome_achieved": true,
+      "observed_outcome": "Calculator launched",
+      "class": "captured",
+      "repeats": 3,
+      "scenario_motion_claim_eligible": true,
+      "scenario_gate_reason": "three valid trial gates",
+      "trials": [
+        {
+          "trial": "app_list_item_launch_r01",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/frames/000025.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r01/frames/000049.png",
+          "manifest_sha256": "8a4b8d6e9a9fd3ca942b905ae61b4edaded76fdc1028a6c77337166542b0f571",
+          "frame_count": 50,
+          "changed_valid_observations": 15,
+          "max_gap_ms": 93.17190000000005,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_item_launch_r02",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r02/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r02/frames/000028.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r02/frames/000055.png",
+          "manifest_sha256": "9974f949f763bfa8aedefe429a19af08ca55a94e63d2b52af515c03854c1de83",
+          "frame_count": 56,
+          "changed_valid_observations": 17,
+          "max_gap_ms": 67.93249999999989,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        },
+        {
+          "trial": "app_list_item_launch_r03",
+          "session": "app-list-confirmation-01",
+          "reset_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/reset.png",
+          "mid_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/frames/000024.png",
+          "final_frame": "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/frames/000047.png",
+          "manifest_sha256": "56c99ad3001f8ad374add55d3afa98af9a2b9491d1536eb0f436d60ae3d31e2c",
+          "frame_count": 48,
+          "changed_valid_observations": 15,
+          "max_gap_ms": 73.60750000000007,
+          "delivered_events_complete": true,
+          "trial_gate_passed": true,
+          "exclusions": []
+        }
+      ],
+      "supplemental_evidence": [
+        "pilot/calibration trials excluded from canonical repeat gate"
+      ],
+      "limits": [
+        "host clocks only",
+        "rendered pixels only"
+      ]
+    }
+  ],
+  "geometry": {
+    "start_layout": {
+      "sample_frame": "runs/capture/shell-observatory-01/start_rest_r01/frames/000000.png",
+      "large_tile_px": [
+        210,
+        210
+      ],
+      "small_tile_px": [
+        99,
+        99
+      ],
+      "gutter_px": 12,
+      "method": "flat-color connected components",
+      "uncertainty_px": 1
+    },
+    "tile_icons": [
+      {
+        "name": "Phone",
+        "bbox": [
+          100,
+          109,
+          148,
+          181
+        ]
+      },
+      {
+        "name": "Messaging",
+        "bbox": [
+          277,
+          84,
+          311,
+          110
+        ]
+      },
+      {
+        "name": "IE",
+        "bbox": [
+          382,
+          82,
+          430,
+          126
+        ]
+      },
+      {
+        "name": "Mail",
+        "bbox": [
+          278,
+          202,
+          311,
+          228
+        ]
+      },
+      {
+        "name": "Calendar",
+        "bbox": [
+          107,
+          653,
+          226,
+          700
+        ]
+      },
+      {
+        "name": "Kid's Corner",
+        "bbox": [
+          308,
+          552,
+          392,
+          657
+        ]
+      }
+    ],
+    "tile_labels_live_text": [
+      {
+        "text": "Fake GSM Network",
+        "bbox": [
+          34,
+          237,
+          195,
+          253
+        ]
+      },
+      {
+        "text": "People",
+        "bbox": [
+          34,
+          460,
+          87,
+          477
+        ]
+      },
+      {
+        "text": "Sun 30",
+        "bbox": [
+          116,
+          653,
+          225,
+          700
+        ]
+      },
+      {
+        "text": "Kid's Corner",
+        "bbox": [
+          256,
+          682,
+          351,
+          699
+        ]
+      }
+    ],
+    "app_list_layout": {
+      "frame": "runs/capture/app-list-confirmation-01/app_list_rest_r01/reset.png",
+      "search_bbox": [
+        25,
+        57,
+        67,
+        98
+      ],
+      "header_bbox": [
+        86,
+        57,
+        147,
+        118
+      ],
+      "row_pitch_px": 74,
+      "calculator_icon_bbox": [
+        86,
+        427,
+        147,
+        488
+      ],
+      "calculator_name_bbox": [
+        164,
+        444,
+        298,
+        468
+      ],
+      "calculator_baseline_y": 468,
+      "icon_name_gap_px": 16
+    },
+    "alphabet_grid": {
+      "frame": "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/reset.png",
+      "overlay_bbox": [
+        24,
+        19,
+        456,
+        785
+      ],
+      "columns": 4,
+      "cell_a_bbox": [
+        135,
+        19,
+        233,
+        117
+      ],
+      "cell_b_bbox": [
+        246,
+        19,
+        344,
+        117
+      ],
+      "cell_size_px": [
+        99,
+        99
+      ],
+      "gutter_px": 12,
+      "bbox_convention": "inclusive raster bounds; manually inspected from the settled replacement grid; \u00b11px",
+      "enabled_color": "#3e65ff",
+      "disabled_color": "#202020"
+    },
+    "edit_mode": {
+      "frame": "runs/capture/calendar-edit-launch-pilot-01/tile_hold_edit_r01/frames/000028.png",
+      "calendar_bbox": [
+        24,
+        500,
+        233,
+        709
+      ],
+      "annulus_method": "min(rgb)>=180; spread<=15; radius 18..25",
+      "unpin": {
+        "bbox": [
+          228,
+          456,
+          272,
+          500
+        ],
+        "center": [
+          250,
+          478
+        ],
+        "diameter_px": 45
+      },
+      "resize": {
+        "bbox": [
+          227,
+          691,
+          273,
+          736
+        ],
+        "center": [
+          250,
+          714
+        ],
+        "diameter_px": 46
+      },
+      "uncertainty_px": 2
+    },
+    "motion_phase_samples": [
+      {
+        "interaction": "start_scroll_slow",
+        "frames": [
+          "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000000.png",
+          "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000023.png",
+          "runs/capture/scroll-inverse-confirmation-01/start_scroll_slow_r03/frames/000045.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            23,
+            45
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "start_overscroll",
+        "frames": [
+          "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000000.png",
+          "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000026.png",
+          "runs/capture/scroll-inverse-confirmation-01/start_overscroll_r03/frames/000051.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            26,
+            51
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "app_list_scroll_slow",
+        "frames": [
+          "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000000.png",
+          "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000040.png",
+          "runs/capture/scroll-inverse-confirmation-01/app_list_scroll_slow_r03/frames/000080.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            40,
+            80
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "app_list_to_start_drag_commit",
+        "frames": [
+          "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000000.png",
+          "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000029.png",
+          "runs/capture/scroll-inverse-confirmation-01/app_list_to_start_drag_commit_r03/frames/000058.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            29,
+            58
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "start_to_app_list_drag_commit",
+        "frames": [
+          "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000000.png",
+          "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000027.png",
+          "runs/capture/start-app-list-confirmation-01/start_to_app_list_drag_commit_r03/frames/000053.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            27,
+            53
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "start_to_app_list_cancel",
+        "frames": [
+          "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000000.png",
+          "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000025.png",
+          "runs/capture/single-drag-cancel-confirmation-01/start_to_app_list_cancel_r03/frames/000046.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            25,
+            46
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "app_list_to_start_cancel",
+        "frames": [
+          "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000000.png",
+          "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000025.png",
+          "runs/capture/single-drag-cancel-confirmation-01/app_list_to_start_cancel_r03/frames/000053.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            25,
+            53
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "app_to_start_home",
+        "frames": [
+          "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000000.png",
+          "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000025.png",
+          "runs/capture/calculator-home-confirmation-01/app_to_start_home_r03/frames/000049.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            25,
+            49
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "alphabet_grid_open",
+        "frames": [
+          "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/frames/000000.png",
+          "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/frames/000027.png",
+          "runs/capture/app-list-confirmation-01/alphabet_grid_open_r03/frames/000054.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            27,
+            54
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "alphabet_grid_select",
+        "frames": [
+          "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000000.png",
+          "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000011.png",
+          "runs/capture/alphabet-select-corrected-01/alphabet_grid_select_r03/frames/000028.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            11,
+            28
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "alphabet_grid_cancel",
+        "frames": [
+          "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000000.png",
+          "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000025.png",
+          "runs/capture/alphabet-cancel-corrected-01/alphabet_grid_cancel_r03/frames/000055.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            25,
+            55
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "app_list_item_launch",
+        "frames": [
+          "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/frames/000000.png",
+          "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/frames/000024.png",
+          "runs/capture/app-list-confirmation-01/app_list_item_launch_r03/frames/000047.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            24,
+            47
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "tile_hold_edit",
+        "frames": [
+          "runs/capture/calendar-edit-launch-pilot-01/tile_hold_edit_r01/frames/000000.png",
+          "runs/capture/calendar-edit-launch-pilot-01/tile_hold_edit_r01/frames/000028.png",
+          "runs/capture/calendar-edit-launch-pilot-01/tile_hold_edit_r01/frames/000051.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            28,
+            51
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "tile_tap_launch",
+        "frames": [
+          "runs/capture/calendar-edit-launch-pilot-01/tile_tap_launch_r01/frames/000000.png",
+          "runs/capture/calendar-edit-launch-pilot-01/tile_tap_launch_r01/frames/000015.png",
+          "runs/capture/calendar-edit-launch-pilot-01/tile_tap_launch_r01/frames/000034.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            15,
+            34
+          ]
+        },
+        "limit": "host capture only"
+      },
+      {
+        "interaction": "live_tile_passive_flip",
+        "frames": [
+          "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000000.png",
+          "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000024.png",
+          "runs/capture/shell-observatory-01/live_tile_passive_flip_r01/frames/000032.png"
+        ],
+        "phase_order": "start\u2192observed transition\u2192end",
+        "numeric_observation": {
+          "frame_indices": [
+            0,
+            24,
+            32
+          ]
+        },
+        "limit": "host capture only"
+      }
+    ]
+  },
+  "review_tooling_note": "Rapid multi-image preview was inconsistent; PIL/source hashes show complete app-list cancel r03 frames. No raw anomaly/exclusion is recorded.",
+  "unknowns": [
+    "font family/point size",
+    "exact easing",
+    "physical latency"
+  ]
+}

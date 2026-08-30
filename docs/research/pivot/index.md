@@ -20,9 +20,10 @@ body_class: study-page
 <section class="manual-section" aria-labelledby="compare-title">
   <header class="section-label"><h2 id="compare-title">Watch the comparison</h2></header>
   <div class="section-body">
-    <p>Native is on the left; Flutter is on the right. Both panels use the same recorded input timeline. Flutter frames come from the widget tree, not a redrawn native video.</p>
+    <p>Native is on the left; Flutter is on the right. Each MP4 already contains both panels on the same recorded input timeline, so one play action starts both views. Flutter frames come from the widget tree, not a redrawn native video.</p>
 
-    <figure class="media-evidence">
+    <figure class="media-evidence composite-compare">
+      <div class="composite-compare__legend" aria-hidden="true"><span>Native reference</span><span>Flutter replay</span></div>
       <video controls playsinline preload="metadata" width="960" height="856" poster="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/header_next.png">
         <source src="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/header_next.mp4" type="video/mp4">
         Your browser cannot play this video.
@@ -30,7 +31,8 @@ body_class: study-page
       <figcaption><strong>Tap the next header</strong><a href="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/header_next.mp4">Download MP4</a></figcaption>
     </figure>
 
-    <figure class="media-evidence">
+    <figure class="media-evidence composite-compare">
+      <div class="composite-compare__legend" aria-hidden="true"><span>Native reference</span><span>Flutter replay</span></div>
       <video controls playsinline preload="metadata" width="960" height="856" poster="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/drag_commit.png">
         <source src="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/drag_commit.mp4" type="video/mp4">
         Your browser cannot play this video.
@@ -38,7 +40,8 @@ body_class: study-page
       <figcaption><strong>Drag and commit</strong><a href="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/drag_commit.mp4">Download MP4</a></figcaption>
     </figure>
 
-    <figure class="media-evidence">
+    <figure class="media-evidence composite-compare">
+      <div class="composite-compare__legend" aria-hidden="true"><span>Native reference</span><span>Flutter replay</span></div>
       <video controls playsinline preload="metadata" width="960" height="856" poster="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/wrap_previous.png">
         <source src="https://chinmaykabi.com/wp_pivot_flutter/media/pivot/wrap_previous.mp4" type="video/mp4">
         Your browser cannot play this video.

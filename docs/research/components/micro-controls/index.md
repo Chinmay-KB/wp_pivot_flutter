@@ -36,13 +36,19 @@ body_class: study-page
 <section class="manual-section" aria-labelledby="frames-title">
   <header class="section-label"><h2 id="frames-title">Resting frame</h2></header>
   <div class="section-body">
-    <figure class="media-evidence">
-      <img src="{{ '/media/components/native-rest.png' | relative_url }}" alt="Native WP8.1 micro-control fixture at rest">
-      <figcaption><strong>Native WP8.1 emulator</strong><span>Original 480×800 PNG</span></figcaption>
-    </figure>
-    <figure class="media-evidence">
-      <img src="{{ '/media/components/flutter-rest.png' | relative_url }}" alt="Flutter micro-control reference scene at rest">
-      <figcaption><strong>Flutter candidate</strong><span>Deterministic 480×800 render</span></figcaption>
+    <figure class="comparison-evidence">
+      <div class="image-compare" data-image-compare style="--compare-position: 50%;" role="group" aria-label="Native and Flutter resting-frame comparison">
+        <div class="image-compare__stage">
+          <img class="image-compare__after" src="{{ '/media/components/flutter-rest.png' | relative_url }}" alt="Flutter micro-control reference scene at rest">
+          <div class="image-compare__before"><img src="{{ '/media/components/native-rest.png' | relative_url }}" alt="Native WP8.1 micro-control fixture at rest"></div>
+          <span class="image-compare__label image-compare__label--before">Native</span>
+          <span class="image-compare__label image-compare__label--after">Flutter</span>
+          <span class="image-compare__divider" aria-hidden="true"></span>
+        </div>
+        <label class="sr-only" for="resting-frame-reveal">Reveal more of the native or Flutter resting frame</label>
+        <div class="image-compare__control"><span aria-hidden="true">Native</span><input id="resting-frame-reveal" data-image-compare-input data-first-label="Native" data-second-label="Flutter" type="range" min="0" max="100" value="50"><span aria-hidden="true">Flutter</span></div>
+      </div>
+      <figcaption><strong>Resting-frame reveal</strong><span>Original native PNG · deterministic Flutter render · both 480×800</span></figcaption>
     </figure>
     <p class="quiet-note">The layouts share reference coordinates. Typography remains visibly different because Flutter bundles Selawik rather than proprietary Segoe WP.</p>
   </div>
@@ -52,19 +58,27 @@ body_class: study-page
   <header class="section-label"><h2 id="motion-title">Recorded motion</h2></header>
   <div class="section-body">
     <h3>Indeterminate ProgressBar</h3>
-    <figure class="media-evidence">
-      <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/native-rest.png' | relative_url }}">
-        <source src="{{ '/media/components/progress-native.mp4' | relative_url }}" type="video/mp4">
-        Your browser cannot play this video.
-      </video>
-      <figcaption><strong>Native acquisition</strong><span>Held original frames; no interpolation</span></figcaption>
-    </figure>
-    <figure class="media-evidence">
-      <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/flutter-rest.png' | relative_url }}">
-        <source src="{{ '/media/components/progress-flutter.mp4' | relative_url }}" type="video/mp4">
-        Your browser cannot play this video.
-      </video>
-      <figcaption><strong>Flutter replay</strong><span>33.333 ms deterministic test clock</span></figcaption>
+    <figure class="comparison-evidence video-compare" data-video-compare>
+      <div class="video-compare__grid">
+        <div class="video-compare__pane">
+          <span class="compare-pane__label">Native acquisition</span>
+          <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/native-rest.png' | relative_url }}">
+            <source src="{{ '/media/components/progress-native.mp4' | relative_url }}" type="video/mp4">Your browser cannot play the native video.
+          </video>
+          <p class="compare-pane__note">Held original frames; no interpolation.</p>
+        </div>
+        <div class="video-compare__pane">
+          <span class="compare-pane__label">Flutter replay</span>
+          <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/flutter-rest.png' | relative_url }}">
+            <source src="{{ '/media/components/progress-flutter.mp4' | relative_url }}" type="video/mp4">Your browser cannot play the Flutter video.
+          </video>
+          <p class="compare-pane__note">33.333 ms deterministic test clock.</p>
+        </div>
+      </div>
+      <div class="compare-toolbar" role="group" aria-label="Indeterminate ProgressBar comparison playback">
+        <button type="button" data-video-play>Play both</button><button type="button" data-video-pause>Pause both</button><button type="button" data-video-restart>Restart both</button><span class="compare-status" data-video-status aria-live="polite">Ready · independent timelines</span>
+      </div>
+      <figcaption><strong>Indeterminate ProgressBar</strong><span>Launches together; clocks and durations remain independent</span></figcaption>
     </figure>
     <figure class="media-evidence">
       <img src="{{ '/media/components/indeterminate-trajectories.png' | relative_url }}" alt="Five measured native indeterminate progress mark trajectories across three repetitions">
@@ -72,25 +86,33 @@ body_class: study-page
     </figure>
 
     <h3>TiltEffect corner press</h3>
-    <figure class="media-evidence">
-      <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/native-rest.png' | relative_url }}">
-        <source src="{{ '/media/components/tilt-native.mp4' | relative_url }}" type="video/mp4">
-        Your browser cannot play this video.
-      </video>
-      <figcaption><strong>Fresh native confirmation</strong><span>Captured after candidate freeze</span></figcaption>
-    </figure>
-    <figure class="media-evidence">
-      <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/flutter-rest.png' | relative_url }}">
-        <source src="{{ '/media/components/tilt-flutter.mp4' | relative_url }}" type="video/mp4">
-        Your browser cannot play this video.
-      </video>
-      <figcaption><strong>Flutter replay</strong><span>Retained host input intervals</span></figcaption>
+    <figure class="comparison-evidence video-compare" data-video-compare>
+      <div class="video-compare__grid">
+        <div class="video-compare__pane">
+          <span class="compare-pane__label">Fresh native confirmation</span>
+          <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/native-rest.png' | relative_url }}">
+            <source src="{{ '/media/components/tilt-native.mp4' | relative_url }}" type="video/mp4">Your browser cannot play the native video.
+          </video>
+          <p class="compare-pane__note">Captured after candidate freeze.</p>
+        </div>
+        <div class="video-compare__pane">
+          <span class="compare-pane__label">Flutter replay</span>
+          <video controls playsinline preload="metadata" width="480" height="800" poster="{{ '/media/components/flutter-rest.png' | relative_url }}">
+            <source src="{{ '/media/components/tilt-flutter.mp4' | relative_url }}" type="video/mp4">Your browser cannot play the Flutter video.
+          </video>
+          <p class="compare-pane__note">Retained host input intervals.</p>
+        </div>
+      </div>
+      <div class="compare-toolbar" role="group" aria-label="TiltEffect comparison playback">
+        <button type="button" data-video-play>Play both</button><button type="button" data-video-pause>Pause both</button><button type="button" data-video-restart>Restart both</button><span class="compare-status" data-video-status aria-live="polite">Ready · independent timelines</span>
+      </div>
+      <figcaption><strong>TiltEffect corner press</strong><span>Launches together; clocks and durations remain independent</span></figcaption>
     </figure>
     <figure class="media-evidence">
       <img src="{{ '/media/components/tilt-release.png' | relative_url }}" alt="Native TiltEffect rotation and depth after pointer release">
       <figcaption><strong>Guest-clock release telemetry</strong><span>200 ms delay and 100 ms return bracketed by samples</span></figcaption>
     </figure>
-    <p class="quiet-note">Native and Flutter videos use different clocks and are intentionally separate. The 30 fps native MP4 holds the last acquired image; it does not turn the roughly 15–16 fps source into new observations.</p>
+    <p class="quiet-note">“Play both” launches the two files together without aligning or resampling their timelines. Native and Flutter use different clocks and durations. The 30 fps native MP4 holds the last acquired image; it does not turn the roughly 15–16 fps source into new observations.</p>
   </div>
 </section>
 
