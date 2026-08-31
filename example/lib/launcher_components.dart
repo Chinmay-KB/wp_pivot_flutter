@@ -92,20 +92,11 @@ class _StartSurfaceState extends State<_StartSurface>
                 columnSpan: spec.columnSpan,
                 child: WpStaggeredSceneTransition(
                   animation: _scene,
-                  order: WpStaggeredSceneGeometry.gridExitOrder(
-                    column: spec.column,
-                    columnSpan: spec.columnSpan,
-                    columns: 4,
-                    row: spec.row,
-                  ),
+                  order: _startExitOrder(spec),
                   maxOrder: 4,
-                  entryOrder: WpStaggeredSceneGeometry.gridEntryOrder(
-                    column: spec.column,
-                    columnSpan: spec.columnSpan,
-                    columns: 4,
-                    row: spec.row,
-                  ),
+                  entryOrder: _startEntryOrder(spec),
                   maxEntryOrder: 5,
+                  alignment: Alignment.centerLeft,
                   child: WpTile(
                     label: spec.label,
                     semanticLabel: spec.label,
@@ -136,6 +127,13 @@ class _StartSurfaceState extends State<_StartSurface>
     );
   }
 }
+
+// Start-grid sequencing belongs to this composition, not the transition.
+double _startExitOrder(_TileSpec spec) =>
+    4 - spec.column - spec.columnSpan + spec.row * 0.5;
+
+double _startEntryOrder(_TileSpec spec) =>
+    spec.column + spec.columnSpan - 1 + spec.row * 0.5;
 
 class _AppSurface extends StatefulWidget {
   const _AppSurface();

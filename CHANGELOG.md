@@ -1,3 +1,10 @@
+## Unreleased
+
+* Keep `WpStaggeredSceneTransition` surface-agnostic: callers now own grid or
+  list ordering and choose the transform origin explicitly when needed.
+* Remove the Start-grid-specific exit and entry order helpers from the shared
+  transition API; its neutral transform-origin default is now center.
+
 ## [2.3.0] 30 August 2026.
 
 * Add opt-in reusable Start tiles, explicit tile grid, app-list rows and surface,

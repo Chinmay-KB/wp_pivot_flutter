@@ -5,44 +5,8 @@ import 'package:flutter/material.dart';
 /// Whether a staggered scene is entering its resting plane or leaving it.
 enum WpSceneTransitionDirection { enter, exit }
 
-/// Geometry helpers for [WpStaggeredSceneTransition].
+/// Progress helpers for [WpStaggeredSceneTransition].
 abstract final class WpStaggeredSceneGeometry {
-  /// Returns a right-to-left exit order for an item on a column grid.
-  ///
-  /// A tile touching the right edge has order zero and begins exiting first.
-  static double gridExitOrder({
-    required int column,
-    required int columnSpan,
-    required int columns,
-    int row = 0,
-    double rowWeight = 0.5,
-  }) {
-    assert(column >= 0);
-    assert(columnSpan > 0);
-    assert(columns > 0);
-    assert(row >= 0);
-    assert(rowWeight >= 0);
-    assert(column + columnSpan <= columns);
-    return columns - column - columnSpan + row * rowWeight;
-  }
-
-  /// Returns an entry delay order that favors right and lower grid items.
-  static double gridEntryOrder({
-    required int column,
-    required int columnSpan,
-    required int columns,
-    int row = 0,
-    double rowWeight = 0.5,
-  }) {
-    assert(column >= 0);
-    assert(columnSpan > 0);
-    assert(columns > 0);
-    assert(row >= 0);
-    assert(rowWeight >= 0);
-    assert(column + columnSpan <= columns);
-    return column + columnSpan - 1 + row * rowWeight;
-  }
-
   /// Maps the shared scene progress to one item's normalized away progress.
   static double awayProgress({
     required double progress,
@@ -74,14 +38,12 @@ abstract final class WpStaggeredSceneGeometry {
   }
 }
 
-/// Applies the observed staggered right-edge 3-D scene treatment to one item.
+/// Applies a staggered perspective transition to one item in a larger scene.
 ///
-/// The Windows Phone evidence shows Start tiles leaving from the rightmost
-/// column first, and the inverse order while returning. This primitive keeps
-/// application navigation outside the package: callers own the shared
-/// [animation], decide when a route may change, and assign each item's [order].
-/// Use [WpStaggeredSceneGeometry.gridExitOrder] for a tile grid or provide an
-/// arbitrary order for rows and other scene elements.
+/// The caller owns the shared [animation], layout, transform origin, item
+/// ordering, timing, and any navigation or state change that follows. That
+/// keeps this widget useful for grids, lists, pages, and other composed scenes
+/// without embedding policy from any one surface.
 ///
 /// Exact native timing curves remain caller-tunable because the emulator
 /// captures expose host capture intervals, not guest presentation timestamps.
@@ -100,7 +62,7 @@ class WpStaggeredSceneTransition extends StatelessWidget {
     this.exitTranslation = 64,
     this.entryTranslation = -12,
     this.perspective = 0.0018,
-    this.alignment = Alignment.centerRight,
+    this.alignment = Alignment.center,
   })  : assert(order >= 0),
         assert(maxOrder >= order),
         assert(entryOrder == null || entryOrder >= 0),
@@ -118,8 +80,7 @@ class WpStaggeredSceneTransition extends StatelessWidget {
   final double order;
   final double maxOrder;
 
-  /// Optional independent entry delay. The observed grid entry is not a
-  /// strict reversal of exit: right and lower tiles can settle earlier.
+  /// Optional independent entry delay when entry is not a strict reversal.
   final double? entryOrder;
   final double? maxEntryOrder;
   final Widget child;
@@ -134,12 +95,14 @@ class WpStaggeredSceneTransition extends StatelessWidget {
   /// Horizontal travel at the fully-away pose, in logical pixels.
   final double exitTranslation;
 
-  /// Horizontal travel at the fully-away entry pose. Native entry keeps tile
-  /// right edges close to, and slightly left of, their resting anchors.
+  /// Horizontal travel at the fully-away entry pose.
   final double entryTranslation;
 
   /// Perspective entry at matrix row 3, column 2.
   final double perspective;
+
+  /// Origin used by the perspective transform. Callers should choose the
+  /// alignment that matches the scene they are composing.
   final Alignment alignment;
 
   @override
