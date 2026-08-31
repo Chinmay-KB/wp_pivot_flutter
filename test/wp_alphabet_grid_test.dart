@@ -116,8 +116,10 @@ void main() {
         tester.getSemantics(find.bySemanticsLabel('a')).getSemanticsData();
     final enabled =
         tester.getSemantics(find.bySemanticsLabel('b')).getSemanticsData();
+    // ignore: deprecated_member_use
     expect(disabled.hasFlag(SemanticsFlag.isEnabled), isFalse);
     expect(disabled.hasAction(SemanticsAction.tap), isFalse);
+    // ignore: deprecated_member_use
     expect(enabled.hasFlag(SemanticsFlag.isEnabled), isTrue);
     expect(enabled.hasAction(SemanticsAction.tap), isTrue);
 
