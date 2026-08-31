@@ -1,4 +1,4 @@
-import 'dart:ui' show SemanticsAction, Tristate;
+import 'dart:ui' show SemanticsAction, SemanticsFlag;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -116,9 +116,9 @@ void main() {
         tester.getSemantics(find.bySemanticsLabel('a')).getSemanticsData();
     final enabled =
         tester.getSemantics(find.bySemanticsLabel('b')).getSemanticsData();
-    expect(disabled.flagsCollection.isEnabled, Tristate.isFalse);
+    expect(disabled.hasFlag(SemanticsFlag.isEnabled), isFalse);
     expect(disabled.hasAction(SemanticsAction.tap), isFalse);
-    expect(enabled.flagsCollection.isEnabled, Tristate.isTrue);
+    expect(enabled.hasFlag(SemanticsFlag.isEnabled), isTrue);
     expect(enabled.hasAction(SemanticsAction.tap), isTrue);
 
     await tester.tap(find.bySemanticsLabel('a'));
