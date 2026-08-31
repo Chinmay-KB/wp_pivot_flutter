@@ -19,7 +19,7 @@ logical width. Selawik remains the distributable fallback for Segoe WP.
 | P0 | `WpAppListView` / `WpAppListHeader` / `WpAppListRow` | Measured column/slot placement, 74-unit pitch, 62-unit icon/header geometry, 16-unit icon-to-label gap and activation semantics | Installed-app lookup, sorting, filtering and launching |
 | P0 | `WpAlphabetGrid` | Controlled four-column 99-unit cells, 12-unit gutters, enabled/disabled state and selection/cancel reporting | Mapping a selected letter to a list position |
 | P0/P1 | `WpSplitSurfaceView` | Generic two-surface drag, commit, cancellation and snap-back states | Choosing Start/list content and owning the selected shell surface |
-| P1 | `WpStaggeredSceneTransition` | Caller-driven right-edge 3-D item entry/exit with grid-order helper and reduced-motion fallback | Route changes, app launching and exact unqualified native timing |
+| P1 | `WpStaggeredSceneTransition` | Caller-driven per-item perspective entry/exit with tunable pose and reduced-motion fallback | Scene-specific ordering and transform origin, route changes, app launching and exact unqualified native timing |
 | P1 | `WpTile` controlled edit presentation | 45/46-unit unpin/resize affordances above later siblings | Mutating or repacking tiles |
 
 `WpBoundaryScrollPhysics` and live-tile content-plane motion remain later slices.

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "adapter_id": "start-screen-wp81-wvga-edit-interactions-v1",
+  "reference_viewport": [480, 800],
+  "reset_settle_seconds": 1.5,
+  "precondition_settle_seconds": 1.2,
+  "pre_roll_seconds": 0.25,
+  "post_roll_seconds": 1.1,
+  "calibration": {
+    "frame": "artifacts/start-screen-interactions-02/runs/capture/edit_interactions_calibration-02/fresh-start.png",
+    "sha256": "8ff8e73e5fc0f10ef677c56ac1dbd74165d599e4fab8a848f2388183d4445f89",
+    "method": "fresh visual inspection; Phone plane x24..233,y56..265; People plane x24..233,y278..487."
+  },
+  "scenarios": [
+    {
+      "id": "resize_probe_people",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh resize calibration-03 shows the small People tile at x24..123,y56..155; center x74,y105.",
+      "actions": [{"op": "hold", "x": 74, "y": 105, "ms": 1100}]
+    },
+    {
+      "id": "resize_people",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh resize calibration-03 and retained resize_probe_people_r01 frame 000020 show People initially small at x24..123,y56..155 and its resize control center at x123,y155.",
+      "precondition_actions": [{"op": "hold", "x": 74, "y": 105, "ms": 1100}],
+      "actions": [{"op": "tap", "x": 123, "y": 155}, {"op": "wait", "seconds": 1.5}]
+    },
+    {
+      "id": "resize_probe_people_wide",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh resize calibration-04 shows People wide at x24..456,y56..265; center x240,y160.",
+      "actions": [{"op": "hold", "x": 240, "y": 160, "ms": 1100}]
+    },
+    {
+      "id": "resize_people_wide",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Retained resize_probe_people_wide_r01 frame 000020 shows the selected People wide plane and resize affordance center x469,y289.",
+      "precondition_actions": [{"op": "hold", "x": 240, "y": 160, "ms": 1100}],
+      "actions": [{"op": "tap", "x": 469, "y": 289}, {"op": "wait", "seconds": 1.5}]
+    },
+    {
+      "id": "resize_people_medium",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh resize calibration-05 shows People medium at x24..234,y56..266; the previously inspected medium edit geometry places resize at x244,y289.",
+      "precondition_actions": [{"op": "hold", "x": 129, "y": 160, "ms": 1100}],
+      "actions": [{"op": "tap", "x": 244, "y": 289}, {"op": "wait", "seconds": 1.5}]
+    },
+    {
+      "id": "edit_entry_phone",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh calibration locates Phone center x129,y160.",
+      "actions": [{"op": "hold", "x": 129, "y": 160, "ms": 1100}]
+    },
+    {
+      "id": "live_reorder_phone_to_people",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh calibration locates Phone x129,y160 and People x129,y383; the full vertical path is on visible tile planes.",
+      "precondition_actions": [{"op": "hold", "x": 129, "y": 160, "ms": 1100}],
+      "actions": [{"op": "swipe", "x": 129, "y": 160, "x1": 129, "y1": 383, "ms": 1200}]
+    },
+    {
+      "id": "resize_phone",
+      "coordinate_verified": true,
+      "coordinate_evidence": "Fresh calibration locates Phone center x129,y160; edit_entry_phone_r01 frame 000020 visibly locates the resize affordance center at x244,y289.",
+      "precondition_actions": [{"op": "hold", "x": 129, "y": 160, "ms": 1100}],
+      "actions": [{"op": "tap", "x": 244, "y": 289}]
+    }
+  ]
+}

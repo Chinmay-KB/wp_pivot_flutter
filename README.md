@@ -92,8 +92,9 @@ policy into this package:
   sorting, and selection destinations with the caller.
 - `WpSplitSurfaceView` provides the two-surface commit/cancel drag between Start
   and the app list.
-- `WpStaggeredSceneTransition` applies caller-driven, per-item right-edge 3-D
-  entry/exit. The caller still decides when navigation happens.
+- `WpStaggeredSceneTransition` applies a caller-driven perspective entry/exit
+  to one item. The caller supplies scene ordering and transform origin and still
+  decides when navigation happens.
 
 ```dart
 import 'package:wp_pivot_flutter/wp_components.dart';
