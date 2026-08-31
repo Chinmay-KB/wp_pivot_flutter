@@ -22,6 +22,12 @@ def main() -> None:
     if args.output.exists(): raise SystemExit("video output must be fresh")
     frames = sorted(args.frames.glob("*.png"))
     if not frames: raise SystemExit("no PNG frames")
+    frame_metadata_path = args.frames / "frames.json"
+    frame_metadata = (
+        json.loads(frame_metadata_path.read_text(encoding="utf-8"))
+        if frame_metadata_path.exists()
+        else {}
+    )
     args.output.mkdir(parents=True)
     concat = args.output / "frames.txt"
     concat.write_text("".join(f"file '{frame.as_posix()}'\n" for frame in frames), encoding="utf-8")
@@ -39,6 +45,10 @@ def main() -> None:
     manifest = {
         "schema_version": 1,
         "source": "shipping launcher widget tree deterministic Flutter render",
+        "generator": {
+            "path": str(Path(__file__).resolve()),
+            "sha256": digest(Path(__file__).resolve()),
+        },
         "launcher_revision": revision,
         "launcher_source_snapshot": {
             "path": str(args.source_snapshot),
@@ -46,12 +56,13 @@ def main() -> None:
         },
         "viewport": [480, 800],
         "frame_schedule": {
-            "source_capture_interval_ms": 28,
+            "source_capture_interval_ms": frame_metadata.get("frame_interval_ms"),
+            "scenario_capture_intervals_ms": frame_metadata.get("scenario_frame_intervals_ms", {}),
             "encoded_timeline": "30 fps deterministic presentation schedule; every source PNG retained without interpolation",
             "source_frame_count": len(frames),
             "decoded_frame_count": int(decoded["streams"][0]["nb_read_frames"]),
         },
-        "scenarios": ["launch exit", "edit entry", "live reorder", "resize/reflow"],
+        "scenarios": frame_metadata.get("scenarios", []),
         "video": {"path": video.name, "sha256": digest(video), "ffprobe": decoded},
         "limitations": ["Deterministic widget time verifies behavior/poses, not Android display smoothness or physical latency.", "Native WP8.1 source capture is host-clock sparse; this video does not claim an exact native curve."],
     }
