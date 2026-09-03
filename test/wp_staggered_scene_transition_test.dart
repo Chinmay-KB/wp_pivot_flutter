@@ -150,4 +150,37 @@ void main() {
     expect(transform.alignment, Alignment.centerRight);
     expect(opacity.opacity, 1);
   });
+
+  testWidgets('entry mirrors the exit swing', (tester) async {
+    Future<Matrix4> matrixFor(WpSceneTransitionDirection direction) async {
+      final controller = AnimationController(
+        vsync: const TestVSync(),
+        value: 0.5,
+      );
+      addTearDown(controller.dispose);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: WpStaggeredSceneTransition(
+            animation: controller,
+            direction: direction,
+            order: 0,
+            maxOrder: 0,
+            alignment: Alignment.centerRight,
+            fade: false,
+            child: const SizedBox.square(dimension: 99),
+          ),
+        ),
+      );
+      return tester
+          .widget<Transform>(find.byKey(const ValueKey('wp-scene-transform')))
+          .transform;
+    }
+
+    // rotation storage[8] is sin(theta): opposite signs, same magnitude.
+    final exit = await matrixFor(WpSceneTransitionDirection.exit);
+    final entry = await matrixFor(WpSceneTransitionDirection.enter);
+    expect(exit.storage[8], lessThan(0));
+    expect(entry.storage[8], greaterThan(0));
+    expect(entry.storage[8], closeTo(-exit.storage[8], 1e-9));
+  });
 }

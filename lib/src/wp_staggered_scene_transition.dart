@@ -132,6 +132,13 @@ class WpStaggeredSceneTransition extends StatelessWidget {
               ((away - 0.92) / 0.08).clamp(0.0, 1.0),
             );
         final opacity = this.fade ? fade : 1.0;
+        // Shell return mirrors the exit swing: exiting surfaces recede
+        // around their reading edge, while the returning page swings back
+        // from the mirrored pose around the opposite edge (WP8.1
+        // dialer -> Start capture).
+        final rotation = direction == WpSceneTransitionDirection.exit
+            ? -maxRotation * away
+            : maxRotation * away;
         final matrix = Matrix4.identity();
         if (!reduceMotion && away > 0) {
           final translation = direction == WpSceneTransitionDirection.exit
@@ -144,7 +151,7 @@ class WpStaggeredSceneTransition extends StatelessWidget {
             // SDK.
             // ignore: deprecated_member_use
             ..translate(translation * away)
-            ..rotateY(-maxRotation * away);
+            ..rotateY(rotation);
         }
         return IgnorePointer(
           ignoring: away > 0.001,
