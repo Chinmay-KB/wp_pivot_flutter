@@ -1,9 +1,43 @@
 ## Unreleased
 
+* Add `WpLoadingSurface`, `WpFailureSurface` and `WpEmptyStart` black-field
+  shell states (160x3 accent-on-dark line, 24-unit padded 34-unit headline with
+  square 96x48 white-on-accent retry, 44-unit icon with 21-unit message) with
+  theme colors, square geometry and static reduced-motion fallbacks.
+* Add `WpSetupPanel` (`WpSetupAction`) and `WpTransientNotice` overlays (white
+  2-unit top rule with 48x48 18-unit square actions at 24-unit offsets,
+  19-unit live-region notice with 1600 ms hold and 120 ms fade collapsing to
+  zero under reduced-motion).
+* Add `WpSearchField`: measured 480-unit app-list search presentation (74-unit
+  row, 62-unit inner field, 25-unit text, 1-unit rest / 2-unit focused accent
+  underline) with theme colors, reduced-motion cursor, focus support, and
+  `Search apps` semantics. The widget forwards edits only; filtering stays
+  with the caller.
+* Add `WpCircularAffordance` and `WpSearchGlyph`: measured 44-unit circular
+  search/close control (2-unit ring, 28-unit magnifier or close glyph) with
+  theme colors, keyboard activation, and `Search apps`/`Close app search`
+  semantics.
 * Keep `WpStaggeredSceneTransition` surface-agnostic: callers now own grid or
   list ordering and choose the transform origin explicitly when needed.
 * Remove the Start-grid-specific exit and entry order helpers from the shared
   transition API; its neutral transform-origin default is now center.
+* Add `WpEditableStartGrid` with controlled placements, edit selection, drag
+  reorder reporting, and measured 99-cell, 12-gutter, 24-margin, 56-field-top
+  geometry that scales from the phone-theme reference width with reduced-motion
+  fallbacks. Includes `WpEditableStartGridGeometry` for pure packing, overlap,
+  and order math.
+* Add `WpLiveTileContent` for wide tiles with measured 18/18/18/34 padding,
+  18-unit gap, 19-unit single-line title, 16-unit two-line body, and 25-unit
+  weight-300 count shown only above one, scaled via parent constraints.
+* Add `WpAlphabetOverlay`: alphabet-jump motion envelope choreographing the app
+  list (0-0.18 ease-in fade with -12-unit slide) and the letter plane
+  (0.20-0.60 ease-out-cubic fade, input ignored while closing or below 0.35
+  progress, selection hold keeps the catalog black, transparent/light status
+  bar with opt-in top SafeArea) driven from `open` over a caller-owned
+  controller (440 ms forward / 340 ms reverse, jumping to 1/0 under
+  reduced-motion) with `WpAlphabetOverlayGeometry` timing constants. Letters,
+  selection, scrolling, and cell styling stay with the caller's
+  `WpAlphabetGrid`.
 
 ## [2.3.0] 30 August 2026.
 
