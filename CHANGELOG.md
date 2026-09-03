@@ -1,5 +1,8 @@
 ## Unreleased
 
+* Add `fade` to `WpStaggeredSceneTransition` (defaults to true). Page-level
+  entries pass `fade: false` with a single zero order so the surface stays
+  opaque while it swings back to its resting plane.
 * Add `WpLoadingSurface`, `WpFailureSurface` and `WpEmptyStart` black-field
   shell states (160x3 accent-on-dark line, 24-unit padded 34-unit headline with
   square 96x48 white-on-accent retry, 44-unit icon with 21-unit message) with

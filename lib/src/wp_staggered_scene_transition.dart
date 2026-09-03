@@ -63,6 +63,7 @@ class WpStaggeredSceneTransition extends StatelessWidget {
     this.entryTranslation = -12,
     this.perspective = 0.0018,
     this.alignment = Alignment.center,
+    this.fade = true,
   })  : assert(order >= 0),
         assert(maxOrder >= order),
         assert(entryOrder == null || entryOrder >= 0),
@@ -105,6 +106,10 @@ class WpStaggeredSceneTransition extends StatelessWidget {
   /// alignment that matches the scene they are composing.
   final Alignment alignment;
 
+  /// Whether items fade near the fully-away pose. Per-item staggered exits
+  /// fade; a page-level entry keeps the surface opaque through the swing.
+  final bool fade;
+
   @override
   Widget build(BuildContext context) {
     final reduceMotion =
@@ -126,6 +131,7 @@ class WpStaggeredSceneTransition extends StatelessWidget {
             Curves.easeIn.transform(
               ((away - 0.92) / 0.08).clamp(0.0, 1.0),
             );
+        final opacity = this.fade ? fade : 1.0;
         final matrix = Matrix4.identity();
         if (!reduceMotion && away > 0) {
           final translation = direction == WpSceneTransitionDirection.exit
@@ -143,10 +149,10 @@ class WpStaggeredSceneTransition extends StatelessWidget {
         return IgnorePointer(
           ignoring: away > 0.001,
           child: Semantics(
-            hidden: fade <= 0.001,
+            hidden: opacity <= 0.001,
             child: Opacity(
               key: const ValueKey<String>('wp-scene-opacity'),
-              opacity: fade,
+              opacity: opacity,
               child: Transform(
                 key: const ValueKey<String>('wp-scene-transform'),
                 alignment: alignment,

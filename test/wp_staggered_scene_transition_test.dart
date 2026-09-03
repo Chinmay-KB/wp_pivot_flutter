@@ -119,4 +119,35 @@ void main() {
     expect(transform.transform, Matrix4.identity());
     expect(opacity.opacity, lessThan(1));
   });
+
+  testWidgets('page-level entry stays opaque through the swing', (tester) async {
+    final controller = AnimationController(
+      vsync: const TestVSync(),
+      value: 0,
+    );
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: WpStaggeredSceneTransition(
+          animation: controller,
+          direction: WpSceneTransitionDirection.enter,
+          order: 0,
+          maxOrder: 0,
+          alignment: Alignment.centerRight,
+          fade: false,
+          child: const SizedBox.square(dimension: 99),
+        ),
+      ),
+    );
+
+    final transform = tester.widget<Transform>(
+      find.byKey(const ValueKey('wp-scene-transform')),
+    );
+    final opacity = tester.widget<Opacity>(
+      find.byKey(const ValueKey('wp-scene-opacity')),
+    );
+    expect(transform.transform, isNot(Matrix4.identity()));
+    expect(transform.alignment, Alignment.centerRight);
+    expect(opacity.opacity, 1);
+  });
 }
