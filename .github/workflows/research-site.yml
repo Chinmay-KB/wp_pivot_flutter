@@ -43,22 +43,13 @@ jobs:
       group: research-site-sync
       cancel-in-progress: false
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download built site artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
-          path: wp
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@e5517072e87f198d9533967ae13d97c11b604005 # v1.99.0
-        with:
-          ruby-version: '3.4'
-          bundler-cache: false
-      - name: Install Jekyll
-        run: gem install jekyll jekyll-relative-links --no-document
-      - name: Build research site with repo config
-        run: jekyll build --source docs --destination _site_cf
-        working-directory: wp
-      - name: Drop Jekyll-copied sources (HTML only)
-        run: find _site_cf -name '*.md' -delete; find _site_cf -name '*.sh' -delete
-        working-directory: wp
+          name: research-site
+          path: _site_cf
+      - name: Drop non-site files
+        run: rm -f _site_cf/ROADMAP.html
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: Chinmay-KB/mysite
@@ -68,8 +59,7 @@ jobs:
         run: |
           rm -rf mysite/wp_pivot_flutter
           mkdir -p mysite/wp_pivot_flutter
-          cp -R wp/_site_cf/. mysite/wp_pivot_flutter/
-          rm -rf wp/_site_cf
+          cp -R _site_cf/. mysite/wp_pivot_flutter/
       - name: Commit and push if changed
         working-directory: mysite
         run: |
