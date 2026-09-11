@@ -34,7 +34,7 @@ jobs:
   # Requires repo secret MYSITE_SYNC_TOKEN: a PAT with contents:write on
   # Chinmay-KB/mysite (fine-grained, repo-scoped).
   sync-to-mysite:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
     permissions:
