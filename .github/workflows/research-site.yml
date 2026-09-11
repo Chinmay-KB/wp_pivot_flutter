@@ -2,7 +2,13 @@ name: Research site
 on:
   push:
     branches: [master, codex/pivot-native-fidelity]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/research-site.yml'
   pull_request:
+    paths:
+      - 'docs/**'
+      - '.github/workflows/research-site.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,3 +27,58 @@ jobs:
           name: research-site
           path: ./_site
           retention-days: 7
+
+  # Push docs changes to the mysite repo (vendored under wp_pivot_flutter/).
+  # mysite is connected to Cloudflare Workers Builds, so landing the sync
+  # commit there auto-deploys chinmaykabi.com/wp_pivot_flutter/.
+  # Requires repo secret MYSITE_SYNC_TOKEN: a PAT with contents:write on
+  # Chinmay-KB/mysite (fine-grained, repo-scoped).
+  sync-to-mysite:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: research-site-sync
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          path: wp
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc3939c71aa5d5a324a98a94b86ff9da2 # v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: false
+      - name: Install Jekyll
+        run: gem install jekyll jekyll-relative-links --no-document
+      - name: Build research site with repo config
+        run: jekyll build --source docs --destination _site_cf
+        working-directory: wp
+      - name: Drop Jekyll-copied sources (HTML only)
+        run: find _site_cf -name '*.md' -delete; find _site_cf -name '*.sh' -delete
+        working-directory: wp
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: Chinmay-KB/mysite
+          token: ${{ secrets.MYSITE_SYNC_TOKEN }}
+          path: mysite
+      - name: Sync built site into mysite/wp_pivot_flutter
+        run: |
+          rm -rf mysite/wp_pivot_flutter
+          mkdir -p mysite/wp_pivot_flutter
+          cp -R wp/_site_cf/. mysite/wp_pivot_flutter/
+          rm -rf wp/_site_cf
+      - name: Commit and push if changed
+        working-directory: mysite
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add wp_pivot_flutter
+          if git diff --cached --quiet; then
+            echo "No changes to sync."
+          else
+            git commit -m "Sync WP research site from Chinmay-KB/wp_pivot_flutter@${{ github.sha }}"
+            git push origin main
+          fi
