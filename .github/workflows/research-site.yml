@@ -47,7 +47,7 @@ jobs:
         with:
           path: wp
       - name: Set up Ruby
-        uses: ruby/setup-ruby@359bebbc3939c71aa5d5a324a98a94b86ff9da2 # v1
+        uses: ruby/setup-ruby@e5517072e87f198d9533967ae13d97c11b604005 # v1.99.0
         with:
           ruby-version: '3.3'
           bundler-cache: false
