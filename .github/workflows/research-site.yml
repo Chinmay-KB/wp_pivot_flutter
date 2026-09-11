@@ -49,7 +49,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@e5517072e87f198d9533967ae13d97c11b604005 # v1.99.0
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.4'
           bundler-cache: false
       - name: Install Jekyll
         run: gem install jekyll jekyll-relative-links --no-document
