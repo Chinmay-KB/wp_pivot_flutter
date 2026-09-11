@@ -5,8 +5,12 @@ description: >-
   WP Pivot Research records the Windows Phone design language from labeled
   emulator and hardware sources. Measurements are published with their source
   data and limits.
-url: https://chinmay-kb.github.io/wp_pivot_flutter
+url: https://chinmaykabi.com
 baseurl: /wp_pivot_flutter
+# Served via Cloudflare Workers Static Assets (mysite worker) — built HTML is
+# vendored into mysite/wp_pivot_flutter/. See tool/sync_cloudflare_site.py.
+# Large capture assets (video, raw frames) live in R2, not in git.
+assets_base_url: https://assets.chinmaykabi.com/wp-pivot
 github_repo: https://github.com/Chinmay-KB/wp_pivot_flutter
 
 markdown: kramdown

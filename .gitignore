@@ -85,3 +85,7 @@ README.md.publish-backup
 **/obj/
 artifacts/
 __pycache__/
+
+# Cloudflare site sync
+.cloudflare_site_tmp/
+.wrangler/
